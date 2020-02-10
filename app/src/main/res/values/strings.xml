@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Hino Hearts</string>
+
+    <string name="login_message">Please Sign In</string>
+
+    <string name="employee_id_field">Employee ID</string>
+    <string name="password_field">Password</string>
+
+    <string name="forgot_password_button"><u>Forgot Password?</u></string>
+    <string name="login_button">Sign In</string>
 </resources>

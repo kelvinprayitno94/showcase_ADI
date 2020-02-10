@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.hino.hearts.R
+import com.hino.hearts.ui.home.HomeActivity
+import com.hino.hearts.ui.login.LoginActivity
+import com.hino.hearts.ui.onboarding.OnboardingActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -15,11 +18,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 //        token = UserDefaults.getInstance().getString(UserDefaults.TOKEN_KEY)
-//
-//        val handler = Handler()
-//        handler.postDelayed({
-//            finish()
-//            //Check if has login but new user go to create account, else if has login and not new user go to home, else welcome
+
+        val handler = Handler()
+        handler.postDelayed({
+            finish()
+            //Check if has login but new user go to create account, else if has login and not new user go to home, else welcome
 //            if (token != null) {
 //                startActivity(Intent(this, HomeActivity::class.java))
 //                UserDefaults.getInstance().setBoolean(UserDefaults.IS_HOME, true)
@@ -28,25 +31,26 @@ class SplashActivity : AppCompatActivity() {
 //                    startActivity(
 //                        Intent(
 //                            this,
-//                            WelcomeActivity::class.java
+//                            OnboardingActivity::class.java
 //                        )
 //                    )
 //                } else {
-//                    startActivity(Intent(this, HomeActivity::class.java))
+//                    startActivity(Intent(this, LoginActivity::class.java))
 //                    UserDefaults.getInstance().setBoolean(UserDefaults.IS_HOME, true)
 //                }
 //            }
-//        }, 2000)
+            startActivity(Intent(this, LoginActivity::class.java))
+        }, 2000)
     }
 
-//    private fun isFirstTime(): Boolean {
-//        val preferences = getPreferences(Context.MODE_PRIVATE)
-//        val ranBefore = preferences.getBoolean("RanBefore", false)
-//        if (!ranBefore) { // first time
-//            val editor = preferences.edit()
-//            editor.putBoolean("RanBefore", true)
-//            editor.apply()
-//        }
-//        return !ranBefore
-//    }
+    private fun isFirstTime(): Boolean {
+        val preferences = getPreferences(Context.MODE_PRIVATE)
+        val ranBefore = preferences.getBoolean("RanBefore", false)
+        if (!ranBefore) { // first time
+            val editor = preferences.edit()
+            editor.putBoolean("RanBefore", true)
+            editor.apply()
+        }
+        return !ranBefore
+    }
 }
