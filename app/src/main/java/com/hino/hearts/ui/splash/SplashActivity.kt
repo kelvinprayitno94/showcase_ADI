@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.hino.hearts.R
-import com.hino.hearts.ui.home.HomeActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.onboarding.OnboardingActivity
 
 class SplashActivity : AppCompatActivity() {
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

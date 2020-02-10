@@ -1,6 +1,7 @@
 package com.hino.hearts
 
 import android.app.Application
+import com.hino.hearts.util.module.moduleViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -26,7 +27,7 @@ class BaseApplication: Application() {
             modules(
                 listOf(
 //                    moduleDatabase,
-//                    moduleViewModel
+                    moduleViewModel
                 )
             )
         }
