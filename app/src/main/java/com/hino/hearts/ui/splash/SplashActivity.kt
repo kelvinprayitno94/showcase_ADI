@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.hino.hearts.R
+import com.hino.hearts.ui.home.HomeActivity
+import com.hino.hearts.ui.home.HomeFragment
 import com.hino.hearts.ui.login.LoginActivity
-import com.hino.hearts.ui.onboarding.OnboardingActivity
+import org.jetbrains.anko.startActivity
 
 class SplashActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,8 @@ class SplashActivity : AppCompatActivity() {
 //                    UserDefaults.getInstance().setBoolean(UserDefaults.IS_HOME, true)
 //                }
 //            }
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity<HomeActivity>()
+            overridePendingTransition(0, 0)
         }, 2000)
     }
 

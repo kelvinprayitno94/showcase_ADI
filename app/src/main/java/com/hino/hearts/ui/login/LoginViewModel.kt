@@ -1,6 +1,5 @@
 package com.hino.hearts.ui.login
 
-import android.content.Intent
 import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -21,31 +20,26 @@ import retrofit2.Response
  * Created by Dihardja Software on 2020-02-10.
  */
 class LoginViewModel : ViewModel() {
-    var userService: UserService = HinoService.create(UserService::class.java)
-
     var showLoading: MutableLiveData<Boolean> = MutableLiveData()
     var loginTap: MutableLiveData<Boolean> = MutableLiveData()
     var user: MutableLiveData<User> = MutableLiveData()
 
+    var userService: UserService = HinoService.create(UserService::class.java)
+
     fun onLogin(employeeId: String, password: String) {
         showLoading.value = true
 
-        when (employeeId.isNotEmpty() && password.isNotEmpty()) {
-            true -> {
-                CoroutineScope(Dispatchers.Main).launch {
-                    //login()
-                    val handler = Handler()
-                    handler.postDelayed({
-                        showLoading.value = false
-                        loginTap.value = true
-                    }, 1000)
-
-                }
-            }
+        CoroutineScope(Dispatchers.Main).launch {
+            //login(employeeId, password)
+            val handler = Handler()
+            handler.postDelayed({
+                showLoading.value = false
+                loginTap.value = true
+            }, 1000)
         }
     }
 
-    private fun login() {
+    private fun login(employeeId: String, password: String) {
         userService.getUserData()
             .enqueue(object : Callback<DataResponse<User>> {
                 override fun onFailure(call: Call<DataResponse<User>>, t: Throwable) {

@@ -8,13 +8,16 @@ import android.view.inputmethod.InputMethodManager
  * Created by Dihardja Software on 2020-02-10.
  */
 class InterfaceManager {
-    var interfaceManager: InterfaceManager? = null
 
-    fun getInstance(): InterfaceManager? {
-        if (interfaceManager == null) {
-            interfaceManager = InterfaceManager()
+    companion object {
+        private var instance: InterfaceManager? = null
+
+        fun getInstance(): InterfaceManager {
+            if (instance == null) {
+                instance = InterfaceManager()
+            }
+            return instance!!
         }
-        return interfaceManager!!.interfaceManager
     }
 
     fun hideKeyboard(activity: Activity) {

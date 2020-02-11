@@ -15,7 +15,10 @@
     <color name="black">#000000</color>
     <color name="grey">#CCCCCC</color>
     <color name="grey50transparency">#80CCCCCC</color>
+    <color name="grey36">#363636</color>
     <color name="grey4a">#4A4A4A</color>
+    <color name="greye1">#E1E1E1</color>
+    <color name="grey9b">#9B9B9B</color>
 
     <color name="red">#DA251D</color>
     <color name="redLight">#FF6048</color>

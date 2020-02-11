@@ -1,5 +1,7 @@
 package com.hino.hearts.util.module
 
+import com.hino.hearts.ui.home.HomeFragmentViewModel
+import com.hino.hearts.ui.home.HomeViewModel
 import com.hino.hearts.ui.login.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -9,4 +11,7 @@ import org.koin.dsl.module
  */
 val moduleViewModel = module {
     viewModel { LoginViewModel() }
+
+    viewModel { HomeViewModel() }
+    viewModel { HomeFragmentViewModel() }
 }

@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
  */
 abstract class BaseFragment<U : ViewDataBinding> : Fragment() {
 
-    private lateinit var binding: U
+    protected lateinit var binding: U
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,4 +27,10 @@ abstract class BaseFragment<U : ViewDataBinding> : Fragment() {
     }
 
     abstract fun getLayoutId():Int
+
+    abstract fun initObserver()
+
+    abstract fun initViewModel()
+
+    abstract fun initEvent()
 }
