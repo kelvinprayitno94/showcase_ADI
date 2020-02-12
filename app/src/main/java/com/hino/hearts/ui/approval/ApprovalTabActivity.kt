@@ -63,6 +63,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                         it.docList[pos].isSelected = true
                         approvalCollapsDocAdapter.notifyItemChanged(it.prevSelected)
                         approvalCollapsDocAdapter.notifyItemChanged(pos)
+                        it.prevSelected = pos
                         tab_layout_approval.getTabAt(pos)?.select()
                     }
                 }

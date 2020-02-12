@@ -26,7 +26,6 @@ class ApprovalDocumentAdapter(
     var tempDoc: ApprovalDocModel = ApprovalDocModel(ArrayList())
 
     init {
-        tempDoc.prevSelected = document.prevSelected
         tempDoc.docList.addAll(document.docList)
     }
 
