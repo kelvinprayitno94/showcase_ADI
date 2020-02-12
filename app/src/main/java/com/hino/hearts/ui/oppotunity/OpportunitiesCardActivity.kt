@@ -18,10 +18,10 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.marginRight
 import androidx.core.view.setMargins
 import androidx.core.view.setPadding
-import com.dihardja.template.kotlin.R
-import com.dihardja.template.kotlin.viewController.drag.CardViewModel
 import com.dihardja.template.kotlin.viewController.drag.OpportunityModel
-import kotlinx.android.synthetic.main.parent_scrollview.*
+import com.hino.hearts.R
+import com.hino.hearts.model.CardViewModel
+//import kotlinx.android.synthetic.main.parent_scrollview.*
 
 
 class OpportunitiesCardActivity : AppCompatActivity() {
@@ -30,7 +30,7 @@ class OpportunitiesCardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.parent_scrollview)
+        /*setContentView(R.layout.parent_scrollview)
 
         for (i in 0 until 6) {
 
@@ -47,11 +47,11 @@ class OpportunitiesCardActivity : AppCompatActivity() {
 
         generateCard()
 
-        root.onTouchEvent()
+        root.onTouchEvent()*/
 
     }
 
-    fun generateCard() {
+    /*fun generateCard() {
         for (i in item.indices) {
 
             val childList = item[i].second.cardList
@@ -298,7 +298,7 @@ class OpportunitiesCardActivity : AppCompatActivity() {
 
             return@setOnDragListener false
         }
-    }
+    }*/
 
 
 }
