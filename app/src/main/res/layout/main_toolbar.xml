@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:layout_marginBottom="10dp"
+    android:background="@color/colorPrimary"
+    android:elevation="@dimen/dimen_6dp"
+    android:minHeight="?attr/actionBarSize"
+    app:contentInsetStart="0dp"
+    app:layout_scrollFlags="enterAlways"
+    app:titleTextColor="@color/white">
+
+    <!-- FrameLayout for displaying full scale back icon -->
+    <FrameLayout
+        android:id="@+id/layout_toolbar_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_4dp"
+        android:layout_marginTop="@dimen/dimens_4dp"
+        android:layout_marginBottom="@dimen/dimens_4dp"
+        android:background="@drawable/ic_arrow_back"
+        android:backgroundTint="@color/white">
+
+        <!-- ImageView for ripple effect in center instead of filling the whole layout -->
+        <ImageView
+            android:layout_width="@dimen/dimen_12dp"
+            android:layout_height="@dimen/dimen_12dp"
+            android:layout_gravity="center"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_toolbar_title"
+        style="@style/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_4dp"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+</androidx.appcompat.widget.Toolbar>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.hino.hearts.R
+import com.hino.hearts.ui.approval.ApprovalTabActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.onboarding.OnboardingActivity
 
@@ -37,7 +38,7 @@ class SplashActivity : AppCompatActivity() {
 //                    UserDefaults.getInstance().setBoolean(UserDefaults.IS_HOME, true)
 //                }
 //            }
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, ApprovalTabActivity::class.java))
         }, 2000)
     }
 

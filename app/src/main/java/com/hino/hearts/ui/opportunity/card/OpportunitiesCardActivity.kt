@@ -1,4 +1,4 @@
-package com.hino.hearts.ui.oppotunity
+package com.hino.hearts.ui.opportunity.card
 
 import android.content.ClipData
 import android.content.ClipDescription
@@ -6,31 +6,29 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.DragEvent
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.view.marginRight
 import androidx.core.view.setMargins
 import androidx.core.view.setPadding
-import com.dihardja.template.kotlin.R
-import com.dihardja.template.kotlin.viewController.drag.CardViewModel
-import com.dihardja.template.kotlin.viewController.drag.OpportunityModel
-import kotlinx.android.synthetic.main.parent_scrollview.*
+import com.hino.hearts.model.OpportunityModel
+import com.hino.hearts.R
+import com.hino.hearts.databinding.ActivityOpportunitiesCardBinding
+import com.hino.hearts.model.CardViewModel
+import com.hino.hearts.ui.BaseActivity
+import kotlinx.android.synthetic.main.activity_opportunities_card.*
 
 
-class OpportunitiesCardActivity : AppCompatActivity() {
+class OpportunitiesCardActivity : BaseActivity<ActivityOpportunitiesCardBinding>() {
 
     var item: MutableList<Pair<String, OpportunityModel>> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.parent_scrollview)
+        setBinding(R.layout.activity_opportunities_card)
 
         for (i in 0 until 6) {
 
@@ -47,7 +45,6 @@ class OpportunitiesCardActivity : AppCompatActivity() {
 
         generateCard()
 
-        root.onTouchEvent()
 
     }
 
@@ -57,7 +54,7 @@ class OpportunitiesCardActivity : AppCompatActivity() {
             val childList = item[i].second.cardList
 
             val scrollView = ScrollView(this@OpportunitiesCardActivity)
-            scrollView.setBackgroundColor(resources.getColor(android.R.color.darker_gray))
+            scrollView.setBackgroundColor(resources.getColor(android.R.color.holo_orange_dark))
 
             val viewGroupParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -74,6 +71,20 @@ class OpportunitiesCardActivity : AppCompatActivity() {
             childList?.let {
 
                 val linearLayout = LinearLayout(this)
+
+                val title = TextView(this@OpportunitiesCardActivity)
+                title.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                title.setPadding(0, 0, 0, 10)
+                title.textSize = 18f
+                title.setTextColor(resources.getColor(android.R.color.black))
+
+                title.text = "Opportunity"
+
+                linearLayout.addView(title)
+
                 val layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.MATCH_PARENT
@@ -93,20 +104,29 @@ class OpportunitiesCardActivity : AppCompatActivity() {
                     cardLayParam.setMargins(5)
                     cardView.layoutParams = cardLayParam
                     cardView.setCardBackgroundColor(resources.getColor(android.R.color.white))
-                    val title = TextView(this@OpportunitiesCardActivity)
-                    title.layoutParams = ViewGroup.LayoutParams(
+                    val cardTitle = TextView(this@OpportunitiesCardActivity)
+                    val cardAccount = TextView(this@OpportunitiesCardActivity)
+                    val cardValue = TextView(this@OpportunitiesCardActivity)
+                    val layoutParam = ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT
                     )
-                    title.setPadding(10)
-                    title.textSize = 18f
-                    title.setTextColor(resources.getColor(android.R.color.black))
+                    cardTitle.layoutParams = layoutParam
+                    cardAccount.layoutParams = layoutParam
+                    cardValue.layoutParams = layoutParam
+                    cardTitle.setPadding(10)
+                    cardTitle.textSize = 18f
+                    cardTitle.setTextColor(resources.getColor(android.R.color.black))
 //                    cardView.tag = Pair(it[_i].parentIndex, it[_i].childIndex)
                     cardView.tag = it[_i]
 
-                    title.text = "${it[_i].cardTitle}"
+                    cardTitle.text = "Opportunity Title"
+                    cardAccount.text = "Account Name"
+                    cardValue.text = "Opportunity Value"
 
-                    cardView.addView(title)
+                    cardView.addView(cardTitle)
+                    cardView.addView(cardAccount)
+                    cardView.addView(cardValue)
 
                     setDrag(cardView)
 
@@ -216,14 +236,14 @@ class OpportunitiesCardActivity : AppCompatActivity() {
                         val targetPair = target.tag as CardViewModel
 
 //                        if (conViewgroup.tag == tarViewgroup.tag) {
-                            item[conViewgroup.tag as Int].second.cardList?.set(
-                                conIndex,
-                                targetPair
-                            )
-                            item[tarViewgroup.tag as Int].second.cardList?.set(
-                                tarIndex,
-                                containerPair
-                            )
+                        item[conViewgroup.tag as Int].second.cardList?.set(
+                            conIndex,
+                            targetPair
+                        )
+                        item[tarViewgroup.tag as Int].second.cardList?.set(
+                            tarIndex,
+                            containerPair
+                        )
 //                        } else {
 //
 //                            item[conViewgroup.tag as Int].second.cardList?.add(conIndex, targetPair)
@@ -298,6 +318,18 @@ class OpportunitiesCardActivity : AppCompatActivity() {
 
             return@setOnDragListener false
         }
+    }
+
+    override fun initObserver() {
+
+    }
+
+    override fun initViewModel() {
+
+    }
+
+    override fun initEvent() {
+
     }
 
 
