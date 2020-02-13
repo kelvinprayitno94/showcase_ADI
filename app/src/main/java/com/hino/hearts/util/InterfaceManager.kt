@@ -3,6 +3,7 @@ package com.hino.hearts.util
 import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import com.hino.hearts.R
 
 /**
  * Created by Dihardja Software on 2020-02-10.
@@ -27,5 +28,9 @@ class InterfaceManager {
                 activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    fun isTablet(context: Context): Boolean? {
+        return context.resources.getBoolean(R.bool.isTab)
     }
 }

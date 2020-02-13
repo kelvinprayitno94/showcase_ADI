@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,12 +10,448 @@
             type="com.hino.hearts.ui.home.HomeFragmentViewModel" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
         tools:context=".ui.home.HomeFragment">
 
-    </FrameLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:minHeight="@dimen/dimens_184dp">
+
+                    <TextView
+                        android:id="@+id/tv_home_greetings"
+                        style="@style/DescWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:text="@{viewModel.greetings}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Selamat siang" />
+
+                    <TextView
+                        android:id="@+id/tv_home_name"
+                        style="@style/Title24spWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_8dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:text="@{viewModel.name}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_greetings"
+                        tools:text="Abdul Rahmat" />
+
+                    <TextView
+                        android:id="@+id/tv_home_role"
+                        style="@style/Desc14spWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_4dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:text="@{viewModel.role}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_name"
+                        tools:text="Sales" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:layout_marginBottom="@dimen/dimens_16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_role">
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_left_info"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/home_view"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_home_left_info"
+                                style="@style/Title20spWhite"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{viewModel.leftInfo}"
+                                tools:text="35" />
+
+                            <TextView
+                                android:id="@+id/tv_home_left_info_desc"
+                                style="@style/Desc12spWhite"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dimens_4dp"
+                                android:text="@string/home_left_info_sales" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/home_view"
+                            android:layout_width="@dimen/dimens_1dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="@dimen/dimens_16dp"
+                            android:layout_marginEnd="@dimen/dimens_16dp"
+                            android:background="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@id/ll_home_right_info"
+                            app:layout_constraintEnd_toStartOf="@id/ll_home_right_info"
+                            app:layout_constraintStart_toEndOf="@id/ll_home_left_info"
+                            app:layout_constraintTop_toTopOf="@id/ll_home_right_info" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_right_info"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@id/home_view"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_home_right_info"
+                                style="@style/Title20spWhite"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{viewModel.rightInfo}"
+                                tools:text="Rp3.254.120.000" />
+
+                            <TextView
+                                android:id="@+id/tv_home_right_info_desc"
+                                style="@style/Desc12spWhite"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dimens_4dp"
+                                android:text="@string/home_right_info_sales" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cv_home_approval_request"
+                        style="@style/CardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/iv_home_approval_request"
+                                android:layout_width="@dimen/dimens_40dp"
+                                android:layout_height="@dimen/dimens_40dp"
+                                android:layout_marginStart="@dimen/dimens_24dp"
+                                android:layout_marginTop="@dimen/dimens_26dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_26dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_launcher_background"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="contentDescription" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_home_approval_request"
+                                android:layout_width="0dp"
+                                android:layout_marginStart="@dimen/dimens_24dp"
+                                android:layout_marginEnd="@dimen/dimens_6dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/fl_next"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toEndOf="@id/iv_home_approval_request"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/tv_approval_request_count"
+                                    style="@style/Title21spGrey36"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{viewModel.leftInfo}"
+                                    tools:text="24" />
+
+                                <TextView
+                                    android:id="@+id/tv_approval_request_desc"
+                                    style="@style/Desc13spGrey62"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dimens_4dp"
+                                    android:text="@string/approval_request_desc" />
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:id="@+id/fl_next"
+                                android:layout_width="@dimen/dimens_44dp"
+                                android:layout_height="@dimen/dimens_44dp"
+                                android:layout_marginEnd="@dimen/dimens_8dp"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_home_approval_request"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/iv_home_approval_request">
+
+                                <ImageView
+                                    android:layout_width="@dimen/dimens_30dp"
+                                    android:layout_height="@dimen/dimens_30dp"
+                                    android:layout_gravity="center"
+                                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                                    android:src="@drawable/ic_navigate_next"
+                                    tools:ignore="contentDescription" />
+
+                            </FrameLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cv_home_visit"
+                        style="@style/CardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/iv_add_visit_progress"
+                                android:layout_width="@dimen/dimens_40dp"
+                                android:layout_height="@dimen/dimens_40dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_launcher_background"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_home_card_info_sales"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/tv_home_card_info_sales_title"
+                                tools:ignore="contentDescription" />
+
+                            <TextView
+                                android:id="@+id/tv_home_card_info_sales_title"
+                                style="@style/Desc12spGrey4a"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_16dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:text="@string/card_info_sales"
+                                app:layout_constraintEnd_toStartOf="@id/iv_add_visit_progress"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_home_card_info_sales"
+                                style="@style/Title16spGrey36"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_6dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:text="@{viewModel.visitName}"
+                                app:layout_constraintEnd_toStartOf="@id/iv_add_visit_progress"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_home_card_info_sales_title"
+                                tools:text="PT Dihardja Software" />
+
+                            <TextView
+                                android:id="@+id/tv_home_card_progress_sales"
+                                style="@style/Desc12spGrey4a"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dimens_12dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_12dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/iv_add_visit_progress"
+                                app:layout_constraintVertical_bias="0"
+                                tools:text="3/4 done" />
+
+                            <ProgressBar
+                                android:id="@+id/home_sales_visit_progress"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/dimens_6dp"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:indeterminate="false"
+                                android:progressDrawable="@drawable/sales_visit_progress"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_home_card_progress_sales"
+                                app:layout_constraintEnd_toStartOf="@id/tv_home_card_progress_sales"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/tv_home_card_progress_sales"
+                                tools:progress="30" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cv_home_visit_done"
+                        style="@style/CardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/iv_visit_done"
+                                android:layout_width="@dimen/dimens_40dp"
+                                android:layout_height="@dimen/dimens_40dp"
+                                android:layout_marginTop="@dimen/dimens_26dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_26dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_launcher_background"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="contentDescription" />
+
+                            <TextView
+                                android:id="@+id/tv_visit_done"
+                                style="@style/DescGrey36"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_23dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_23dp"
+                                android:text="@string/sales_visit_done"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/iv_visit_done"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_home_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:nestedScrollingEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv_home_approval_request" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cv_home_record_visit"
+                        style="@style/CardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimens_70dp"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_24dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:layout_marginBottom="@dimen/dimens_24dp"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rv_home_menu"
+                        app:layout_constraintVertical_bias="0">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_home_record_visit"
+                                style="@style/DescGrey36"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_24dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_24dp"
+                                android:text="@string/record_your_visit"
+                                android:textAlignment="textStart"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

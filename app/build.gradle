@@ -32,10 +32,12 @@ android {
         production {
             dimension = 'version'
             buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/"'
+            buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
         }
         staging {
             dimension = 'version'
             buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/"'
+            buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
         }
     }
     dataBinding {

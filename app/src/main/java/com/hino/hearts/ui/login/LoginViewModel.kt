@@ -20,6 +20,10 @@ import retrofit2.Response
  * Created by Dihardja Software on 2020-02-10.
  */
 class LoginViewModel : ViewModel() {
+    companion object {
+        private const val ONE_THOUSAND: Long = 1000
+    }
+
     var showLoading: MutableLiveData<Boolean> = MutableLiveData()
     var loginTap: MutableLiveData<Boolean> = MutableLiveData()
     var user: MutableLiveData<User> = MutableLiveData()
@@ -35,7 +39,7 @@ class LoginViewModel : ViewModel() {
             handler.postDelayed({
                 showLoading.value = false
                 loginTap.value = true
-            }, 1000)
+            }, ONE_THOUSAND)
         }
     }
 

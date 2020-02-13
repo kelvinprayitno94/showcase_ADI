@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_header"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimens_136dp"
+    android:layout_height="wrap_content"
     android:background="@android:color/transparent"
     android:clickable="true"
     android:focusable="true"
@@ -17,6 +17,7 @@
         android:layout_height="@dimen/dimens_72dp"
         android:layout_marginStart="@dimen/dimens_24dp"
         android:layout_marginTop="@dimen/dimens_24dp"
+        android:layout_marginBottom="@dimen/dimens_40dp"
         android:background="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,12 +25,12 @@
         app:layout_constraintVertical_bias="0">
 
         <ImageView
-            android:id="@+id/iv_header_view"
+            android:id="@+id/iv_add_visit_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
+            tools:src="@drawable/ic_launcher_background"
             tools:ignore="contentDescription" />
 
     </com.google.android.material.card.MaterialCardView>

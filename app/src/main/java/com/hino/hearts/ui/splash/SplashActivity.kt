@@ -12,6 +12,9 @@ import com.hino.hearts.ui.login.LoginActivity
 import org.jetbrains.anko.startActivity
 
 class SplashActivity : AppCompatActivity() {
+    companion object{
+        private const val TWO_THOUSANDS: Long = 2000
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +43,7 @@ class SplashActivity : AppCompatActivity() {
 //            }
             startActivity<HomeActivity>()
             overridePendingTransition(0, 0)
-        }, 2000)
+        }, TWO_THOUSANDS)
     }
 
     private fun isFirstTime(): Boolean {
