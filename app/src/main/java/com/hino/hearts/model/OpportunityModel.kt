@@ -1,4 +1,4 @@
-package com.dihardja.template.kotlin.viewController.drag
+package com.hino.hearts.model
 
 import com.hino.hearts.model.CardViewModel
 

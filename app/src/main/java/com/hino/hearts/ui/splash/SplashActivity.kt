@@ -7,6 +7,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.hino.hearts.R
 import com.hino.hearts.ui.dragdrop.DragDropActivity
+import com.hino.hearts.ui.approval.ApprovalTabActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.onboarding.OnboardingActivity
 
@@ -39,6 +40,7 @@ class SplashActivity : AppCompatActivity() {
 //                }
 //            }
             //startActivity(Intent(this, LoginActivity::class.java))
+            //startActivity(Intent(this, ApprovalTabActivity::class.java))
             startActivity(Intent(this, DragDropActivity::class.java))
         }, 2000)
     }

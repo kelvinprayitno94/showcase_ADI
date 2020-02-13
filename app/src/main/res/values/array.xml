@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="approval_tab_document">
+        <item>All</item>
+        <item>sales order</item>
+        <item>sales order invoice</item>
+        <item>sales order invoice return</item>
+        <item>assignment letter</item>
+        <item>PDI Receipt</item>
+        <item>work order</item>
+        <item>work order invoice</item>
+        <item>work order invoice return</item>
+    </string-array>
+
+    <string-array name="approval_tab_branch">
+        <item>Branch 1</item>
+        <item>Branch 2</item>
+        <item>Branch 3</item>
+        <item>Branch 4</item>
+        <item>Branch 5</item>
+        <item>Branch 6</item>
+        <item>Branch 7</item>
+        <item>Branch 8</item>
+        <item>Branch 9</item>
+    </string-array>
+</resources>
