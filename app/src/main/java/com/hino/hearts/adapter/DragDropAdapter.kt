@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 
+
 class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), View.OnTouchListener {
     var list: MutableList<String> = ArrayList()
 
@@ -64,6 +65,10 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
                 } else {
                     v.startDrag(data, shadowBuilder, v, 0)
                 }
+                return true
+            }
+            MotionEvent.ACTION_UP -> {
+                v.performClick()
                 return true
             }
         }

@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.adapter.DragDropAdapter
 
-class DragDropList(context: Context, headerText: String, data: MutableList<String>) : LinearLayout(context) {
-    val adapter: DragDropAdapter = DragDropAdapter()
+class DragDropList(context: Context, attributeSet: AttributeSet?, defStyleRes: Int, headerText: String, data: MutableList<String>) : LinearLayout(context, attributeSet, defStyleRes) {
+    private val mAdapter: DragDropAdapter = DragDropAdapter()
 
     init {
         val inflater = LayoutInflater.from(context)
@@ -22,9 +22,12 @@ class DragDropList(context: Context, headerText: String, data: MutableList<Strin
 
         val recyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.rv_dragdrop)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
-        adapter.list = data
+        recyclerView.adapter = mAdapter
+        mAdapter.list = data
 
         addView(view)
     }
+
+    constructor(context: Context, headerText: String, data: MutableList<String>) : this(context, null, 0, headerText, data)
+    constructor(context: Context, attributeSet: AttributeSet?, headerText: String, data: MutableList<String>) : this(context, attributeSet, 0, headerText, data)
 }
