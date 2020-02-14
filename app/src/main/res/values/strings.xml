@@ -4,6 +4,9 @@
 
     <string name="login_message">Please Sign In</string>
 
+    <string name="no_internet">No internet connection</string>
+    <string name="server_not_available">Server not available. Please try again later.</string>
+
     <string name="employee_id_field">Employee ID</string>
     <string name="employee_id_field_error">Employee ID cannot be empty</string>
     <string name="password_field">Password</string>
@@ -31,8 +34,8 @@
     <string name="home_right_info_sales">Total opportunity yang bisa Anda dapatkan</string>
     <string name="home_right_info_nonsales">Total opportunity yang bisa tim Anda dapatkan</string>
 
-    <string name="card_info_sales">Next Visit</string>
-    <string name="sales_visit_progress">%1$d/%2$d done</string>
+    <string name="card_info_sales">Today\'s Visit</string>
+    <string name="sales_visit_progress">%1$d of %2$d done</string>
     <string name="sales_visit_done">Good job! You have completed today\'s visit target!</string>
     <string name="approval_request_desc">Transaksi yang belum Anda setujui</string>
     <string name="record_your_visit">Rekam Kunjungan Anda</string>

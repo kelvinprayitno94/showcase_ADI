@@ -15,6 +15,7 @@ import kotlin.math.roundToInt
  */
 class HomeFragmentViewModel : ViewModel() {
     companion object {
+        private const val FOUR = 4
         private const val FIVE = 5
         private const val ELEVEN = 11
         private const val TWELVE = 12
@@ -23,7 +24,6 @@ class HomeFragmentViewModel : ViewModel() {
         private const val TWENTY = 20
         private const val TWENTY_ONE = 21
         private const val TWENTY_THREE = 23
-        private const val TWENTY_FOUR = 24
         private const val ONE_HUNDRED = 100
     }
 
@@ -33,7 +33,6 @@ class HomeFragmentViewModel : ViewModel() {
     var leftInfo: MutableLiveData<String> = MutableLiveData()
     var rightInfo: MutableLiveData<String> = MutableLiveData()
 
-    var visitName: MutableLiveData<String> = MutableLiveData()
     var visitProgress: MutableLiveData<Int> = MutableLiveData()
     var visitProgressTotal: MutableLiveData<Int> = MutableLiveData()
     var visitProgressPercentage: MutableLiveData<Int> = MutableLiveData()
@@ -52,8 +51,7 @@ class HomeFragmentViewModel : ViewModel() {
                 leftInfo.value = "35"
                 rightInfo.value = "Rp3.254.120"
 
-                visitName.value = "PT Dihardja Software"
-                visitProgress.value = 0
+                visitProgress.value = FOUR
                 visitProgressTotal.value = FIVE
                 visitProgressPercentage.value = calculateProgress()
             }

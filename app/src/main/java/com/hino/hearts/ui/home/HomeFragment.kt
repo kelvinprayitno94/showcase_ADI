@@ -12,10 +12,11 @@ import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.util.InterfaceManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(){
 
     companion object {
         private const val TWO = 2
@@ -68,9 +69,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initEvent() {
-        iv_add_visit_progress.onClick {
-            viewModel.addVisitProgress()
-        }
     }
 
     private fun initLayout() {
@@ -79,14 +77,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_sales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_sales)
 
-                cv_home_record_visit.visibility = View.VISIBLE
                 cv_home_approval_request.visibility = View.INVISIBLE
             }
             false -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_nonsales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_nonsales)
 
-                cv_home_record_visit.visibility = View.INVISIBLE
                 cv_home_approval_request.visibility = View.VISIBLE
             }
         }

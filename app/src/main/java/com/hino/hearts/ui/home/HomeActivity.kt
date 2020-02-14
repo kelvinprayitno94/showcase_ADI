@@ -1,5 +1,6 @@
 package com.hino.hearts.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_toolbar_home.*
 import kotlinx.android.synthetic.main.nav_header_view.*
@@ -22,13 +24,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
-    companion object{
+    companion object {
         private const val TWO_HUNDREDS: Long = 200
     }
 
     private val viewModel by viewModel<HomeViewModel>()
 
     private lateinit var toggle: ActionBarDrawerToggle
+
+    private val context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,7 +114,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         cl_logout.onClick {
             val handler = Handler()
             handler.postDelayed({
-                toast("Logout item clicked")
+                viewModel.logout()
+                val intent = Intent(context, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
             }, TWO_HUNDREDS)
 
             drawer_layout.closeDrawer(GravityCompat.START)

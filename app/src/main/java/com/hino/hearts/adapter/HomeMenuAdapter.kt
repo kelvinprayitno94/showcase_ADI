@@ -4,12 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hino.hearts.R
 import com.hino.hearts.model.HomeMenu
 import kotlinx.android.synthetic.main.item_home_menu.view.*
-import org.jetbrains.anko.startActivity
 
 
 /**
@@ -19,11 +19,6 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
 
     lateinit var context: Context
     private val mData = ArrayList<HomeMenu>()
-    var homeMenuInterface: HomeMenuInterface? = null
-
-    interface HomeMenuInterface {
-        fun onItemClicked(title: Int)
-    }
 
     fun setData(items: ArrayList<HomeMenu>) {
         mData.clear()
@@ -40,8 +35,22 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.itemView.setOnClickListener { v: View? ->
-            if (homeMenuInterface != null) {
-                homeMenuInterface!!.onItemClicked(mData[position].name)
+            when (mData[position].name) {
+                R.string.catalogues -> {
+                    Toast.makeText(context, "Catalogues item clicked", Toast.LENGTH_SHORT).show()
+                }
+                R.string.accounts -> {
+                    Toast.makeText(context, "Accounts item clicked", Toast.LENGTH_SHORT).show()
+                }
+                R.string.spare_part -> {
+                    Toast.makeText(context, "Spare parts item clicked", Toast.LENGTH_SHORT).show()
+                }
+                R.string.events -> {
+                    Toast.makeText(context, "Events item clicked", Toast.LENGTH_SHORT).show()
+                }
+                R.string.approvals -> {
+                    Toast.makeText(context, "Approvals item clicked", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

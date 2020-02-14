@@ -179,7 +179,7 @@
                         android:layout_marginStart="@dimen/dimens_24dp"
                         android:layout_marginTop="@dimen/dimens_16dp"
                         android:layout_marginEnd="@dimen/dimens_24dp"
-                        android:visibility="visible"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -206,9 +206,9 @@
                             <LinearLayout
                                 android:id="@+id/ll_home_approval_request"
                                 android:layout_width="0dp"
+                                android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/dimens_24dp"
                                 android:layout_marginEnd="@dimen/dimens_6dp"
-                                android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@id/fl_next"
@@ -265,7 +265,7 @@
                         android:layout_marginStart="@dimen/dimens_24dp"
                         android:layout_marginTop="@dimen/dimens_16dp"
                         android:layout_marginEnd="@dimen/dimens_24dp"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -273,18 +273,6 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/iv_add_visit_progress"
-                                android:layout_width="@dimen/dimens_40dp"
-                                android:layout_height="@dimen/dimens_40dp"
-                                android:layout_marginEnd="@dimen/dimens_16dp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_launcher_background"
-                                app:layout_constraintBottom_toBottomOf="@id/tv_home_card_info_sales"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="@id/tv_home_card_info_sales_title"
-                                tools:ignore="contentDescription" />
 
                             <TextView
                                 android:id="@+id/tv_home_card_info_sales_title"
@@ -295,35 +283,22 @@
                                 android:layout_marginTop="@dimen/dimens_16dp"
                                 android:layout_marginEnd="@dimen/dimens_16dp"
                                 android:text="@string/card_info_sales"
-                                app:layout_constraintEnd_toStartOf="@id/iv_add_visit_progress"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/tv_home_card_info_sales"
-                                style="@style/Title16spGrey36"
+                                android:id="@+id/tv_home_card_progress_sales"
+                                style="@style/TitleGrey36"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/dimens_16dp"
                                 android:layout_marginTop="@dimen/dimens_6dp"
-                                android:layout_marginEnd="@dimen/dimens_16dp"
-                                android:text="@{viewModel.visitName}"
-                                app:layout_constraintEnd_toStartOf="@id/iv_add_visit_progress"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/tv_home_card_info_sales_title"
-                                tools:text="PT Dihardja Software" />
-
-                            <TextView
-                                android:id="@+id/tv_home_card_progress_sales"
-                                style="@style/Desc12spGrey4a"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimens_12dp"
-                                android:layout_marginEnd="@dimen/dimens_16dp"
                                 android:layout_marginBottom="@dimen/dimens_12dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/iv_add_visit_progress"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_home_card_info_sales_title"
                                 app:layout_constraintVertical_bias="0"
                                 tools:text="3/4 done" />
 
@@ -333,13 +308,15 @@
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/dimens_6dp"
                                 android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_16dp"
                                 android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_16dp"
                                 android:indeterminate="false"
                                 android:progressDrawable="@drawable/sales_visit_progress"
-                                app:layout_constraintBottom_toBottomOf="@id/tv_home_card_progress_sales"
-                                app:layout_constraintEnd_toStartOf="@id/tv_home_card_progress_sales"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="@id/tv_home_card_progress_sales"
+                                app:layout_constraintTop_toBottomOf="@id/tv_home_card_progress_sales"
                                 tools:progress="30" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -400,51 +377,14 @@
                         android:id="@+id/rv_home_menu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dimens_24dp"
                         android:background="@color/white"
                         android:nestedScrollingEnabled="false"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cv_home_approval_request" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cv_home_record_visit"
-                        style="@style/CardWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dimens_70dp"
-                        android:layout_marginStart="@dimen/dimens_24dp"
-                        android:layout_marginTop="@dimen/dimens_24dp"
-                        android:layout_marginEnd="@dimen/dimens_24dp"
-                        android:layout_marginBottom="@dimen/dimens_24dp"
-                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rv_home_menu"
-                        app:layout_constraintVertical_bias="0">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:id="@+id/tv_home_record_visit"
-                                style="@style/DescGrey36"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dimens_16dp"
-                                android:layout_marginTop="@dimen/dimens_24dp"
-                                android:layout_marginEnd="@dimen/dimens_16dp"
-                                android:layout_marginBottom="@dimen/dimens_24dp"
-                                android:text="@string/record_your_visit"
-                                android:textAlignment="textStart"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
+                        app:layout_constraintTop_toBottomOf="@id/cv_home_approval_request"
+                        app:layout_constraintVertical_bias="0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
