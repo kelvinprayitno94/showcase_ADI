@@ -1,48 +1,60 @@
 package com.hino.hearts.ui.splash
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.hino.hearts.R
+import com.hino.hearts.databinding.ActivitySplashBinding
+import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.dragdrop.DragDropActivity
-import com.hino.hearts.ui.approval.ApprovalTabActivity
+import com.hino.hearts.ui.home.HomeActivity
 import com.hino.hearts.ui.login.LoginActivity
-import com.hino.hearts.ui.onboarding.OnboardingActivity
+import org.jetbrains.anko.startActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
+    companion object {
+        private const val TWO_THOUSANDS: Long = 2000
+    }
+
+    private val viewModel by viewModel<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
-//        token = UserDefaults.getInstance().getString(UserDefaults.TOKEN_KEY)
+        setBinding(R.layout.activity_splash)
 
-        val handler = Handler()
-        handler.postDelayed({
-            finish()
-            //Check if has login but new user go to create account, else if has login and not new user go to home, else welcome
-//            if (token != null) {
-//                startActivity(Intent(this, HomeActivity::class.java))
-//                UserDefaults.getInstance().setBoolean(UserDefaults.IS_HOME, true)
-//            } else {
-//                if (isFirstTime()) {
-//                    startActivity(
-//                        Intent(
-//                            this,
-//                            OnboardingActivity::class.java
-//                        )
-//                    )
-//                } else {
-//                    startActivity(Intent(this, LoginActivity::class.java))
-//                    UserDefaults.getInstance().setBoolean(UserDefaults.IS_HOME, true)
-//                }
-//            }
-            //startActivity(Intent(this, LoginActivity::class.java))
-            //startActivity(Intent(this, ApprovalTabActivity::class.java))
-            startActivity(Intent(this, DragDropActivity::class.java))
-        }, 2000)
+        initObserver()
+        initViewModel()
+        initEvent()
+    }
+
+    override fun initObserver() {
+        viewModel.token.observe(this, Observer {
+            when (it != null) {
+                true -> {
+                    redirect("home")
+                }
+                false -> {
+                    when (isFirstTime()) {
+                        true -> {
+                            redirect("onboarding")
+                        }
+                        false -> {
+                            redirect("login")
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    override fun initViewModel() {
+        binding.viewModel = viewModel
+    }
+
+    override fun initEvent() {
     }
 
     private fun isFirstTime(): Boolean {
@@ -54,5 +66,25 @@ class SplashActivity : AppCompatActivity() {
             editor.apply()
         }
         return !ranBefore
+    }
+
+    private fun redirect(page: String){
+        val handler = Handler()
+        handler.postDelayed({
+            finish()
+            /*when(page){
+                "home"->{
+                    startActivity<HomeActivity>()
+                }
+                "onboarding"->{
+                    startActivity<LoginActivity>()
+                }
+                "login"->{
+                    startActivity<LoginActivity>()
+                }
+            }*/
+            startActivity<DragDropActivity>()
+            overridePendingTransition(0, 0)
+        }, TWO_THOUSANDS)
     }
 }

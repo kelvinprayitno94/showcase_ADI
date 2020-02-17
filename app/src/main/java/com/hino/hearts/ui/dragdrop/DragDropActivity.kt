@@ -1,10 +1,8 @@
 package com.hino.hearts.ui.dragdrop
 
 import android.os.Bundle
-import android.util.Log
-import android.view.DragEvent
-import android.view.View
-import android.widget.HorizontalScrollView
+import androidx.core.view.marginEnd
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hino.hearts.R
 import com.hino.hearts.adapter.DragDropListener
@@ -27,16 +25,30 @@ class DragDropActivity : BaseActivity<ActivityDragdropBinding>() {
     }
 
     override fun initObserver() {
-
+        mViewModel.backClicked.observe(this, Observer {
+            onBackPressed()
+        })
     }
 
     override fun initViewModel() {
         binding.viewModel = mViewModel
 
-        for (header in mViewModel.headers) {
-            val dragDropList = DragDropList(this, header, mViewModel.data[header]!!)
-            mDragDropList.add(dragDropList)
+        val marginStart:Int = resources.getDimension(R.dimen.dimens_15dp).toInt()
+        val size = mViewModel.headers.size
+        for (i in 0 until size) {
+            val header = mViewModel.headers[i]
+            val background: Int = when (mDragDropList.size % 2 == 0) {
+                true -> R.drawable.shape_dragdrop_list_background
+                false -> R.drawable.shape_dragdrop_list_background_darker
+            }
 
+            val marginEnd: Int = when (i == size-1) {
+                true -> marginStart
+                false -> 0
+            }
+
+            val dragDropList = DragDropList(this, header, background, marginStart, marginEnd, mViewModel.data[header]!!)
+            mDragDropList.add(dragDropList)
             ll_dragdrop.addView(dragDropList)
         }
     }
@@ -45,42 +57,4 @@ class DragDropActivity : BaseActivity<ActivityDragdropBinding>() {
         v_left_area.setOnDragListener(DragDropListener(hs_dragdrop, DragDropListener.DIRECTION_LEFT))
         v_right_area.setOnDragListener(DragDropListener(hs_dragdrop, DragDropListener.DIRECTION_RIGHT))
     }
-
-    /*class LeftDragListener(targetScrollView: HorizontalScrollView) : View.OnDragListener {
-        val scrollView: HorizontalScrollView = targetScrollView
-
-        override fun onDrag(v: View, event: DragEvent): Boolean {
-            Log.d("DragDropActivity", "Left Event ${event.action}")
-            when (event.action) {
-                DragEvent.ACTION_DRAG_LOCATION -> {
-                    Log.d("DragDropActivity", "Scroll Left")
-                    scrollView.scrollBy(-20, 0)
-                }
-                DragEvent.ACTION_DROP -> {
-                    return false
-                }
-            }
-
-            return true
-        }
-    }
-
-    class RightDragListener(targetScrollView: HorizontalScrollView) : DragDropListener {
-        val scrollView: HorizontalScrollView = targetScrollView
-
-        override fun onDrag(v: View, event: DragEvent): Boolean {
-            Log.d("DragDropActivity", "Right Event ${event.action}")
-            when (event.action) {
-                DragEvent.ACTION_DRAG_LOCATION -> {
-                    Log.d("DragDropActivity", "Scroll Right")
-                    scrollView.scrollBy(20, 0)
-                }
-                DragEvent.ACTION_DROP -> {
-                    return false
-                }
-            }
-
-            return true
-        }
-    }*/
 }

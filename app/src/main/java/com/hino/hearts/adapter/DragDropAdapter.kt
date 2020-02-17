@@ -11,10 +11,14 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
+import com.hino.hearts.model.OpportunityModel
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 
 class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), View.OnTouchListener {
-    var list: MutableList<String> = ArrayList()
+    var list: MutableList<OpportunityModel.OpportunityData> = ArrayList()
+    val formatter: NumberFormat = DecimalFormat("#,###")
 
     companion object {
         const val ITEM_EMPTY: Int = 0
@@ -47,7 +51,12 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         if (position < list.size) {
-            holder.titleTextView.text = list[position]
+            val item = list[position]
+            val formattedNumber = "Rp${formatter.format(item.opportunityValue)}"
+            holder.titleTextView.text = item.title
+            holder.accountNameTextView.text = item.accountName
+            holder.opportunityValueTextView.text = formattedNumber
+
             holder.rootFrameLayout.setOnTouchListener(this)
         }
 
@@ -76,7 +85,9 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var titleTextView: TextView = itemView.findViewById(R.id.tv_title)
         var rootFrameLayout: FrameLayout = itemView.findViewById(R.id.fl_root)
+        var titleTextView: TextView = itemView.findViewById(R.id.tv_title)
+        var accountNameTextView: TextView = itemView.findViewById(R.id.tv_account_name)
+        var opportunityValueTextView: TextView = itemView.findViewById(R.id.tv_opportunity_value)
     }
 }

@@ -7,7 +7,7 @@
     android:layout_height="?actionBarSize"
     android:layout_marginBottom="10dp"
     android:background="@color/colorPrimary"
-    android:elevation="@dimen/dimen_6dp"
+    android:elevation="@dimen/dimens_6dp"
     android:minHeight="?attr/actionBarSize"
     app:contentInsetStart="0dp"
     app:layout_scrollFlags="enterAlways"
@@ -26,8 +26,8 @@
 
         <!-- ImageView for ripple effect in center instead of filling the whole layout -->
         <ImageView
-            android:layout_width="@dimen/dimen_12dp"
-            android:layout_height="@dimen/dimen_12dp"
+            android:layout_width="@dimen/dimens_12dp"
+            android:layout_height="@dimen/dimens_12dp"
             android:layout_gravity="center"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             tools:ignore="ContentDescription" />
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/tv_toolbar_title"
-        style="@style/Title"
+        style="@style/Title20spWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_4dp"

@@ -1,13 +1,8 @@
 package com.hino.hearts.model
 
-import com.hino.hearts.model.CardViewModel
-
-class OpportunityModel(
-    parentIds: String?,
-    name: String,
-    cardList: MutableList<CardViewModel>
-) {
-    var parentIds: String? = parentIds
-    var name: String? = name
-    var cardList: MutableList<CardViewModel>? = cardList
+object OpportunityModel {
+    data class Result(val meta: Meta, val data: Data)
+    data class Meta(val message: String, val success: Boolean)
+    data class Data(val userData: OpportunityData, val token: String)
+    data class OpportunityData(val id: Int, val title: String, val accountName: String, val opportunityValue: Long)
 }

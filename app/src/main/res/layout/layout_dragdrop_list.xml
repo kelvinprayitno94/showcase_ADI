@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.MainActivity">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/ll_dragdrop_card"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="@dimen/dimens_15dp"
+        android:paddingTop="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="4dp"
+        android:background="@drawable/shape_dragdrop_list_background"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="180dp"
+        <TextView
+            android:id="@+id/tv_header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            android:background="#CACACA"
-            android:orientation="vertical">
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:text="Quotation" />
 
-            <TextView
-                android:id="@+id/tv_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:paddingBottom="10dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_dragdrop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="75dp"
-                android:background="#585858"
-                android:paddingTop="2.5dp"
-                android:paddingBottom="2.5dp"
-                tools:listitem="@layout/item_dragdrop"
-                tools:itemCount="2"/>
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_dragdrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="75dp"
+            android:paddingTop="2.5dp"
+            android:paddingBottom="2.5dp"
+            tools:listitem="@layout/item_dragdrop"
+            tools:itemCount="2"/>
     </LinearLayout>
-</layout>
+</LinearLayout>

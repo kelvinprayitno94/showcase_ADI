@@ -1,6 +1,5 @@
 package com.hino.hearts.adapter
 
-import android.util.Log
 import android.view.DragEvent
 import android.view.View
 import android.view.View.OnDragListener
@@ -9,6 +8,7 @@ import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
+import com.hino.hearts.model.OpportunityModel
 import com.hino.hearts.ui.dragdrop.DragDropList
 
 
@@ -27,7 +27,6 @@ class DragDropListener() : OnDragListener {
     }
 
     override fun onDrag(v: View, event: DragEvent): Boolean {
-        Log.d("DragDropActivity", "Event ${event.action}")
         when (event.action) {
             DragEvent.ACTION_DRAG_LOCATION -> {
                 when (mDirection) {
@@ -54,7 +53,6 @@ class DragDropListener() : OnDragListener {
                                 positionTarget = v.tag as Int
                             }
                             else if (mScrollView != null) {
-                                Log.d("DragDropActivity", "Drop X:${event.x} Y:${event.y}")
                                 val translatedX: Float = event.x + v.x + mScrollView!!.scrollX
                                 val translatedY: Float = event.y + v.y + mScrollView!!.scrollY
 
@@ -106,15 +104,15 @@ class DragDropListener() : OnDragListener {
                     val positionSource = viewSource.tag as Int
 
                     val adapterSource: DragDropAdapter = source.adapter as DragDropAdapter
-                    val listSource: MutableList<String> = adapterSource.list
-                    val listItem: String = listSource[positionSource]
+                    val listSource: MutableList<OpportunityModel.OpportunityData> = adapterSource.list
+                    val listItem: OpportunityModel.OpportunityData = listSource[positionSource]
 
                     //Remove item from source
                     listSource.removeAt(positionSource)
                     adapterSource.notifyDataSetChanged()
 
                     val adapterTarget: DragDropAdapter = target.adapter as DragDropAdapter
-                    val customListTarget: MutableList<String> = adapterTarget.list
+                    val customListTarget: MutableList<OpportunityModel.OpportunityData> = adapterTarget.list
                     if (positionTarget >= 0) {
                         customListTarget.add(positionTarget, listItem)
                     } else {
