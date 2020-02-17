@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hino.hearts.ui.approval.detail.ApprovalDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeActivity">
+
+        <include layout="@layout/main_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_approval_detail_title"
+                    style="@style/PageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PT Dihardja"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_approval_detail_upper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimens_15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_approval_detail_title">
+
+                    <TextView
+                        android:id="@+id/tv_so_num"
+                        style="@style/LabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="SO Num"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_so_date"
+                        style="@style/LabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="SO Date"
+                        app:layout_constraintStart_toEndOf="@+id/tv_so_num"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_so_num_value"
+                        style="@style/BoldLabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="value"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_so_num"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_so_date_value"
+                        style="@style/BoldLabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="SO Date"
+                        app:layout_constraintStart_toEndOf="@+id/tv_so_num_value"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_so_date"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_order_type"
+                        style="@style/LabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Order Type"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_so_num_value"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_cust_code"
+                        style="@style/LabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Customer Code"
+                        app:layout_constraintStart_toEndOf="@+id/tv_order_type"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_so_date_value"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_order_type_value"
+                        style="@style/BoldLabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="value"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_order_type"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_cust_code_value"
+                        style="@style/BoldLabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="value"
+                        app:layout_constraintStart_toEndOf="@+id/tv_order_type_value"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_cust_code"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_cust_name"
+                        style="@style/LabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Customer Name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_order_type_value"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_pr_doc"
+                        style="@style/LabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="PR Doc No"
+                        app:layout_constraintStart_toEndOf="@+id/tv_order_type"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_cust_code_value"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_cust_name_value"
+                        style="@style/BoldLabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="value"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_cust_name"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                    <TextView
+                        android:id="@+id/tv_pr_doc_value"
+                        style="@style/BoldLabelText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="value"
+                        app:layout_constraintStart_toEndOf="@+id/tv_cust_name_value"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_pr_doc"
+                        app:layout_constraintWidth_percent="0.5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/grey50transparency"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_approval_detail_upper" />
+
+                <TextView
+                    android:id="@+id/tv_approval_order"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_15dp"
+                    android:text="PT Dihardja"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_invoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_15dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_approval_order" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/grey50transparency"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_invoice" />
+
+                <TextView
+                    android:id="@+id/tv_approval_prog_title"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_15dp"
+                    android:text="Approval Progress"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_approval_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_15dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_approval_prog_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

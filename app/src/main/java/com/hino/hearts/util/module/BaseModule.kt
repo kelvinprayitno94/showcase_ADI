@@ -1,6 +1,6 @@
 package com.hino.hearts.util.module
 
-import com.hino.hearts.ui.approval.ApprovalTabViewModel
+import com.hino.hearts.ui.approval.category.ApprovalTabViewModel
 import com.hino.hearts.ui.login.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

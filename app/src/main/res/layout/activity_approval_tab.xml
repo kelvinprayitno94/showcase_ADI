@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.hino.hearts.ui.approval.ApprovalTabViewModel" />
+            type="com.hino.hearts.ui.approval.category.ApprovalTabViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,16 +16,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".ui.approval.ApprovalTabActivity">
+        tools:context=".ui.approval.category.ApprovalTabActivity">
 
         <include layout="@layout/main_toolbar" />
+
+        <TextView
+            android:id="@+id/approval_title"
+            style="@style/PageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Approvals"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_approval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/approval_title">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -52,16 +61,37 @@
                             android:layout_toLeftOf="@+id/btn_expand_category"
                             android:visibility="gone" />
 
-                        <com.google.android.material.tabs.TabLayout
-                            android:id="@+id/tab_layout_approval"
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/btn_expand_category"
-                            app:tabGravity="center"
-                            app:tabIndicatorColor="@color/red"
-                            app:tabMode="scrollable"
-                            app:tabSelectedTextColor="@color/red"
-                            app:tabTextColor="@color/black" />
+                            android:layout_toLeftOf="@+id/btn_expand_category">
+
+                            <com.google.android.material.tabs.TabLayout
+                                android:id="@+id/tab_layout_approval"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tabGravity="center"
+                                app:tabIndicatorColor="@color/red"
+                                app:tabMode="scrollable"
+                                app:tabSelectedTextColor="@color/red"
+                                app:tabTextColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/tv_category_"
+                                style="@style/LabelTextwhPadding"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:background="@color/white"
+                                android:gravity="center_vertical"
+                                android:text="Kategori"
+                                android:visibility="@{viewModel.showCateTextLiveData ? View.VISIBLE : View.GONE}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -112,7 +142,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dimens_15dp"
             android:background="@color/grey50transparency"
-            android:visibility="gone"
+            android:visibility="@{viewModel.showCateTextLiveData ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar_approval">

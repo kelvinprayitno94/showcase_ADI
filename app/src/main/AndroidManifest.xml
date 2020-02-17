@@ -24,7 +24,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.opportunity.card.OpportunitiesCardActivity" />
-        <activity android:name=".ui.approval.ApprovalTabActivity" />
+        <activity android:name=".ui.approval.category.ApprovalTabActivity" />
+        <activity android:name=".ui.approval.filter.ApprovalFilterActivity" />
+        <activity android:name=".ui.approval.detail.ApprovalDetailActivity" />
+        <activity android:name=".ui.account.AccountListActivity" />
+        <activity android:name=".ui.account.detail.AccountDetailActivity" />
     </application>
 
 </manifest>

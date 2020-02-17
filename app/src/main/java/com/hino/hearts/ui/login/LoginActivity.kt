@@ -1,10 +1,12 @@
 package com.hino.hearts.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityLoginBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.approval.category.ApprovalTabActivity
 import com.hino.hearts.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -36,10 +38,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun initEvent() {
         btn_login.onClick {
-            viewModel.onLogin(
-                edittext_employee_id.text.toString(),
-                edittext_password.text.toString()
-            )
+//            viewModel.onLogin(
+//                edittext_employee_id.text.toString(),
+//                edittext_password.text.toString()
+//            )
+            val intent = Intent(this@LoginActivity, ApprovalTabActivity::class.java)
+            startActivity(intent)
         }
     }
 }
