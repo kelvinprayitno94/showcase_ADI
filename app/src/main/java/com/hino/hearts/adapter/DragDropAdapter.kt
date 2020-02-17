@@ -53,9 +53,9 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
         if (position < list.size) {
             val item = list[position]
             val formattedNumber = "Rp${formatter.format(item.opportunityValue)}"
-            holder.titleTextView.text = item.title
-            holder.accountNameTextView.text = item.accountName
-            holder.opportunityValueTextView.text = formattedNumber
+            holder.titleTextView?.text = item.title
+            holder.accountNameTextView?.text = item.accountName
+            holder.opportunityValueTextView?.text = formattedNumber
 
             holder.rootFrameLayout.setOnTouchListener(this)
         }
@@ -86,8 +86,8 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var rootFrameLayout: FrameLayout = itemView.findViewById(R.id.fl_root)
-        var titleTextView: TextView = itemView.findViewById(R.id.tv_title)
-        var accountNameTextView: TextView = itemView.findViewById(R.id.tv_account_name)
-        var opportunityValueTextView: TextView = itemView.findViewById(R.id.tv_opportunity_value)
+        var titleTextView: TextView? = itemView.findViewById(R.id.tv_title)
+        var accountNameTextView: TextView? = itemView.findViewById(R.id.tv_account_name)
+        var opportunityValueTextView: TextView? = itemView.findViewById(R.id.tv_opportunity_value)
     }
 }
