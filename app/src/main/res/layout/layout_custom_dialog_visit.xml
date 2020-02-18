@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:layout_marginStart="@dimen/dimens_16dp"
+    android:layout_marginEnd="@dimen/dimens_16dp"
+    android:elevation="6dp"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardCornerRadius="@dimen/dimens_20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_card_header"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_108dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:id="@+id/fl_close"
+                android:layout_width="@dimen/dimens_44dp"
+                android:layout_height="@dimen/dimens_44dp"
+                android:layout_marginStart="@dimen/dimens_8dp"
+                android:layout_marginTop="@dimen/dimens_8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_close"
+                    android:tint="@color/red"
+                    tools:ignore="contentDescription" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_dialog_title"
+                style="@style/Title24spGrey4a"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_24dp"
+                android:layout_marginTop="@dimen/dimens_40dp"
+                android:layout_marginEnd="@dimen/dimens_24dp"
+                android:text="@string/visit_target"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_dialog_date"
+                style="@style/Desc14spGrey4a"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_24dp"
+                android:layout_marginTop="@dimen/dimens_4dp"
+                android:layout_marginEnd="@dimen/dimens_24dp"
+                android:layout_marginBottom="@dimen/dimens_16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_dialog_title"
+                app:layout_constraintVertical_bias="0"
+                tools:text="12 Feb 2020" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_1dp"
+                android:background="@color/greye1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_visit_target"
+            android:layout_width="@dimen/dimens_355dp"
+            android:layout_height="@dimen/dimens_355dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_card_header"
+            tools:listitem="@layout/item_visit_dialog" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_record_activity_detail"
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_24dp"
+            android:layout_marginEnd="@dimen/dimens_24dp"
+            android:layout_marginBottom="@dimen/dimens_16dp"
+            android:paddingStart="@dimen/dimens_40dp"
+            android:paddingTop="@dimen/dimens_15dp"
+            android:paddingEnd="@dimen/dimens_40dp"
+            android:paddingBottom="@dimen/dimens_15dp"
+            android:text="@string/record_activity_detail"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_visit_target"
+            app:layout_constraintVertical_bias="0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

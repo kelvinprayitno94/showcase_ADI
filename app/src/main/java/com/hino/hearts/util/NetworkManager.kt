@@ -4,8 +4,10 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.util.Log
 import android.widget.Toast
 import com.google.gson.Gson
+import com.hino.hearts.R
 import com.hino.hearts.network.response.ErrorResponse
 import okhttp3.ResponseBody
 
@@ -56,7 +58,7 @@ class NetworkManager {
         return result
     }
 
-    fun handleResponse(context: Context, responseBody: ResponseBody){
+    fun handleResponse(context: Context, responseBody: ResponseBody) {
         var errorString = ""
         try {
             errorString = responseBody.string()
@@ -69,6 +71,31 @@ class NetworkManager {
             e.printStackTrace()
             if (responseBody.contentType()!!.type == "text" && responseBody.contentType()!!.subtype == "plain") {
                 Toast.makeText(context, errorString, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun handleErrorResponse(
+        context: Context?,
+        t: Throwable
+    ) {
+        if (t.cause != null) {
+            Toast.makeText(
+                context,
+                context?.getString(R.string.server_not_available),
+                Toast.LENGTH_SHORT
+            ).show()
+
+        } else if (t.localizedMessage != null) {
+            Log.e("localizedMessage", t.localizedMessage!!)
+
+        } else {
+            if (context != null) {
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.server_not_available),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

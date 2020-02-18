@@ -15,7 +15,7 @@
     <string name="forgot_password_button"><u>Forgot Password?</u></string>
     <string name="login_button">Sign In</string>
 
-    <string name="pending_transaction">Pending Transactions</string>
+    <string name="pending_transactions">Pending Transactions</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="help">Help</string>
     <string name="logout">Sign Out</string>
@@ -38,11 +38,17 @@
     <string name="sales_visit_progress">%1$d of %2$d done</string>
     <string name="sales_visit_done">Good job! You have completed today\'s visit target!</string>
     <string name="approval_request_desc">Transaksi yang belum Anda setujui</string>
-    <string name="record_your_visit">Rekam Kunjungan Anda</string>
 
     <string name="catalogues">Catalogues</string>
     <string name="accounts">Accounts</string>
     <string name="spare_part">Spare Parts</string>
     <string name="events">Events</string>
     <string name="approvals">Approvals</string>
+
+    <string name="visit_target">Visit Target</string>
+    <string name="record_activity_detail">Record Activity Detail</string>
+
+    <string name="appointment">Appointment</string>
+    <string name="task">Task</string>
+    <string name="call_log">Call Log</string>
 </resources>

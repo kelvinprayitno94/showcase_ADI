@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_item_add_visit_button"
+        android:layout_width="@dimen/dimens_55dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/dimens_16dp"
+        android:backgroundTint="@color/white"
+        tools:src="@drawable/ic_appointment"
+        android:layout_height="@dimen/dimens_55dp"/>
+
+    <TextView
+        android:id="@+id/tv_item_add_visit_button"
+        style="@style/Desc14spWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        tools:text="Appointments" />
+</LinearLayout>
