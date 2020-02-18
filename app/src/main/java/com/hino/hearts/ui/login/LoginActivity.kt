@@ -1,6 +1,7 @@
 package com.hino.hearts.ui.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -33,15 +34,28 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         initEvent()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("lalala", viewModel.showLoading.value.toString())
+    }
+
     override fun initObserver() {
         viewModel.loginSuccess.observe(this, Observer {
+            layout_custom_loading.visibility = View.GONE
             finish()
             startActivity<HomeActivity>()
             overridePendingTransition(0, 0)
         })
 
-        viewModel.responseBody.observe(this, Observer {
+        viewModel.errorBody.observe(this, Observer {
+            layout_custom_loading.visibility = View.GONE
             NetworkManager.getInstance().handleResponse(context, it)
+        })
+
+        viewModel.responseError.observe(this, Observer {
+            layout_custom_loading.visibility = View.GONE
+            NetworkManager.getInstance().handleErrorResponse(context, it)
         })
     }
 
@@ -55,6 +69,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 true -> {
                     when(NetworkManager.getInstance().isInternetAvailable(context)){
                         true->{
+                            layout_custom_loading.visibility = View.VISIBLE
                             viewModel.onLogin(
                                 edittext_employee_id.text.toString(),
                                 edittext_password.text.toString()

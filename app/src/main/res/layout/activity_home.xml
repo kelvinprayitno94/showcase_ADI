@@ -55,8 +55,8 @@
                         android:layout_marginTop="@dimen/dimens_11dp">
 
                         <ImageView
-                            android:layout_width="@dimen/dimens_30dp"
-                            android:layout_height="@dimen/dimens_30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:background="?android:attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/ic_close"
@@ -114,18 +114,18 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <ImageView
-                                        android:layout_width="@dimen/dimens_16dp"
-                                        android:layout_height="@dimen/dimens_16dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_navigate_next"
+                                        android:src="@drawable/ic_arrow_right"
                                         tools:ignore="contentDescription" />
 
                                 </FrameLayout>
 
                                 <View
                                     android:layout_width="match_parent"
-                                    android:layout_height="1dp"
+                                    android:layout_height="@dimen/dimens_1dp"
                                     android:layout_marginStart="@dimen/dimens_24dp"
                                     android:layout_marginEnd="@dimen/dimens_24dp"
                                     android:background="@color/greye1"
@@ -167,18 +167,18 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <ImageView
-                                        android:layout_width="@dimen/dimens_16dp"
-                                        android:layout_height="@dimen/dimens_16dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_navigate_next"
+                                        android:src="@drawable/ic_arrow_right"
                                         tools:ignore="contentDescription" />
 
                                 </FrameLayout>
 
                                 <View
                                     android:layout_width="match_parent"
-                                    android:layout_height="1dp"
+                                    android:layout_height="@dimen/dimens_1dp"
                                     android:layout_marginStart="@dimen/dimens_24dp"
                                     android:layout_marginEnd="@dimen/dimens_24dp"
                                     android:background="@color/greye1"
@@ -220,18 +220,18 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <ImageView
-                                        android:layout_width="@dimen/dimens_16dp"
-                                        android:layout_height="@dimen/dimens_16dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_navigate_next"
+                                        android:src="@drawable/ic_arrow_right"
                                         tools:ignore="contentDescription" />
 
                                 </FrameLayout>
 
                                 <View
                                     android:layout_width="match_parent"
-                                    android:layout_height="1dp"
+                                    android:layout_height="@dimen/dimens_1dp"
                                     android:layout_marginStart="@dimen/dimens_24dp"
                                     android:layout_marginEnd="@dimen/dimens_24dp"
                                     android:background="@color/greye1"
@@ -276,11 +276,11 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <ImageView
-                                        android:layout_width="@dimen/dimens_16dp"
-                                        android:layout_height="@dimen/dimens_16dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_exit_to_app"
+                                        android:src="@drawable/ic_signout"
                                         android:tint="@color/red"
                                         tools:ignore="contentDescription" />
 
@@ -288,7 +288,7 @@
 
                                 <View
                                     android:layout_width="match_parent"
-                                    android:layout_height="1dp"
+                                    android:layout_height="@dimen/dimens_1dp"
                                     android:layout_marginStart="@dimen/dimens_24dp"
                                     android:layout_marginEnd="@dimen/dimens_24dp"
                                     android:background="@color/greye1"

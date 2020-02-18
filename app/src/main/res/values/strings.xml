@@ -38,11 +38,13 @@
     <string name="sales_visit_progress">%1$d of %2$d done</string>
     <string name="sales_visit_done">Good job! You have completed today\'s visit target!</string>
     <string name="approval_request_desc">Transaksi yang belum Anda setujui</string>
-    <string name="record_your_visit">Rekam Kunjungan Anda</string>
 
     <string name="catalogues">Catalogues</string>
     <string name="accounts">Accounts</string>
     <string name="spare_part">Spare Parts</string>
     <string name="events">Events</string>
     <string name="approvals">Approvals</string>
+
+    <string name="visit_target">Visit Target</string>
+    <string name="record_activity_detail">Record Activity Detail</string>
 </resources>

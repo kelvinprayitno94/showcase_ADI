@@ -31,12 +31,12 @@ android {
     productFlavors {
         production {
             dimension = 'version'
-            buildConfigField "String", "SERVER_URL", '"http://192.168.1.5:8081/api/v1/"'
+            buildConfigField "String", "SERVER_URL", '"http://54.254.139.1:8081/api/v1/"'
             buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
         }
         staging {
             dimension = 'version'
-            buildConfigField "String", "SERVER_URL", '"http://192.168.1.5:8081/api/v1/"'
+            buildConfigField "String", "SERVER_URL", '"http://54.254.139.1:8081/api/v1/"'
             buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
         }
     }

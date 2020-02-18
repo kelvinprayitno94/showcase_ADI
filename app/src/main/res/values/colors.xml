@@ -24,4 +24,6 @@
     <color name="red">#DA251D</color>
     <color name="redLight">#FF6048</color>
     <color name="redDark">#A00000</color>
+
+    <color name="green">#35B45C</color>
 </resources>

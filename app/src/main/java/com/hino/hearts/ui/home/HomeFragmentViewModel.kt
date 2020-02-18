@@ -4,7 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hino.hearts.R
 import com.hino.hearts.model.HomeMenu
+import com.hino.hearts.model.VisitTarget
+import com.hino.hearts.util.InterfaceManager
 import com.hino.hearts.util.UserDefaults
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
@@ -37,6 +40,9 @@ class HomeFragmentViewModel : ViewModel() {
     var visitProgressTotal: MutableLiveData<Int> = MutableLiveData()
     var visitProgressPercentage: MutableLiveData<Int> = MutableLiveData()
 
+    var todayDate: MutableLiveData<String> = MutableLiveData()
+    var visitTargetList: MutableLiveData<ArrayList<VisitTarget>> = MutableLiveData()
+
     var approvalRequestCount: MutableLiveData<String> = MutableLiveData()
 
     var homeMenuList: MutableLiveData<ArrayList<HomeMenu>> = MutableLiveData()
@@ -54,6 +60,8 @@ class HomeFragmentViewModel : ViewModel() {
                 visitProgress.value = FOUR
                 visitProgressTotal.value = FIVE
                 visitProgressPercentage.value = calculateProgress()
+
+                visitTargetList.value = initVisitTarget()
             }
             false -> {
                 leftInfo.value = "247"
@@ -64,15 +72,6 @@ class HomeFragmentViewModel : ViewModel() {
         }
 
         homeMenuList.value = initHomeMenu()
-    }
-
-    fun addVisitProgress() {
-        when (visitProgress.value!! < visitProgressTotal.value!!) {
-            true -> {
-                visitProgress.value = visitProgress.value!! + 1
-                visitProgressPercentage.value = calculateProgress()
-            }
-        }
     }
 
     private fun getGreetingMessage(): String {
@@ -106,19 +105,42 @@ class HomeFragmentViewModel : ViewModel() {
         }
     }
 
-    private fun initHomeMenu(): ArrayList<HomeMenu>{
+    private fun initHomeMenu(): ArrayList<HomeMenu> {
         val homeMenuList: ArrayList<HomeMenu> = ArrayList()
 
-        homeMenuList.add(HomeMenu(R.drawable.ic_close, R.string.catalogues))
-        homeMenuList.add(HomeMenu(R.drawable.ic_close, R.string.accounts))
-        homeMenuList.add(HomeMenu(R.drawable.ic_close, R.string.spare_part))
-        homeMenuList.add(HomeMenu(R.drawable.ic_close, R.string.events))
-        when(role.value != "Sales"){
-            true-> {
-                homeMenuList.add(HomeMenu(R.drawable.ic_close, R.string.approvals))
+        homeMenuList.add(HomeMenu(R.drawable.ic_catalogues, R.string.catalogues))
+        homeMenuList.add(HomeMenu(R.drawable.ic_accounts, R.string.accounts))
+        homeMenuList.add(HomeMenu(R.drawable.ic_spareparts, R.string.spare_part))
+        homeMenuList.add(HomeMenu(R.drawable.ic_events, R.string.events))
+        when (role.value != "Sales") {
+            true -> {
+                homeMenuList.add(HomeMenu(R.drawable.ic_approval, R.string.approvals))
             }
         }
 
         return homeMenuList
+    }
+
+    private fun initVisitTarget(): ArrayList<VisitTarget> {
+        val visitTargetList: ArrayList<VisitTarget> = ArrayList()
+
+        visitTargetList.add(VisitTarget("PT Dihardja Software", true))
+        visitTargetList.add(VisitTarget("PT Citra Guna Mandiri", true))
+        visitTargetList.add(VisitTarget("PT Solusi Indonesia", true))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+        visitTargetList.add(VisitTarget("PT Dihardja Software", false))
+
+        val current = Calendar.getInstance().time
+        todayDate.value = InterfaceManager.getInstance().convertStringFromDate(current)
+
+        return visitTargetList
     }
 }

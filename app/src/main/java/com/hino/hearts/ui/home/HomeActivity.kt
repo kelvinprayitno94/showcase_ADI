@@ -15,10 +15,12 @@ import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.login.LoginActivity
+import com.hino.hearts.ui.notification.NotificationActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_toolbar_home.*
 import kotlinx.android.synthetic.main.nav_header_view.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -45,7 +47,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.home_menu, menu);
+        menuInflater.inflate(R.menu.home_menu, menu)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -53,7 +55,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_notification -> {
-                toast("Notification item clicked")
+                startActivity<NotificationActivity>()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -140,7 +142,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-        tb_home.setNavigationIcon(R.drawable.ic_sort)
+        tb_home.setNavigationIcon(R.drawable.ic_menu)
 
         Glide.with(this)
             .load(viewModel.imagePath.value)
