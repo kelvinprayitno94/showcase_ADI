@@ -29,17 +29,17 @@ class AccountDetailFragment : BaseFragment<FragmentAccountDetailsBinding>() {
         initAdapter()
     }
 
-    fun initObserver() {
+    override fun initObserver() {
         viewModel.navEditContactLiveData.observe(viewLifecycleOwner, Observer {
             startActivity(Intent(activity, EditAccountDetailActivity::class.java))
         })
     }
 
-    fun initViewModel() {
+    override fun initViewModel() {
 
     }
 
-    fun initEvent() {
+    override fun initEvent() {
         btn_detail_edit_account_detail.setOnClickListener {
             viewModel.editContactTap()
         }

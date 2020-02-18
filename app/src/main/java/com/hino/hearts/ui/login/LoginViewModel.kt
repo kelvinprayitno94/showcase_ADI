@@ -1,18 +1,16 @@
 package com.hino.hearts.ui.login
 
-import android.content.Intent
-import android.os.Handler
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hino.hearts.model.User
-import com.hino.hearts.network.DataResponse
 import com.hino.hearts.network.HinoService
+import com.hino.hearts.network.response.user.LoginResponse
 import com.hino.hearts.network.service.user.UserService
+import com.hino.hearts.util.UserDefaults
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,58 +19,70 @@ import retrofit2.Response
  * Created by Dihardja Software on 2020-02-10.
  */
 class LoginViewModel : ViewModel() {
-    var userService: UserService = HinoService.create(UserService::class.java)
-
     var showLoading: MutableLiveData<Boolean> = MutableLiveData()
-    var loginTap: MutableLiveData<Boolean> = MutableLiveData()
-    var user: MutableLiveData<User> = MutableLiveData()
+    var loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
+    var responseBody: MutableLiveData<ResponseBody> = MutableLiveData()
+
+    var userService: UserService = HinoService.create(UserService::class.java)
 
     fun onLogin(employeeId: String, password: String) {
         showLoading.value = true
 
-        when (employeeId.isNotEmpty() && password.isNotEmpty()) {
-            true -> {
-                CoroutineScope(Dispatchers.Main).launch {
-                    //login()
-                    val handler = Handler()
-                    handler.postDelayed({
-                        showLoading.value = false
-                        loginTap.value = true
-                    }, 1000)
-
-                }
-            }
+        CoroutineScope(Dispatchers.Main).launch {
+            login(employeeId, password)
         }
     }
 
-    private fun login() {
-        userService.getUserData()
-            .enqueue(object : Callback<DataResponse<User>> {
-                override fun onFailure(call: Call<DataResponse<User>>, t: Throwable) {
-                    showLoading.value = false
+    private fun login(employeeId: String, password: String) {
 
-                    Log.d("Exception", t.message.toString())
-                }
+        userService.login(employeeId, password).enqueue(object : Callback<LoginResponse.Result> {
 
-                override fun onResponse(
-                    call: Call<DataResponse<User>>,
-                    response: Response<DataResponse<User>>
-                ) {
-                    showLoading.value = false
+            override fun onFailure(call: Call<LoginResponse.Result>, t: Throwable) {
+                showLoading.value = false
+            }
 
-                    when (response.isSuccessful && response.body() != null) {
-                        true -> {
-                            user.postValue(response.body()?.data)
+            override fun onResponse(
+                call: Call<LoginResponse.Result>,
+                response: Response<LoginResponse.Result>
+            ) {
+                showLoading.value = false
+
+                Log.d("lalala", response.body().toString())
+
+                when (response.body()?.data != null && response.body()!!.meta.success && response.isSuccessful) {
+                    true -> {
+                        val data = response.body()?.data!!
+
+                        UserDefaults.getInstance().setString(UserDefaults.TOKEN_KEY, data.token)
+                        UserDefaults.getInstance()
+                            .setString(UserDefaults.USER_NAME, data.userData?.name)
+                        data.userData?.roleId?.let {
+                            UserDefaults.getInstance()
+                                .setInt(UserDefaults.USER_ROLE_ID, it)
                         }
-                        false -> {
-                            Log.d("Exception", response.message())
+
+                        when (data.userData?.roleId) {
+                            1 -> {
+                                UserDefaults.getInstance()
+                                    .setString(UserDefaults.USER_ROLE, "Sales")
+                            }
                         }
+
+                        //dummy
+                        UserDefaults.getInstance()
+                            .setString(UserDefaults.USER_IMAGE_PATH, "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg")
+                        loginSuccess.value = true
+                    }
+                    false -> {
+                        responseBody.value = response.errorBody()
                     }
                 }
-            })
+            }
+
+        })
     }
 
-    internal fun getUser(): LiveData<User> {
-        return user
-    }
+//    internal fun getUser(): LiveData<User> {
+//        return user
+//    }
 }

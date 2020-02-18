@@ -34,7 +34,7 @@ class AccountContactFragment : BaseFragment<ActivityAccountDetailBinding>() {
         initAdapter()
     }
 
-    fun initObserver() {
+    override fun initObserver() {
         viewModel.navEditContactLiveData.observe(viewLifecycleOwner, Observer {
 
         })
@@ -44,11 +44,11 @@ class AccountContactFragment : BaseFragment<ActivityAccountDetailBinding>() {
         })
     }
 
-    fun initViewModel() {
+    override fun initViewModel() {
 
     }
 
-    fun initEvent() {
+    override fun initEvent() {
         btn_detail_contact_add.setOnClickListener {
             viewModel.addContactTap()
         }

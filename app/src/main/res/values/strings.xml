@@ -1,11 +1,48 @@
 <resources>
     <string name="app_name">Hino Hearts</string>
+    <string name="app_version">ver %1$s</string>
 
     <string name="login_message">Please Sign In</string>
 
+    <string name="no_internet">No internet connection</string>
+    <string name="server_not_available">Server not available. Please try again later.</string>
+
     <string name="employee_id_field">Employee ID</string>
+    <string name="employee_id_field_error">Employee ID cannot be empty</string>
     <string name="password_field">Password</string>
+    <string name="password_field_error">Password cannot be empty</string>
 
     <string name="forgot_password_button"><u>Forgot Password?</u></string>
     <string name="login_button">Sign In</string>
+
+    <string name="pending_transaction">Pending Transactions</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="help">Help</string>
+    <string name="logout">Sign Out</string>
+    <string name="notification">Notification</string>
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+    <string name="greetings_morning">Selamat Pagi</string>
+    <string name="greetings_noon">Selamat Siang</string>
+    <string name="greetings_evening">Selamat Sore</string>
+    <string name="greetings_night">Selamat Malam</string>
+
+    <string name="home_left_info_sales">Kunjungan Anda bulan ini</string>
+    <string name="home_left_info_nonsales">Total Customer Tim Anda</string>
+    <string name="home_right_info_sales">Total opportunity yang bisa Anda dapatkan</string>
+    <string name="home_right_info_nonsales">Total opportunity yang bisa tim Anda dapatkan</string>
+
+    <string name="card_info_sales">Today\'s Visit</string>
+    <string name="sales_visit_progress">%1$d of %2$d done</string>
+    <string name="sales_visit_done">Good job! You have completed today\'s visit target!</string>
+    <string name="approval_request_desc">Transaksi yang belum Anda setujui</string>
+    <string name="record_your_visit">Rekam Kunjungan Anda</string>
+
+    <string name="catalogues">Catalogues</string>
+    <string name="accounts">Accounts</string>
+    <string name="spare_part">Spare Parts</string>
+    <string name="events">Events</string>
+    <string name="approvals">Approvals</string>
 </resources>

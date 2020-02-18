@@ -31,15 +31,15 @@ class AccountOpportunityFragment : BaseFragment<ActivityAccountDetailBinding>() 
         initAdapter()
     }
 
-    fun initObserver() {
+    override fun initObserver() {
 
     }
 
-    fun initViewModel() {
+    override fun initViewModel() {
 
     }
 
-    fun initEvent() {
+    override fun initEvent() {
 
     }
 

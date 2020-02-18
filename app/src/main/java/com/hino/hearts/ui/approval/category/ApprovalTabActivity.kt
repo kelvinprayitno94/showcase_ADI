@@ -186,8 +186,6 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
     fun animate(flag: Boolean) {
 
-        val tes = cl_collapsing_doc_type.height - (cl_collapsing_doc_type.height * 2)
-
         //show
         if (flag) {
 //            val animation: Animation = TranslateAnimation(
