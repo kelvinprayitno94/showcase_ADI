@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
     <data>
-        <variable name="viewModel" type="com.hino.hearts.ui.dragdrop.DragDropViewModel"/>
+        <variable name="viewModel" type="com.hino.hearts.ui.opportunity.OpportunityDetailViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             android:id="@+id/tv_opportunities_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Opportunities"
+            android:text="@{viewModel.title, default=`Opportunity Detail`}"
             android:layout_marginStart="@dimen/dimens_15dp"
             android:layout_marginEnd="@dimen/dimens_15dp"
             android:textSize="20sp"
@@ -41,53 +41,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_toolbar"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimens_15dp"
-            android:layout_marginEnd="@dimen/dimens_15dp"
-            android:text="Drag and drop your opportunities progress"
-            android:id="@+id/tv_opportunities_desc_1"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_opportunities_title"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <RelativeLayout
-            android:id="@+id/ll_root_dragdrop"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_opportunity"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_opportunities_desc_1"
+            android:layout_marginTop="@dimen/dimens_8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_opportunities_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <HorizontalScrollView
-                android:id="@+id/hs_dragdrop"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tl_opportunity"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="@dimen/dimens_8dp"
-                android:paddingEnd="@dimen/dimens_8dp"
-                android:clipToPadding="false">
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="#CF0000" />
 
-                <LinearLayout
-                    android:id="@+id/ll_dragdrop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
-            </HorizontalScrollView>
-
-            <View
-                android:id="@+id/v_left_area"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"/>
-
-            <View
-                android:id="@+id/v_right_area"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"/>
-        </RelativeLayout>
+        </androidx.viewpager.widget.ViewPager>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

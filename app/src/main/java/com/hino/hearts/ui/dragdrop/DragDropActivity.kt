@@ -1,14 +1,17 @@
 package com.hino.hearts.ui.dragdrop
 
 import android.os.Bundle
-import androidx.core.view.marginEnd
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hino.hearts.R
+import com.hino.hearts.adapter.DragDropAdapter
 import com.hino.hearts.adapter.DragDropListener
 import com.hino.hearts.databinding.ActivityDragdropBinding
+import com.hino.hearts.model.OpportunityModel
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.opportunity.OpportunityDetailActivity
 import kotlinx.android.synthetic.main.activity_dragdrop.*
+import org.jetbrains.anko.startActivity
 
 class DragDropActivity : BaseActivity<ActivityDragdropBinding>() {
 
@@ -33,7 +36,6 @@ class DragDropActivity : BaseActivity<ActivityDragdropBinding>() {
     override fun initViewModel() {
         binding.viewModel = mViewModel
 
-        val marginStart:Int = resources.getDimension(R.dimen.dimens_15dp).toInt()
         val size = mViewModel.headers.size
         for (i in 0 until size) {
             val header = mViewModel.headers[i]
@@ -42,12 +44,12 @@ class DragDropActivity : BaseActivity<ActivityDragdropBinding>() {
                 false -> R.drawable.shape_dragdrop_list_background_darker
             }
 
-            val marginEnd: Int = when (i == size-1) {
-                true -> marginStart
-                false -> 0
-            }
+            val dragDropList = DragDropList(this, header, background, object: DragDropAdapter.ClickListener {
+                override fun onItemClicked(item: OpportunityModel.OpportunityData) {
+                    startActivity<OpportunityDetailActivity>()
+                }
+            }, mViewModel.data[header]!!)
 
-            val dragDropList = DragDropList(this, header, background, marginStart, marginEnd, mViewModel.data[header]!!)
             mDragDropList.add(dragDropList)
             ll_dragdrop.addView(dragDropList)
         }

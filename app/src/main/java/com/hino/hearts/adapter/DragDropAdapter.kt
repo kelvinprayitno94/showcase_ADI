@@ -17,11 +17,12 @@ import java.text.NumberFormat
 
 class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), View.OnTouchListener {
     var list: MutableList<OpportunityModel.OpportunityData> = ArrayList()
-    val formatter: NumberFormat = DecimalFormat("#,###")
+    var clickListener: ClickListener? = null
 
-    var mSelectedItem: View? = null
-    val handler: Handler = Handler()
-    val mLongPressed = Runnable {
+    private val mFormatter: NumberFormat = DecimalFormat("#,###")
+    private var mSelectedItem: View? = null
+    private val mHandler: Handler = Handler()
+    private val mLongPressed = Runnable {
         if (mSelectedItem != null) {
             val data = ClipData.newPlainText("", "")
             val shadowBuilder = DragShadowBuilder(mSelectedItem)
@@ -66,7 +67,7 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         if (position < list.size) {
             val item = list[position]
-            val formattedNumber = "Rp${formatter.format(item.opportunityValue)}"
+            val formattedNumber = "Rp${mFormatter.format(item.opportunityValue)}"
             holder.titleTextView?.text = item.title
             holder.accountNameTextView?.text = item.accountName
             holder.opportunityValueTextView?.text = formattedNumber
@@ -83,10 +84,24 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 mSelectedItem = v
-                handler.postDelayed(mLongPressed, ViewConfiguration.getLongPressTimeout().toLong())
+                mHandler.postDelayed(mLongPressed, ViewConfiguration.getLongPressTimeout().toLong())
             }
             MotionEvent.ACTION_MOVE, MotionEvent.ACTION_CANCEL -> {
-                handler.removeCallbacks(mLongPressed);
+                mHandler.removeCallbacks(mLongPressed)
+                mSelectedItem = null
+            }
+            MotionEvent.ACTION_UP -> {
+                mHandler.removeCallbacks(mLongPressed)
+
+                //Item Clicked
+                if (mSelectedItem != null) {
+                    val rootFrameLayout = mSelectedItem as FrameLayout
+                    val position = rootFrameLayout.tag as Int
+                    val item = list[position]
+                    clickListener?.onItemClicked(item)
+
+                    mSelectedItem = null
+                }
             }
         }
         return true
@@ -97,5 +112,9 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
         var titleTextView: TextView? = itemView.findViewById(R.id.tv_title)
         var accountNameTextView: TextView? = itemView.findViewById(R.id.tv_account_name)
         var opportunityValueTextView: TextView? = itemView.findViewById(R.id.tv_opportunity_value)
+    }
+
+    interface ClickListener {
+        fun onItemClicked(item: OpportunityModel.OpportunityData)
     }
 }

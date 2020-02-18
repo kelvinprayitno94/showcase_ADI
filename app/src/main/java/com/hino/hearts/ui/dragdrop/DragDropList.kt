@@ -13,7 +13,7 @@ import com.hino.hearts.adapter.DragDropAdapter
 import com.hino.hearts.model.OpportunityModel
 import org.jetbrains.anko.backgroundResource
 
-class DragDropList(context: Context, attributeSet: AttributeSet?, defStyleRes: Int, headerText: String, background: Int, marginStart: Int, marginEnd: Int, data: MutableList<OpportunityModel.OpportunityData>) : LinearLayout(context, attributeSet, defStyleRes) {
+class DragDropList(context: Context, attributeSet: AttributeSet?, defStyleRes: Int, headerText: String, background: Int, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel.OpportunityData>) : LinearLayout(context, attributeSet, defStyleRes) {
     private val mAdapter: DragDropAdapter = DragDropAdapter()
 
     init {
@@ -29,10 +29,11 @@ class DragDropList(context: Context, attributeSet: AttributeSet?, defStyleRes: I
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = mAdapter
         mAdapter.list = data
+        mAdapter.clickListener = clickListener
 
         addView(view)
     }
 
-    constructor(context: Context, headerText: String, background: Int, marginStart: Int, marginEnd: Int, data: MutableList<OpportunityModel.OpportunityData>) : this(context, null, 0, headerText, background, marginStart, marginEnd, data)
-    constructor(context: Context, attributeSet: AttributeSet?, headerText: String, background: Int, marginStart: Int, marginEnd: Int, data: MutableList<OpportunityModel.OpportunityData>) : this(context, attributeSet, 0, headerText, background, marginStart, marginEnd, data)
+    constructor(context: Context, headerText: String, background: Int, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel.OpportunityData>) : this(context, null, 0, headerText, background, clickListener, data)
+    constructor(context: Context, attributeSet: AttributeSet?, headerText: String, background: Int, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel.OpportunityData>) : this(context, attributeSet, 0, headerText, background, clickListener, data)
 }

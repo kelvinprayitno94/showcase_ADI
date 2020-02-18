@@ -30,6 +30,7 @@
         <activity android:name=".ui.opportunity.card.OpportunitiesCardActivity" />
         <activity android:name=".ui.approval.ApprovalTabActivity" />
         <activity android:name=".ui.dragdrop.DragDropActivity"/>
+        <activity android:name=".ui.opportunity.OpportunityDetailActivity" />
     </application>
 
 </manifest>
