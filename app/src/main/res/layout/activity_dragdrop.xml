@@ -66,7 +66,10 @@
             <HorizontalScrollView
                 android:id="@+id/hs_dragdrop"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/dimens_8dp"
+                android:paddingEnd="@dimen/dimens_8dp"
+                android:clipToPadding="false">
 
                 <LinearLayout
                     android:id="@+id/ll_dragdrop"

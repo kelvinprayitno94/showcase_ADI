@@ -20,8 +20,6 @@ class DragDropList(context: Context, attributeSet: AttributeSet?, defStyleRes: I
         val inflater = LayoutInflater.from(context)
         val view: View = inflater.inflate(R.layout.layout_dragdrop_list, this, false)
         val cardView: LinearLayout = view.findViewById(R.id.ll_dragdrop_card)
-        val param: LayoutParams = cardView.layoutParams as LayoutParams
-        param.setMargins(marginStart, 0, marginEnd, 0)
         cardView.backgroundResource = background
 
         val headerTextView: TextView = view.findViewById(R.id.tv_header)
