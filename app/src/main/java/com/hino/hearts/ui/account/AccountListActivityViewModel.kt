@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hino.hearts.model.ApprovalDocModel
 
-class AccountListViewModel : ViewModel() {
+class AccountListActivityViewModel : ViewModel() {
 
     val documentLivedata = MutableLiveData<ApprovalDocModel>()
 

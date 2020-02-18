@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.hino.hearts.ui.account.AccountListViewModel" />
+            type="com.hino.hearts.ui.account.AccountListActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

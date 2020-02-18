@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
+import com.hino.hearts.adapter.AccountDetailTabAdapter
 import com.hino.hearts.adapter.ApprovalInvoiceAdapter
 import com.hino.hearts.adapter.ApprovalProgressAdapter
 import com.hino.hearts.databinding.ActivityApprovalDetailBinding

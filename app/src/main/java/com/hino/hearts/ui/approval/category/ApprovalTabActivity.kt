@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.hino.hearts.R
 import com.hino.hearts.adapter.ApprovalCollapsingDocumentAdapter
+import com.hino.hearts.adapter.ApprovalDocTypeFilterAdapter
 import com.hino.hearts.adapter.ApprovalDocumentAdapter
 import com.hino.hearts.databinding.ActivityApprovalTabBinding
 import com.hino.hearts.model.ApprovalDocumentModel
@@ -29,6 +30,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
     lateinit var approvalDocumentAdapter: ApprovalDocumentAdapter
     lateinit var approvalCollapsDocAdapter: ApprovalCollapsingDocumentAdapter
+    lateinit var approvalDocTypeFilterAdapter: ApprovalDocTypeFilterAdapter
 
     var open = true
 
@@ -57,7 +59,9 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                         branch[index]
                     )
                 )
-                tab_layout_approval.addTab(tab_layout_approval.newTab().setText(document[index]))
+                val newTab = tab_layout_approval.newTab()
+                newTab.text = document[index]
+                tab_layout_approval.addTab(newTab)
             }
 
             it.docList[0].isSelected = true
@@ -83,10 +87,28 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                         if (!it.docList[pos].isSelected) {
                             it.docList[it.prevSelected].isSelected = false
                             it.docList[pos].isSelected = true
-                            approvalCollapsDocAdapter.notifyItemChanged(it.prevSelected)
-                            approvalCollapsDocAdapter.notifyItemChanged(pos)
+//                            approvalCollapsDocAdapter.notifyItemChanged(it.prevSelected)
+//                            approvalCollapsDocAdapter.notifyItemChanged(pos)
+                            approvalCollapsDocAdapter.notifyDataSetChanged()
                             it.prevSelected = pos
-                            tab_layout_approval.getTabAt(pos)?.select()
+//                            tab_layout_approval.getTabAt(pos)?.select()
+                            approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
+                        }
+                    }
+
+                })
+
+            approvalDocTypeFilterAdapter = ApprovalDocTypeFilterAdapter(this, it,
+                object : ApprovalDocTypeFilterAdapter.OnAdapterTap{
+                    override fun onTap(pos: Int) {
+                        if (!it.docList[pos].isSelected) {
+                            it.docList[it.prevSelected].isSelected = false
+                            it.docList[pos].isSelected = true
+//                            approvalDocTypeFilterAdapter.notifyItemChanged(it.prevSelected)
+//                            approvalDocTypeFilterAdapter.notifyItemChanged(pos)
+                            approvalDocTypeFilterAdapter.notifyDataSetChanged()
+                            it.prevSelected = pos
+                            approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
                         }
                     }
 
@@ -121,6 +143,10 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                     )
                 )
             )
+
+            rv_tab_layout_approval_doc_type.adapter = approvalDocTypeFilterAdapter
+            rv_tab_layout_approval_doc_type.layoutManager =
+                LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
         })
 

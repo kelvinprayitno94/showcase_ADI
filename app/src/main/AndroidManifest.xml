@@ -29,6 +29,7 @@
         <activity android:name=".ui.approval.detail.ApprovalDetailActivity" />
         <activity android:name=".ui.account.AccountListActivity" />
         <activity android:name=".ui.account.detail.AccountDetailActivity" />
+        <activity android:name="com.hino.hearts.ui.account.detail.accDetail.editAccount.EditAccountDetailActivity" />
     </application>
 
 </manifest>

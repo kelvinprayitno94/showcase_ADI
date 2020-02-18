@@ -44,7 +44,7 @@
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/account_detail_tab"
+            android:id="@+id/vp_account_detail_tab"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tab_layout_account_detail"
             app:layout_constraintBottom_toBottomOf="parent"/>

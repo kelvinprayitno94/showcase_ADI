@@ -23,4 +23,11 @@
         <item>Branch 8</item>
         <item>Branch 9</item>
     </string-array>
+
+    <string-array name="account_tab_title">
+        <item>Acc Detail</item>
+        <item>Contacts</item>
+        <item>Opportunity</item>
+        <item>Vehicles</item>
+    </string-array>
 </resources>

@@ -36,6 +36,16 @@
         <item name="android:textColor">@color/grey4a</item>
     </style>
 
+    <style name="FlyingText">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="colorAccent">@android:color/holo_green_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+        <item name="colorControlHighlight">@android:color/black</item>
+    </style>
+
     <style name="LabelTextwhPadding" parent="LabelText">
         <item name="android:paddingBottom">0dp</item>
     </style>

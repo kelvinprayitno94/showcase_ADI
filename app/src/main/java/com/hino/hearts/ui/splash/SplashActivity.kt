@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.hino.hearts.R
+import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.ui.approval.category.ApprovalTabActivity
 
 class SplashActivity : AppCompatActivity() {
