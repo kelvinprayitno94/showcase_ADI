@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.hino.hearts.R
 import com.hino.hearts.adapter.HomeMenuAdapter
 import com.hino.hearts.adapter.VisitTargetDialogAdapter
@@ -31,6 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private val viewModel by viewModel<HomeFragmentViewModel>()
+
     private lateinit var adapter: HomeMenuAdapter
     private lateinit var visitTargetDialogAdapter: VisitTargetDialogAdapter
 
@@ -146,8 +146,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         AlertManager.getInstance().showVisitTargetDialog(
             context,
             viewModel.todayDate.value,
-            DialogInterface.OnClickListener { dialogInterface, i ->
-                toast("hore").show()
+            DialogInterface.OnClickListener { dialog, i ->
+                dialog.dismiss()
+                (activity as HomeActivity).showAddVisitButton()
             },
             visitTargetDialogAdapter
         )

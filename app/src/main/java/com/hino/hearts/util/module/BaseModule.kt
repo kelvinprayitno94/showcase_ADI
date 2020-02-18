@@ -5,6 +5,7 @@ import com.hino.hearts.ui.home.HomeViewModel
 import com.hino.hearts.ui.login.LoginViewModel
 import com.hino.hearts.ui.notification.NotificationDetailViewModel
 import com.hino.hearts.ui.notification.NotificationViewModel
+import com.hino.hearts.ui.pendingtransactions.PendingTransactionsViewModel
 import com.hino.hearts.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -22,4 +23,6 @@ val moduleViewModel = module {
 
     viewModel { NotificationViewModel() }
     viewModel { NotificationDetailViewModel() }
+
+    viewModel { PendingTransactionsViewModel() }
 }

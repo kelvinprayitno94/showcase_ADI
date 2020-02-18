@@ -35,15 +35,14 @@ class HomeFragmentViewModel : ViewModel() {
     var role: MutableLiveData<String> = MutableLiveData()
     var leftInfo: MutableLiveData<String> = MutableLiveData()
     var rightInfo: MutableLiveData<String> = MutableLiveData()
+    var todayDate: MutableLiveData<String> = MutableLiveData()
+    var approvalRequestCount: MutableLiveData<String> = MutableLiveData()
 
     var visitProgress: MutableLiveData<Int> = MutableLiveData()
     var visitProgressTotal: MutableLiveData<Int> = MutableLiveData()
     var visitProgressPercentage: MutableLiveData<Int> = MutableLiveData()
 
-    var todayDate: MutableLiveData<String> = MutableLiveData()
     var visitTargetList: MutableLiveData<ArrayList<VisitTarget>> = MutableLiveData()
-
-    var approvalRequestCount: MutableLiveData<String> = MutableLiveData()
 
     var homeMenuList: MutableLiveData<ArrayList<HomeMenu>> = MutableLiveData()
 

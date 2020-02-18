@@ -96,7 +96,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/dimens_24dp"
                                     android:layout_marginEnd="@dimen/dimens_24dp"
-                                    android:text="@string/pending_transaction"
+                                    android:text="@string/pending_transactions"
                                     app:layout_constraintBottom_toBottomOf="@id/fl_open_transaction"
                                     app:layout_constraintEnd_toStartOf="@id/fl_open_transaction"
                                     app:layout_constraintStart_toStartOf="parent"

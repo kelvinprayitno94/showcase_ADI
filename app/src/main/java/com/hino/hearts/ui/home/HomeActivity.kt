@@ -5,19 +5,25 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.hino.hearts.R
+import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.notification.NotificationActivity
+import com.hino.hearts.ui.pendingtransactions.PendingTransactionsActivity
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.layout_toolbar_home.*
+import kotlinx.android.synthetic.main.app_bar_home.*
+import kotlinx.android.synthetic.main.layout_add_visit_buttons.*
+import kotlinx.android.synthetic.main.layout_toolbar_home.tb_home
 import kotlinx.android.synthetic.main.nav_header_view.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
@@ -28,13 +34,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     companion object {
         private const val TWO_HUNDREDS: Long = 200
+        private const val TWO = 2
+        private const val SIX = 6
     }
 
-    private val viewModel by viewModel<HomeViewModel>()
+    private val context = this
 
     private lateinit var toggle: ActionBarDrawerToggle
 
-    private val context = this
+    private val viewModel by viewModel<HomeViewModel>()
+
+    private lateinit var addVisitButtonAdapter: AddVisitButtonAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +69,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        when(layout_add_visit_button.visibility == View.VISIBLE){
+            true->{
+                hideAddVisitButton()
+            }
+            false->{
+                super.onBackPressed()
+            }
         }
     }
 
@@ -87,10 +108,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         }
 
         cl_pending_transaction.onClick {
-            val handler = Handler()
-            handler.postDelayed({
-                toast("Pending Transactions item clicked")
-            }, TWO_HUNDREDS)
+            startActivity<PendingTransactionsActivity>()
 
             drawer_layout.closeDrawer(GravityCompat.START)
         }
@@ -124,12 +142,45 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
             drawer_layout.closeDrawer(GravityCompat.START)
         }
+
+        when(viewModel.role.value == "Sales"){
+            true-> {
+                layout_add_visit_button.onClick {
+                    hideAddVisitButton()
+                }
+            }
+        }
+    }
+
+    fun showAddVisitButton() {
+        layout_add_visit_button.visibility = View.VISIBLE
+    }
+
+    fun hideAddVisitButton() {
+        layout_add_visit_button.visibility = View.GONE
     }
 
     private fun initLayout() {
         setSupportActionBar(tb_home)
         setupNavigationDrawer()
         addFragment(HomeFragment())
+
+        when(viewModel.role.value == "Sales"){
+            true-> {
+                addVisitButtonAdapter = AddVisitButtonAdapter()
+                addVisitButtonAdapter.setData(viewModel.addVisitButtonList.value!!)
+
+                val gridLayoutManager = GridLayoutManager(this, SIX)
+                gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(i: Int): Int {
+                        return TWO
+                    }
+                }
+
+                rv_add_visit_buttons.layoutManager = gridLayoutManager
+                rv_add_visit_buttons.adapter = addVisitButtonAdapter
+            }
+        }
     }
 
     private fun setupNavigationDrawer() {
