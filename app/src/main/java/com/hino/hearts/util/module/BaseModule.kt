@@ -26,13 +26,7 @@ val moduleViewModel = module {
     viewModel { AccountVehiclesViewModel() }
     viewModel { EditAccountDetailViewModel() }
     viewModel { AccountOpportunityViewModel() }
-
     viewModel { SplashViewModel() }
-
-    viewModel { LoginViewModel() }
-
-    viewModel { ApprovalTabViewModel() }
-
     viewModel { HomeViewModel() }
     viewModel { HomeFragmentViewModel() }
 }
