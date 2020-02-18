@@ -87,8 +87,6 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                         if (!it.docList[pos].isSelected) {
                             it.docList[it.prevSelected].isSelected = false
                             it.docList[pos].isSelected = true
-//                            approvalCollapsDocAdapter.notifyItemChanged(it.prevSelected)
-//                            approvalCollapsDocAdapter.notifyItemChanged(pos)
                             approvalCollapsDocAdapter.notifyDataSetChanged()
                             it.prevSelected = pos
 //                            tab_layout_approval.getTabAt(pos)?.select()
@@ -104,8 +102,6 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                         if (!it.docList[pos].isSelected) {
                             it.docList[it.prevSelected].isSelected = false
                             it.docList[pos].isSelected = true
-//                            approvalDocTypeFilterAdapter.notifyItemChanged(it.prevSelected)
-//                            approvalDocTypeFilterAdapter.notifyItemChanged(pos)
                             approvalDocTypeFilterAdapter.notifyDataSetChanged()
                             it.prevSelected = pos
                             approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
