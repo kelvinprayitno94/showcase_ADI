@@ -67,8 +67,8 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         if (position < list.size) {
             val item = list[position]
-            val formattedNumber = "Rp${mFormatter.format(item.opportunityValue)}"
-            holder.titleTextView?.text = item.title
+            val formattedNumber = "Rp${mFormatter.format(item.budget)}"
+            holder.titleTextView?.text = item.opportunityName
             holder.accountNameTextView?.text = item.accountName
             holder.opportunityValueTextView?.text = formattedNumber
 
