@@ -59,5 +59,6 @@ class AccountDetailActivity : BaseActivity<ActivityAccountDetailBinding>() {
         tabAdapter = AccountDetailTabAdapter(supportFragmentManager, titles)
 
         vp_account_detail_tab.adapter = tabAdapter
+        tab_layout_account_detail.setupWithViewPager(vp_account_detail_tab)
     }
 }

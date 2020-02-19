@@ -1,5 +1,6 @@
 package com.hino.hearts.ui.account.detail.contact
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -11,6 +12,8 @@ import com.hino.hearts.adapter.AccountContactAdapter
 import com.hino.hearts.databinding.ActivityAccountDetailBinding
 import com.hino.hearts.model.AccountContactModel
 import com.hino.hearts.ui.BaseFragment
+import com.hino.hearts.ui.account.detail.contact.contactDetail.ContactDetailActivity
+import com.hino.hearts.ui.account.detail.contact.newContact.NewContactActivity
 import kotlinx.android.synthetic.main.fragment_account_detail_contact.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,11 +39,11 @@ class AccountContactFragment : BaseFragment<ActivityAccountDetailBinding>() {
 
     override fun initObserver() {
         viewModel.navEditContactLiveData.observe(viewLifecycleOwner, Observer {
-
+            startActivity(Intent(activity, ContactDetailActivity::class.java))
         })
 
         viewModel.navNewContactLiveData.observe(viewLifecycleOwner, Observer {
-
+            startActivity(Intent(activity, NewContactActivity::class.java))
         })
     }
 

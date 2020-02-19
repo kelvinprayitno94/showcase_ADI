@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -51,6 +52,6 @@ class AccountContactAdapter(
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val accountName = itemView.findViewById<TextView>(R.id.tv_adapter_contact_acc_name)
         val phoneNo = itemView.findViewById<TextView>(R.id.tv_adapter_contact_phone_no)
-        val edit = itemView.findViewById<ImageView>(R.id.btn_detail_contact_edit)
+        val edit = itemView.findViewById<Button>(R.id.btn_detail_contact_edit)
     }
 }

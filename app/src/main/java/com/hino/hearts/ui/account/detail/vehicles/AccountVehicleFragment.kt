@@ -1,5 +1,6 @@
 package com.hino.hearts.ui.account.detail.vehicles
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import com.hino.hearts.adapter.AccountContactAdapter
 import com.hino.hearts.databinding.ActivityAccountDetailBinding
 import com.hino.hearts.model.AccountContactModel
 import com.hino.hearts.ui.BaseFragment
+import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity
 import kotlinx.android.synthetic.main.fragment_account_detail_vehicles.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,15 +49,15 @@ class AccountVehicleFragment : BaseFragment<ActivityAccountDetailBinding>() {
     private fun initAdapter() {
         context?.let {
 
-            val item : MutableList<AccountContactModel> = ArrayList()
+            val item: MutableList<AccountContactModel> = ArrayList()
 
-            for (i in 0 until 6){
+            for (i in 0 until 6) {
                 item.add(AccountContactModel("FJ 190 JP", "#123123"))
             }
 
-            adapter = AccountContactAdapter(it, item, object : AccountContactAdapter.OnAdapterTap{
+            adapter = AccountContactAdapter(it, item, object : AccountContactAdapter.OnAdapterTap {
                 override fun onTap(pos: Int) {
-
+                    startActivity(Intent(activity, VehicleDetailActivity::class.java))
                 }
 
             })

@@ -30,4 +30,11 @@
         <item>Opportunity</item>
         <item>Vehicles</item>
     </string-array>
+
+    <string-array name="business_field_list">
+        <item>Information &amp; Technology Services</item>
+    </string-array>
+    <string-array name="city_list">
+        <item>Tangerang</item>
+    </string-array>
 </resources>

@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivitySplashBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.account.AccountListActivity
+import com.hino.hearts.ui.approval.category.ApprovalTabActivity
 import com.hino.hearts.ui.dragdrop.DragDropActivity
 import com.hino.hearts.ui.home.HomeActivity
 import com.hino.hearts.ui.login.LoginActivity
@@ -83,7 +85,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                     startActivity<LoginActivity>()
                 }
             }*/
-            startActivity<DragDropActivity>()
+            startActivity<AccountListActivity>()
             overridePendingTransition(0, 0)
         }, TWO_THOUSANDS)
     }

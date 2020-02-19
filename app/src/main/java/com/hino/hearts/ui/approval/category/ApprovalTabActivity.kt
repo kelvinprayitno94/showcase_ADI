@@ -7,7 +7,9 @@ import android.view.MenuItem
 import android.view.animation.*
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.tabs.TabLayout
 import com.hino.hearts.R
 import com.hino.hearts.adapter.ApprovalCollapsingDocumentAdapter
@@ -97,7 +99,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                 })
 
             approvalDocTypeFilterAdapter = ApprovalDocTypeFilterAdapter(this, it,
-                object : ApprovalDocTypeFilterAdapter.OnAdapterTap{
+                object : ApprovalDocTypeFilterAdapter.OnAdapterTap {
                     override fun onTap(pos: Int) {
                         if (!it.docList[pos].isSelected) {
                             it.docList[it.prevSelected].isSelected = false
@@ -143,11 +145,13 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
             rv_tab_layout_approval_doc_type.adapter = approvalDocTypeFilterAdapter
             rv_tab_layout_approval_doc_type.layoutManager =
                 LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+            val snapHelper: SnapHelper = LinearSnapHelper()
+            snapHelper.attachToRecyclerView(rv_tab_layout_approval_doc_type)
 
         })
 
         viewModel.showCateTextLiveData.observe(this, Observer {
-//            animate(it)
+            //            animate(it)
         })
 
         viewModel.animateArrorLiveData.observe(this, Observer {

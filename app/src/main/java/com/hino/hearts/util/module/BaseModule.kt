@@ -2,7 +2,7 @@ package com.hino.hearts.util.module
 
 import com.hino.hearts.ui.account.AccountListActivityViewModel
 import com.hino.hearts.ui.account.detail.accDetail.AccountDetailViewModel
-import com.hino.hearts.ui.account.detail.accDetail.editAccount.EditAccountDetailViewModel
+import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailViewModel
 import com.hino.hearts.ui.account.detail.contact.AccountContactViewModel
 import com.hino.hearts.ui.account.detail.opportunity.AccountOpportunityViewModel
 import com.hino.hearts.ui.account.detail.vehicles.AccountVehiclesViewModel
@@ -27,7 +27,7 @@ val moduleViewModel = module {
     viewModel { AccountDetailViewModel() }
     viewModel { AccountListActivityViewModel() }
     viewModel { AccountVehiclesViewModel() }
-    viewModel { EditAccountDetailViewModel() }
+    viewModel { VehicleDetailViewModel() }
     viewModel { AccountOpportunityViewModel() }
     viewModel { SplashViewModel() }
     viewModel { HomeViewModel() }

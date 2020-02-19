@@ -141,14 +141,10 @@
         <item name="android:textColor">@color/grey4a</item>
     </style>
 
-    <style name="FlyingText">
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:textColorHint">@android:color/darker_gray</item>
-        <item name="colorAccent">@android:color/holo_green_light</item>
-        <item name="android:textSize">14sp</item>
-        <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@android:color/darker_gray</item>
-        <item name="colorControlHighlight">@android:color/black</item>
+    <style name="TextInputLayoutHint" >
+        <item name="android:textColor">@color/grey4a</item>
+        <item name="android:textColorHint">@color/black</item>
+
     </style>
 
     <style name="LabelTextwhPadding" parent="LabelText">
@@ -195,5 +191,9 @@
         <item name="android:progressDrawable">@color/colorSecondary</item>
         <item name="android:tint">@color/colorSecondary</item>
         <item name="android:indeterminate">false</item>
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>

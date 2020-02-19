@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import com.hino.hearts.R
 import com.hino.hearts.databinding.FragmentAccountDetailsBinding
 import com.hino.hearts.ui.BaseFragment
-import com.hino.hearts.ui.account.detail.accDetail.editAccount.EditAccountDetailActivity
+import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity
 import kotlinx.android.synthetic.main.fragment_account_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,7 +31,7 @@ class AccountDetailFragment : BaseFragment<FragmentAccountDetailsBinding>() {
 
     override fun initObserver() {
         viewModel.navEditContactLiveData.observe(viewLifecycleOwner, Observer {
-            startActivity(Intent(activity, EditAccountDetailActivity::class.java))
+            startActivity(Intent(activity, VehicleDetailActivity::class.java))
         })
     }
 
