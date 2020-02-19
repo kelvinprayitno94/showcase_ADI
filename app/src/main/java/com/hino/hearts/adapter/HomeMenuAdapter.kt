@@ -51,6 +51,9 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
                 R.string.approvals -> {
                     Toast.makeText(context, "Approvals item clicked", Toast.LENGTH_SHORT).show()
                 }
+                R.string.opportunities -> {
+                    Toast.makeText(context, "Opportunities item clicked", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

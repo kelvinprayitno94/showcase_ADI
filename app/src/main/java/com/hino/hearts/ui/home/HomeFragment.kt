@@ -24,8 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     companion object {
         private const val TWO = 2
         private const val SIX = 6
-        private const val EIGHT = 8
-        private const val TEN = 10
+        private const val TWELVE = 12
         private const val ONE_HUNDRED = 100
     }
 
@@ -67,6 +66,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
         })
+
+        viewModel.approvalRequestCount.observe(viewLifecycleOwner, Observer {
+            when(it == "0"){
+                true-> {
+                    cv_home_approval_request.visibility = View.INVISIBLE
+                    cv_home_approval_request_done.visibility = View.VISIBLE
+                }
+                false->{
+                    cv_home_approval_request.visibility = View.VISIBLE
+                    cv_home_approval_request_done.visibility = View.INVISIBLE
+                }
+            }
+        })
     }
 
     override fun initViewModel() {
@@ -91,13 +103,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun initLayout() {
         when (viewModel.role.value == "Sales") {
-            true -> {
+            false -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_sales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_sales)
 
                 cv_home_approval_request.visibility = View.INVISIBLE
             }
-            false -> {
+            true -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_nonsales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_nonsales)
 
@@ -115,14 +127,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         var spanCount = 0
         when (context?.let { InterfaceManager.getInstance().isTablet(it) }) {
             true -> {
-                spanCount = when (viewModel.role.value == "Sales") {
-                    true -> {
-                        EIGHT
-                    }
-                    false -> {
-                        TEN
-                    }
-                }
+                spanCount = TWELVE
             }
             false -> {
                 spanCount = SIX

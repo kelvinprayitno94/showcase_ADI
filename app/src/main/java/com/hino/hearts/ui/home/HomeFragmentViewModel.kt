@@ -52,7 +52,7 @@ class HomeFragmentViewModel : ViewModel() {
         role.value = UserDefaults.getInstance().getString(UserDefaults.USER_ROLE)
 
         when (role.value == "Sales") {
-            true -> {
+            false -> {
                 leftInfo.value = "35"
                 rightInfo.value = "Rp3.254.120"
 
@@ -62,11 +62,11 @@ class HomeFragmentViewModel : ViewModel() {
 
                 visitTargetList.value = initVisitTarget()
             }
-            false -> {
+            true -> {
                 leftInfo.value = "247"
                 rightInfo.value = "Rp3.254.120"
 
-                approvalRequestCount.value = "24"
+                approvalRequestCount.value = "1"
             }
         }
 
@@ -111,11 +111,8 @@ class HomeFragmentViewModel : ViewModel() {
         homeMenuList.add(HomeMenu(R.drawable.ic_accounts, R.string.accounts))
         homeMenuList.add(HomeMenu(R.drawable.ic_spareparts, R.string.spare_part))
         homeMenuList.add(HomeMenu(R.drawable.ic_events, R.string.events))
-        when (role.value != "Sales") {
-            true -> {
-                homeMenuList.add(HomeMenu(R.drawable.ic_approval, R.string.approvals))
-            }
-        }
+        homeMenuList.add(HomeMenu(R.drawable.ic_approval, R.string.approvals))
+        homeMenuList.add(HomeMenu(R.drawable.ic_opportunity, R.string.opportunities))
 
         return homeMenuList
     }

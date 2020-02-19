@@ -2,6 +2,15 @@
     <string name="app_name">Hino Hearts</string>
     <string name="app_version">ver %1$s</string>
 
+    <string name="start">Start</string>
+
+    <string name="onboarding_first_title">Keep track on\nyour opportunities</string>
+    <string name="onboarding_first_desc">Don\’t let your opportunities slip away! Track your follow up progress to help you manage better</string>
+    <string name="onboarding_second_title">Record your\nvisits activities</string>
+    <string name="onboarding_second_desc">Record every activity you did on a visit, from what did you do, is there any task, or even record the details of your call log.</string>
+    <string name="onboarding_third_title">Easy access to\nproduct informations</string>
+    <string name="onboarding_third_desc">Easily find information your customer needs about our products, stocks info, and all other details.</string>
+
     <string name="login_message">Please Sign In</string>
 
     <string name="no_internet">No internet connection</string>
@@ -38,12 +47,15 @@
     <string name="sales_visit_progress">%1$d of %2$d done</string>
     <string name="sales_visit_done">Good job! You have completed today\'s visit target!</string>
     <string name="approval_request_desc">Transaksi yang belum Anda setujui</string>
+    <string name="approval_request_done_title">Tidak ada persetujuan tertunda</string>
+    <string name="approval_request_done_desc">Lihat daftar persetujuan.</string>
 
     <string name="catalogues">Catalogues</string>
     <string name="accounts">Accounts</string>
     <string name="spare_part">Spare Parts</string>
     <string name="events">Events</string>
     <string name="approvals">Approvals</string>
+    <string name="opportunities">Opportunities</string>
 
     <string name="visit_target">Visit Target</string>
     <string name="record_activity_detail">Record Activity Detail</string>

@@ -19,6 +19,8 @@ import retrofit2.Response
  * Created by Dihardja Software on 2020-02-10.
  */
 class LoginViewModel : ViewModel() {
+    var token: MutableLiveData<String> = MutableLiveData()
+
     var showLoading: MutableLiveData<Boolean> = MutableLiveData()
     var loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -28,6 +30,7 @@ class LoginViewModel : ViewModel() {
     var userService: UserService = HinoService.create(UserService::class.java)
 
     init {
+        token.value = UserDefaults.getInstance().getString(UserDefaults.TOKEN_KEY)
         showLoading.value = false
     }
 
