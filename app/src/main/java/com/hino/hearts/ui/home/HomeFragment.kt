@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     companion object {
         private const val TWO = 2
         private const val SIX = 6
-        private const val TWELVE = 12
+        private const val EIGHT = 8
         private const val ONE_HUNDRED = 100
     }
 
@@ -94,6 +94,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             showVisitTargetDialog()
         }
 
+        cv_home_approval_request.onClick {
+            toast("Approval card clicked")
+        }
+
+        cv_home_approval_request_done.onClick {
+            toast("Approval card clicked")
+        }
+
         swipe_refresh_layout.setOnRefreshListener {
             toast("Swipe refresh activated")
 
@@ -103,13 +111,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun initLayout() {
         when (viewModel.role.value == "Sales") {
-            false -> {
+            true -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_sales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_sales)
 
                 cv_home_approval_request.visibility = View.INVISIBLE
             }
-            true -> {
+            false -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_nonsales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_nonsales)
 
@@ -127,7 +135,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         var spanCount = 0
         when (context?.let { InterfaceManager.getInstance().isTablet(it) }) {
             true -> {
-                spanCount = TWELVE
+                spanCount = EIGHT
             }
             false -> {
                 spanCount = SIX

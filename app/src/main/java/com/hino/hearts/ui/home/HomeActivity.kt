@@ -197,7 +197,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
         Glide.with(this)
             .load(viewModel.imagePath.value)
-            .into(iv_add_visit_progress)
+            .into(iv_navigation_drawer)
 
         tv_header_view_name.text = viewModel.name.value
         tv_header_view_role.text = viewModel.role.value

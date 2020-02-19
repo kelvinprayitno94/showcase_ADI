@@ -52,7 +52,7 @@ class HomeFragmentViewModel : ViewModel() {
         role.value = UserDefaults.getInstance().getString(UserDefaults.USER_ROLE)
 
         when (role.value == "Sales") {
-            false -> {
+            true -> {
                 leftInfo.value = "35"
                 rightInfo.value = "Rp3.254.120"
 
@@ -62,7 +62,7 @@ class HomeFragmentViewModel : ViewModel() {
 
                 visitTargetList.value = initVisitTarget()
             }
-            true -> {
+            false -> {
                 leftInfo.value = "247"
                 rightInfo.value = "Rp3.254.120"
 
