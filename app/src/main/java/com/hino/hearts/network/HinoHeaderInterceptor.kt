@@ -18,7 +18,7 @@ class HinoHeaderInterceptor : Interceptor {
         token = UserDefaults.getInstance().getString(UserDefaults.TOKEN_KEY)
 
         if (token != null) {
-            builder.addHeader("token", token!!)
+            builder.addHeader("authorization", token!!)
         }
 
         return chain.proceed(builder.build())

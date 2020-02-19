@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.hino.hearts.ui.onboarding.first.OnboardingFirstViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/onboarding1"
+        tools:context=".ui.onboarding.first.OnboardingFirstFragment">
+
+        <TextView
+            android:id="@+id/tv_onboarding_first_title"
+            style="@style/Title24spWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_50dp"
+            android:layout_marginTop="@dimen/dimens_240dp"
+            android:layout_marginEnd="@dimen/dimens_75dp"
+            android:text="@string/onboarding_first_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/tv_onboarding_first_desc"
+            style="@style/DescWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_50dp"
+            android:layout_marginTop="@dimen/dimens_40dp"
+            android:layout_marginEnd="@dimen/dimens_75dp"
+            android:text="@string/onboarding_first_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_first_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

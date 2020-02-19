@@ -15,8 +15,18 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey"
+        android:background="@drawable/background_image"
         tools:context=".ui.login.LoginActivity">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toTopOf="@id/cl_login_bottomsheet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="contentDescription" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_login_bottomsheet"
@@ -130,34 +140,11 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_loading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/grey50transparency"
-            android:elevation="@dimen/dimens_4dp"
-            android:visibility="@{viewModel.showLoading ? View.VISIBLE : View.GONE}"
-            tools:visibility="gone">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_loading"
-                style="@style/CardWhite"
-                android:layout_width="@dimen/dimens_70dp"
-                android:layout_height="@dimen/dimens_70dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ProgressBar
-                    style="@style/CircularProgressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
-
-            </androidx.cardview.widget.CardView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/layout_custom_loading"
+            layout="@layout/layout_custom_loading"
+            android:visibility="gone"
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

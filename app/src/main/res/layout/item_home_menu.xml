@@ -22,13 +22,13 @@
 
         <ImageView
             android:id="@+id/iv_menu_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             tools:ignore="contentDescription"
-            tools:src="@drawable/ic_launcher_background" />
+            tools:src="@drawable/ic_catalogues" />
     </androidx.cardview.widget.CardView>
 
     <TextView

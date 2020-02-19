@@ -1,6 +1,9 @@
 package com.hino.hearts.ui.login
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -9,8 +12,8 @@ import com.hino.hearts.BuildConfig
 import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityLoginBinding
 import com.hino.hearts.ui.BaseActivity
-import com.hino.hearts.ui.home.HomeActivity
-import com.hino.hearts.util.InterfaceManager
+import com.hino.hearts.ui.opportunity.OpportunityActivity
+import com.hino.hearts.ui.onboarding.OnboardingActivity
 import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -20,28 +23,65 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
-    private val viewModel by viewModel<LoginViewModel>()
+    companion object {
+        private const val TWO_THOUSANDS: Long = 2000
+    }
+
     private val context = this
+
+    private val viewModel by viewModel<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding(R.layout.activity_login)
 
-        initBottomsheet()
         initObserver()
         initViewModel()
         initEvent()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("lalala", viewModel.showLoading.value.toString())
+    }
+
     override fun initObserver() {
         viewModel.loginSuccess.observe(this, Observer {
+            layout_custom_loading.visibility = View.GONE
             finish()
-            startActivity<HomeActivity>()
+            //TODO: TESTING
+            //startActivity<HomeActivity>()
+            startActivity<OpportunityActivity>()
             overridePendingTransition(0, 0)
         })
 
-        viewModel.responseBody.observe(this, Observer {
+        viewModel.errorBody.observe(this, Observer {
+            layout_custom_loading.visibility = View.GONE
             NetworkManager.getInstance().handleResponse(context, it)
+        })
+
+        viewModel.responseError.observe(this, Observer {
+            layout_custom_loading.visibility = View.GONE
+            NetworkManager.getInstance().handleErrorResponse(context, it)
+        })
+
+        viewModel.token.observe(this, Observer {
+            when (it != null) {
+                true -> {
+                    redirect("home")
+                }
+                false -> {
+                    when (isFirstTime()) {
+                        true -> {
+                            redirect("onboarding")
+                        }
+                        false -> {
+                            initBottomsheet()
+                        }
+                    }
+                }
+            }
         })
     }
 
@@ -53,20 +93,50 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         btn_login.onClick {
             when (validateField()) {
                 true -> {
-                    when(NetworkManager.getInstance().isInternetAvailable(context)){
-                        true->{
+                    when (NetworkManager.getInstance().isInternetAvailable(context)) {
+                        true -> {
+                            layout_custom_loading.visibility = View.VISIBLE
                             viewModel.onLogin(
                                 edittext_employee_id.text.toString(),
                                 edittext_password.text.toString()
                             )
                         }
-                        false->{
+                        false -> {
                             toast(getString(R.string.no_internet))
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun isFirstTime(): Boolean {
+        val preferences = getPreferences(Context.MODE_PRIVATE)
+        val ranBefore = preferences.getBoolean("RanBefore", false)
+        if (!ranBefore) { // first time
+            val editor = preferences.edit()
+            editor.putBoolean("RanBefore", true)
+            editor.apply()
+        }
+        return !ranBefore
+    }
+
+    private fun redirect(page: String) {
+        val handler = Handler()
+        handler.postDelayed({
+            finish()
+            when (page) {
+                "home" -> {
+                    //TODO: TESTING
+                    //startActivity<HomeActivity>()
+                    startActivity<OpportunityActivity>()
+                }
+                "onboarding" -> {
+                    startActivity<OnboardingActivity>()
+                }
+            }
+            overridePendingTransition(0, 0)
+        }, TWO_THOUSANDS)
     }
 
     private fun initBottomsheet() {
@@ -77,7 +147,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         cl_login_bottomsheet.startAnimation(bottomUp)
         cl_login_bottomsheet.visibility = View.VISIBLE
 
-        when(BuildConfig.FLAVOR == "staging"){
+        when (BuildConfig.FLAVOR == "staging") {
             true -> {
                 edittext_employee_id.setText("U14022001")
                 edittext_password.setText("password")

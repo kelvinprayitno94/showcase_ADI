@@ -3,6 +3,8 @@ package com.hino.hearts.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hino.hearts.BuildConfig
+import com.hino.hearts.R
+import com.hino.hearts.model.HomeMenu
 import com.hino.hearts.util.UserDefaults
 
 /**
@@ -14,14 +16,32 @@ class HomeViewModel : ViewModel() {
     var imagePath: MutableLiveData<String> = MutableLiveData()
     var versionName: MutableLiveData<String> = MutableLiveData()
 
+    var addVisitButtonList: MutableLiveData<ArrayList<HomeMenu>> = MutableLiveData()
+
     init {
         versionName.value = BuildConfig.VERSION_NAME
         name.value = UserDefaults.getInstance().getString(UserDefaults.USER_NAME)
         role.value = UserDefaults.getInstance().getString(UserDefaults.USER_ROLE)
         imagePath.value = BuildConfig.IMAGE_URL + UserDefaults.getInstance().getString(UserDefaults.USER_IMAGE_PATH)
+
+        when(role.value == "Sales"){
+            true->{
+                addVisitButtonList.value = initAddButtonList()
+            }
+        }
     }
 
     fun logout(){
         UserDefaults.getInstance().clear()
+    }
+
+    private fun initAddButtonList(): ArrayList<HomeMenu> {
+        val addButtonList: ArrayList<HomeMenu> = ArrayList()
+
+        addButtonList.add(HomeMenu(R.drawable.ic_appointment, R.string.appointment))
+        addButtonList.add(HomeMenu(R.drawable.ic_task, R.string.task))
+        addButtonList.add(HomeMenu(R.drawable.ic_call_log, R.string.call_log))
+
+        return addButtonList
     }
 }

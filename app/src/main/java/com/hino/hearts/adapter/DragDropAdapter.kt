@@ -16,7 +16,7 @@ import java.text.NumberFormat
 
 
 class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), View.OnTouchListener {
-    var list: MutableList<OpportunityModel.OpportunityData> = ArrayList()
+    var list: MutableList<OpportunityModel> = ArrayList()
     var clickListener: ClickListener? = null
 
     private val mFormatter: NumberFormat = DecimalFormat("#,###")
@@ -69,7 +69,10 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
             val item = list[position]
             val formattedNumber = "Rp${mFormatter.format(item.budget)}"
             holder.titleTextView?.text = item.opportunityName
-            holder.accountNameTextView?.text = item.accountName
+            holder.accountNameTextView?.text = when (item.accountName != null) {
+                true -> item.accountName
+                false -> "Account Name Not Found"
+            }
             holder.opportunityValueTextView?.text = formattedNumber
 
             holder.rootFrameLayout.setOnTouchListener(this)
@@ -115,6 +118,6 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
     }
 
     interface ClickListener {
-        fun onItemClicked(item: OpportunityModel.OpportunityData)
+        fun onItemClicked(item: OpportunityModel)
     }
 }

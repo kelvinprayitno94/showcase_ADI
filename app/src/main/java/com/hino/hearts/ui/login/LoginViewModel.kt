@@ -19,11 +19,20 @@ import retrofit2.Response
  * Created by Dihardja Software on 2020-02-10.
  */
 class LoginViewModel : ViewModel() {
+    var token: MutableLiveData<String> = MutableLiveData()
+
     var showLoading: MutableLiveData<Boolean> = MutableLiveData()
     var loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
-    var responseBody: MutableLiveData<ResponseBody> = MutableLiveData()
+
+    var errorBody: MutableLiveData<ResponseBody> = MutableLiveData()
+    var responseError: MutableLiveData<Throwable> = MutableLiveData()
 
     var userService: UserService = HinoService.create(UserService::class.java)
+
+    init {
+        token.value = UserDefaults.getInstance().getString(UserDefaults.TOKEN_KEY)
+        showLoading.value = false
+    }
 
     fun onLogin(employeeId: String, password: String) {
         showLoading.value = true
@@ -39,6 +48,7 @@ class LoginViewModel : ViewModel() {
 
             override fun onFailure(call: Call<LoginResponse.Result>, t: Throwable) {
                 showLoading.value = false
+                responseError.value = t
             }
 
             override fun onResponse(
@@ -74,7 +84,7 @@ class LoginViewModel : ViewModel() {
                         loginSuccess.value = true
                     }
                     false -> {
-                        responseBody.value = response.errorBody()
+                        errorBody.value = response.errorBody()
                     }
                 }
             }

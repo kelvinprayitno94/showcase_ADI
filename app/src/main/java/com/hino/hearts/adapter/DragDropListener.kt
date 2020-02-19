@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.model.OpportunityModel
-import com.hino.hearts.ui.dragdrop.DragDropList
+import com.hino.hearts.ui.opportunity.DragDropList
 
 
 class DragDropListener() : OnDragListener {
@@ -104,15 +104,15 @@ class DragDropListener() : OnDragListener {
                     val positionSource = viewSource.tag as Int
 
                     val adapterSource: DragDropAdapter = source.adapter as DragDropAdapter
-                    val listSource: MutableList<OpportunityModel.OpportunityData> = adapterSource.list
-                    val listItem: OpportunityModel.OpportunityData = listSource[positionSource]
+                    val listSource: MutableList<OpportunityModel> = adapterSource.list
+                    val listItem: OpportunityModel = listSource[positionSource]
 
                     //Remove item from source
                     listSource.removeAt(positionSource)
                     adapterSource.notifyDataSetChanged()
 
                     val adapterTarget: DragDropAdapter = target.adapter as DragDropAdapter
-                    val customListTarget: MutableList<OpportunityModel.OpportunityData> = adapterTarget.list
+                    val customListTarget: MutableList<OpportunityModel> = adapterTarget.list
                     if (positionTarget >= 0) {
                         customListTarget.add(positionTarget, listItem)
                     } else {
