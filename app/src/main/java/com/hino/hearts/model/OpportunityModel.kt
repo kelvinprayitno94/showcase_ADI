@@ -3,7 +3,7 @@ package com.hino.hearts.model
 object OpportunityModel {
     data class Result(val meta: Meta, val data: Data)
     data class Meta(val message: String, val success: Boolean)
-    data class Data(val userData: OpportunityData, val token: String)
+    data class Data(val data: OpportunityData, val token: String)
 
 
     /*"id": 1,
