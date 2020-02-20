@@ -67,10 +67,10 @@
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="venue">Venue</string>
+    <string name="checked_in">Checked In</string>
 
     <!-- Opportunity -->
     <string name="opportunity_account">Account</string>
     <string name="opportunity_value">Value</string>
     <string name="opportunity_notes">Notes</string>
-
 </resources>

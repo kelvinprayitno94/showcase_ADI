@@ -1,6 +1,9 @@
 package com.hino.hearts.util.module
 
+import com.hino.hearts.ui.event.EventDetailViewModel
 import com.hino.hearts.ui.event.EventViewModel
+import com.hino.hearts.ui.event.attendees.AttendeesViewModel
+import com.hino.hearts.ui.event.eventinformation.EventInformationViewModel
 import com.hino.hearts.ui.home.HomeFragmentViewModel
 import com.hino.hearts.ui.home.HomeViewModel
 import com.hino.hearts.ui.approval.ApprovalTabViewModel
@@ -26,7 +29,7 @@ val moduleViewModel = module {
     viewModel { OnboardingSecondViewModel() }
     viewModel { OnboardingThirdViewModel() }
 
-    viewModel {LoginViewModel() }
+    viewModel { LoginViewModel() }
 
     viewModel {ApprovalTabViewModel() }
 
@@ -39,6 +42,9 @@ val moduleViewModel = module {
     viewModel { PendingTransactionsViewModel() }
 
     viewModel { EventViewModel() }
+    viewModel { EventDetailViewModel() }
+    viewModel { EventInformationViewModel() }
+    viewModel { AttendeesViewModel() }
 
     viewModel { InformationViewModel() }
     viewModel { ActivitiesViewModel() }
