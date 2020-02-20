@@ -27,4 +27,18 @@
     <color name="redDark">#A00000</color>
 
     <color name="green">#35B45C</color>
+
+    <!-- Opportunity -->
+    <color name="opportunity_list_first">#E9B124</color>
+    <color name="opportunity_list_second">#E48D15</color>
+    <color name="opportunity_list_third">#E47015</color>
+    <color name="opportunity_list_fourth">#35B45C</color>
+    <color name="opportunity_list_fifth">#DA6863</color>
+    <array name="opportunity_list_colors">
+        <item>@color/opportunity_list_first</item>
+        <item>@color/opportunity_list_second</item>
+        <item>@color/opportunity_list_third</item>
+        <item>@color/opportunity_list_fourth</item>
+        <item>@color/opportunity_list_fifth</item>
+    </array>
 </resources>

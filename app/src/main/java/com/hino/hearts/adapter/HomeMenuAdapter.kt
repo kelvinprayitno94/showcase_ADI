@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.hino.hearts.R
 import com.hino.hearts.model.HomeMenu
 import com.hino.hearts.ui.event.EventActivity
+import com.hino.hearts.ui.opportunity.OpportunityActivity
 import kotlinx.android.synthetic.main.item_home_menu.view.*
 import org.jetbrains.anko.startActivity
 
@@ -55,7 +56,8 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>() {
                     Toast.makeText(context, "Approvals item clicked", Toast.LENGTH_SHORT).show()
                 }
                 R.string.opportunities -> {
-                    Toast.makeText(context, "Opportunities item clicked", Toast.LENGTH_SHORT).show()
+                    context.startActivity<OpportunityActivity>()
+                    //Toast.makeText(context, "Opportunities item clicked", Toast.LENGTH_SHORT).show()
                 }
             }
         }

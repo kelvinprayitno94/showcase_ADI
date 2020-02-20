@@ -12,7 +12,7 @@ import com.hino.hearts.BuildConfig
 import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityLoginBinding
 import com.hino.hearts.ui.BaseActivity
-import com.hino.hearts.ui.opportunity.OpportunityActivity
+import com.hino.hearts.ui.home.HomeActivity
 import com.hino.hearts.ui.onboarding.OnboardingActivity
 import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.activity_login.*
@@ -50,9 +50,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         viewModel.loginSuccess.observe(this, Observer {
             layout_custom_loading.visibility = View.GONE
             finish()
-            //TODO: TESTING
-            //startActivity<HomeActivity>()
-            startActivity<OpportunityActivity>()
+            startActivity<HomeActivity>()
             overridePendingTransition(0, 0)
         })
 
@@ -127,9 +125,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             finish()
             when (page) {
                 "home" -> {
-                    //TODO: TESTING
-                    //startActivity<HomeActivity>()
-                    startActivity<OpportunityActivity>()
+                    startActivity<HomeActivity>()
                 }
                 "onboarding" -> {
                     startActivity<OnboardingActivity>()
@@ -149,7 +145,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         when (BuildConfig.FLAVOR == "staging") {
             true -> {
-                edittext_employee_id.setText("U14022001")
+                edittext_employee_id.setText("test12345")
                 edittext_password.setText("password")
             }
         }

@@ -1,8 +1,11 @@
 package com.hino.hearts.ui.opportunity
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hino.hearts.R
@@ -15,6 +18,7 @@ import com.hino.hearts.ui.opportunity.detail.OpportunityDetailActivity
 import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.activity_opportunity.*
 import org.jetbrains.anko.startActivity
+
 
 class OpportunityActivity : BaseActivity<ActivityOpportunityBinding>() {
 
@@ -61,18 +65,19 @@ class OpportunityActivity : BaseActivity<ActivityOpportunityBinding>() {
         mDragDropList.clear()
         ll_dragdrop.removeAllViews()
 
+        val opportunityColors: IntArray = resources.getIntArray(R.array.opportunity_list_colors)
+
         val size = headers.size
         for (i in 0 until size) {
             val header = headers[i]
-            val background: Int = when (mDragDropList.size % 2 == 0) {
-                true -> R.drawable.shape_dragdrop_list_background
-                false -> R.drawable.shape_dragdrop_list_background_darker
-            }
+            val backgroundTint: Int = opportunityColors[i % opportunityColors.size]
+            val backgroundDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(this, R.drawable.shape_dragdrop_list_background)!!)
+            DrawableCompat.setTint(backgroundDrawable.mutate(), backgroundTint)
 
             val dragDropList = DragDropList(
                 this,
                 header,
-                background,
+                backgroundDrawable,
                 object : DragDropAdapter.ClickListener {
                     override fun onItemClicked(item: OpportunityModel) {
                         startActivity<OpportunityDetailActivity>(

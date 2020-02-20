@@ -24,10 +24,11 @@ class OpportunityViewModel : ViewModel() {
 
     init {
         //Dummy
-        headers.add("Not Started")
         headers.add("Quotation")
         headers.add("Negotiation")
-        headers.add("Approved")
+        headers.add("Contract")
+        headers.add("Won")
+        headers.add("Lost")
 
         val hashMap: HashMap<String, MutableList<OpportunityModel>> = HashMap()
         val size: Int = headers.size
