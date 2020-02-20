@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.hino.hearts.ui.opportunity.detail.InformationViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dimens_24dp"
+        tools:context=".ui.opportunity.detail.InformationFragment">
+
+        <TextView
+            style="@style/Desc14spGrey4a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/opportunity_account" />
+
+        <TextView
+            android:id="@+id/tv_opportunity_account"
+            style="@style/TitleGrey4a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="PT Dihardja Software" />
+
+        <TextView
+            style="@style/Desc14spGrey4a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/opportunity_value" />
+
+        <TextView
+            android:id="@+id/tv_opportunity_value"
+            style="@style/TitleGrey4a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Rp2.000.000.000" />
+
+        <TextView
+            style="@style/Desc14spGrey4a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/opportunity_notes" />
+
+        <TextView
+            android:id="@+id/tv_opportunity_notes"
+            style="@style/TitleGrey4a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus cursus, velit eu fringilla aliquam, urna arcu convallis orci, sit amet varius metus nisi vel quam" />
+    </LinearLayout>
+</layout>

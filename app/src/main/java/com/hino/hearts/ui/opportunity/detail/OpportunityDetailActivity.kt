@@ -6,6 +6,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hino.hearts.R
+import com.hino.hearts.adapter.OpportunityDetailPagerAdapter
 import com.hino.hearts.databinding.ActivityOpportunityDetailBinding
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.util.NetworkManager
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_opportunity_detail.*
 class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>() {
 
     private val mViewModel: OpportunityDetailViewModel by lazy { ViewModelProvider(this).get(OpportunityDetailViewModel::class.java) }
+    private var mAdapter: OpportunityDetailPagerAdapter? = null
 
     companion object {
         const val PARAM_OPPORTUNITY_ID: String = "opportunity_id"
@@ -27,6 +29,7 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
         initData()
         initObserver()
         initViewModel()
+        initLayout()
         initEvent()
     }
 
@@ -67,5 +70,10 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
 
     override fun initEvent() {
 
+    }
+
+    private fun initLayout() {
+        mAdapter = OpportunityDetailPagerAdapter(supportFragmentManager)
+        vp_opportunity.adapter = mAdapter
     }
 }
