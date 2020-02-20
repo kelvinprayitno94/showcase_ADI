@@ -9,13 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hino.hearts.R
 import com.hino.hearts.model.HomeMenu
+import com.hino.hearts.ui.event.EventActivity
 import kotlinx.android.synthetic.main.item_home_menu.view.*
+import org.jetbrains.anko.startActivity
 
 
 /**
  * Created by Dihardja Software on 2020-02-13.
  */
-class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
+class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>() {
 
     lateinit var context: Context
     private val mData = ArrayList<HomeMenu>()
@@ -29,7 +31,8 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         context = parent.context
 
-        val mView = LayoutInflater.from(parent.context).inflate(R.layout.item_home_menu, parent, false)
+        val mView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_home_menu, parent, false)
         return HomeViewHolder(mView)
     }
 
@@ -46,7 +49,7 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
                     Toast.makeText(context, "Spare parts item clicked", Toast.LENGTH_SHORT).show()
                 }
                 R.string.events -> {
-                    Toast.makeText(context, "Events item clicked", Toast.LENGTH_SHORT).show()
+                    context.startActivity<EventActivity>()
                 }
                 R.string.approvals -> {
                     Toast.makeText(context, "Approvals item clicked", Toast.LENGTH_SHORT).show()
@@ -64,9 +67,9 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
         return mData.size
     }
 
-    inner class HomeViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(homeMenu: HomeMenu) {
-            with(itemView){
+            with(itemView) {
                 tv_menu_item.text = context.getString(homeMenu.name)
                 Glide.with(context).load(homeMenu.imgRes).into(iv_menu_item)
             }

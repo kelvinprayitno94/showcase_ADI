@@ -32,9 +32,11 @@
     <dimen name="dimens_136dp">272dp</dimen>
     <dimen name="dimens_184dp">268dp</dimen>
     <dimen name="dimens_200dp">400dp</dimen>
+    <dimen name="dimens_218dp">436dp</dimen>
     <dimen name="dimens_240dp">480dp</dimen>
     <dimen name="dimens_300dp">600dp</dimen>
     <dimen name="dimens_355dp">710dp</dimen>
+    <dimen name="dimens_375dp">750dp</dimen>
 
     <dimen name="text_13sp">26sp</dimen>
     <dimen name="text_14sp">28sp</dimen>
