@@ -50,12 +50,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.visitProgressPercentage.observe(viewLifecycleOwner, Observer {
             when (it == ONE_HUNDRED) {
                 true -> {
-                    cv_home_visit.visibility = View.INVISIBLE
+                    cv_home_visit.visibility = View.GONE
                     cv_home_visit_done.visibility = View.VISIBLE
                 }
                 false -> {
                     cv_home_visit.visibility = View.VISIBLE
-                    cv_home_visit_done.visibility = View.INVISIBLE
+                    cv_home_visit_done.visibility = View.GONE
 
                     tv_home_card_progress_sales.text = getString(
                         R.string.sales_visit_progress,
@@ -70,12 +70,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.approvalRequestCount.observe(viewLifecycleOwner, Observer {
             when(it == "0"){
                 true-> {
-                    cv_home_approval_request.visibility = View.INVISIBLE
+                    cv_home_approval_request.visibility = View.GONE
                     cv_home_approval_request_done.visibility = View.VISIBLE
                 }
                 false->{
                     cv_home_approval_request.visibility = View.VISIBLE
-                    cv_home_approval_request_done.visibility = View.INVISIBLE
+                    cv_home_approval_request_done.visibility = View.GONE
                 }
             }
         })
@@ -115,7 +115,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_sales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_sales)
 
-                cv_home_approval_request.visibility = View.INVISIBLE
+                cv_home_approval_request.visibility = View.GONE
             }
             false -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_nonsales)

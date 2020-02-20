@@ -56,7 +56,7 @@ class HomeFragmentViewModel : ViewModel() {
                 leftInfo.value = "35"
                 rightInfo.value = "Rp3.254.120"
 
-                visitProgress.value = FOUR
+                visitProgress.value = FIVE
                 visitProgressTotal.value = FIVE
                 visitProgressPercentage.value = calculateProgress()
 
