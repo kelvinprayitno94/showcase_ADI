@@ -6,6 +6,10 @@ package com.hino.hearts.util
 class ConstantManager {
     companion object {
         const val PAGE_COUNT: Int = 1
+        const val EVENT_ID: String = "event_id"
+
+        const val EVENT_INFORMATION: String = "Event Information"
+        const val ATTENDEES: String = "Attendees"
     }
 
 }

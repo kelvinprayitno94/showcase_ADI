@@ -18,7 +18,6 @@ import kotlin.math.roundToInt
  */
 class HomeFragmentViewModel : ViewModel() {
     companion object {
-        private const val FOUR = 4
         private const val FIVE = 5
         private const val ELEVEN = 11
         private const val TWELVE = 12

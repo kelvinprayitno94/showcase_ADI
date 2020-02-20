@@ -40,7 +40,7 @@ class NotificationActivity : BaseActivity<ActivityNotificationBinding>() {
 
     override fun initEvent() {
         fl_back.onClick{
-            finish()
+            onBackPressed()
         }
     }
 

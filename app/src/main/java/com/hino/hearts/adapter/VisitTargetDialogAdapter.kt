@@ -36,7 +36,7 @@ class VisitTargetDialogAdapter : RecyclerView.Adapter<VisitTargetDialogAdapter.V
     }
 
     override fun onBindViewHolder(holder: VisitTargetDialogHolder, position: Int) {
-        holder.itemView.setOnClickListener { v: View? ->
+        holder.itemView.setOnClickListener {
             Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show()
         }
 
