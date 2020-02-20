@@ -3,7 +3,6 @@ package com.hino.hearts.ui.opportunity.detail
 
 import android.os.Bundle
 import android.view.View
-
 import com.hino.hearts.R
 import com.hino.hearts.databinding.FragmentOpportunityInformationBinding
 import com.hino.hearts.ui.BaseFragment
@@ -16,6 +15,7 @@ class InformationFragment : BaseFragment<FragmentOpportunityInformationBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initData()
         initObserver()
         initViewModel()
         initEvent()
@@ -23,6 +23,11 @@ class InformationFragment : BaseFragment<FragmentOpportunityInformationBinding>(
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_opportunity_information
+    }
+
+    private fun initData() {
+        viewModel.accountName = activity!!.intent.getStringExtra(OpportunityDetailActivity.PARAM_ACCOUNT_NAME)
+        viewModel.opportunityValue = activity!!.intent.getLongExtra(OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE, 0)
     }
 
     override fun initObserver() {

@@ -29,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="PT Dihardja Software" />
+            android:text="@{viewModel.accountName}"
+            tools:text="PT Dihardja Software" />
 
         <TextView
             style="@style/Desc14spGrey4a"
@@ -44,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Rp2.000.000.000" />
+            android:text="@{viewModel.opportunityValue.toString()}"
+            tools:text="Rp2.000.000.000" />
 
         <TextView
             style="@style/Desc14spGrey4a"
