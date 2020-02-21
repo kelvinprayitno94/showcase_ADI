@@ -162,7 +162,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     }
 
     override fun onItemViewClicked(name: Int) {
-        toast(getString(name))
         hideAddVisitButton()
 
         when (name) {
@@ -171,7 +170,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
                 AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
                 AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
                 AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-            R.string.accounts -> startActivity<AccountListActivity>()
         }
     }
 
