@@ -162,15 +162,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         toast(getString(name))
         hideAddVisitButton()
 
-        //TODO: Data
-        startActivity<AppointmentDetailActivity>(
-            AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
-            AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-            AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
-            AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        )
-
-        startActivity<AccountListActivity>()
+        when (name) {
+            R.string.appointment -> startActivity<AppointmentDetailActivity>(
+                AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
+                AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
+                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
+                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+            R.string.accounts -> startActivity<AccountListActivity>()
+        }
     }
 
     fun showAddVisitButton() {

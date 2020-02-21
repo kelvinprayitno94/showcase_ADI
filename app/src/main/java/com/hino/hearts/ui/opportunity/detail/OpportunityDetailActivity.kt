@@ -13,6 +13,7 @@ import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.adapter.OpportunityDetailPagerAdapter
 import com.hino.hearts.databinding.ActivityOpportunityDetailBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.ui.appointment.AppointmentDetailActivity
 import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.activity_opportunity_detail.*
@@ -120,8 +121,8 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
                         AppointmentDetailActivity.PARAM_ACCOUNT_NAME to mViewModel.accountName,
                         AppointmentDetailActivity.PARAM_OPPORTUNITY to mViewModel.opportunityName,
                         AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
-                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    )
+                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    R.string.accounts -> startActivity<AccountListActivity>()
                 }
             }
         })
