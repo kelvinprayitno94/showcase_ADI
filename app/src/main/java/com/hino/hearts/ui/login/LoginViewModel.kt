@@ -66,21 +66,18 @@ class LoginViewModel : ViewModel() {
                         UserDefaults.getInstance().setString(UserDefaults.TOKEN_KEY, data.token)
                         UserDefaults.getInstance()
                             .setString(UserDefaults.USER_NAME, data.userData?.name)
-                        data.userData?.roleId?.let {
-                            UserDefaults.getInstance()
-                                .setInt(UserDefaults.USER_ROLE_ID, it)
-                        }
-
-                        when (data.userData?.roleId) {
-                            1 -> {
-                                UserDefaults.getInstance()
-                                    .setString(UserDefaults.USER_ROLE, "Sales")
-                            }
+                        UserDefaults.getInstance().setString(UserDefaults.USER_ROLE,
+                            data.userData?.role?.name
+                        )
+                        data.userData?.role?.id?.let {
+                            UserDefaults.getInstance().setInt(UserDefaults.USER_ROLE_ID,
+                                it
+                            )
                         }
 
                         //dummy
-                        UserDefaults.getInstance()
-                            .setString(UserDefaults.USER_IMAGE_PATH, "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg")
+//                        UserDefaults.getInstance()
+//                            .setString(UserDefaults.USER_IMAGE_PATH, "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg")
                         loginSuccess.value = true
                     }
                     false -> {

@@ -36,9 +36,9 @@ class VisitTargetDialogAdapter : RecyclerView.Adapter<VisitTargetDialogAdapter.V
     }
 
     override fun onBindViewHolder(holder: VisitTargetDialogHolder, position: Int) {
-        holder.itemView.setOnClickListener {
-            Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show()
-        }
+//        holder.itemView.setOnClickListener {
+//            Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show()
+//        }
 
         holder.bind(mData[position])
     }
@@ -54,7 +54,7 @@ class VisitTargetDialogAdapter : RecyclerView.Adapter<VisitTargetDialogAdapter.V
 
                 when(visitTarget.completed){
                     true-> {
-                        Glide.with(context).load(context.getDrawable(R.drawable.ic_checked)).into(iv_item_visit_dialog)
+                        Glide.with(context).load(context.getDrawable(R.drawable.ic_approval_check)).into(iv_item_visit_dialog)
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             tv_item_visit_dialog.setTextColor(context.getColor(R.color.green))
