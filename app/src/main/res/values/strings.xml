@@ -73,4 +73,11 @@
     <string name="opportunity_account">Account</string>
     <string name="opportunity_value">Value</string>
     <string name="opportunity_notes">Notes</string>
+
+    <!-- Appointment Detail -->
+    <string name="appointment_details">Appointment Details</string>
+    <string name="appointment_description">Please explain the detail of your activity</string>
+    <string name="appointment_account">Account</string>
+    <string name="appointment_opportunity">Opportunity</string>
+    <string name="appointment_activity_detail">Activity Details</string>
 </resources>

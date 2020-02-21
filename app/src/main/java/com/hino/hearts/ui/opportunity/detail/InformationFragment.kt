@@ -26,7 +26,10 @@ class InformationFragment : BaseFragment<FragmentOpportunityInformationBinding>(
     }
 
     private fun initData() {
-        viewModel.accountName = activity!!.intent.getStringExtra(OpportunityDetailActivity.PARAM_ACCOUNT_NAME)
+        val accountName = activity!!.intent.getStringExtra(OpportunityDetailActivity.PARAM_ACCOUNT_NAME)
+        if (accountName != null)
+            viewModel.accountName = accountName
+
         viewModel.opportunityValue = activity!!.intent.getLongExtra(OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE, 0)
     }
 

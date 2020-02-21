@@ -11,6 +11,8 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="colorAccent">@color/grey4a</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowContentOverlay">@android:color/transparent</item>
     </style>
 
     <style name="TitleGrey36">
@@ -249,6 +251,7 @@
         <item name="android:tint">@color/colorSecondary</item>
         <item name="android:indeterminate">false</item>
     </style>
+
     <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
         <item name="android:textSize">12sp</item>
     </style>

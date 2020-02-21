@@ -17,10 +17,12 @@ import com.hino.hearts.R
 import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.appointment.AppointmentDetailActivity
 import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.notification.NotificationActivity
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsActivity
+import com.onesignal.OneSignal
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.layout_add_visit_buttons.*
@@ -29,6 +31,8 @@ import kotlinx.android.synthetic.main.nav_header_view.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.json.JSONException
+import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.OnClick {
@@ -74,11 +78,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     }
 
     override fun onBackPressed() {
-        when(layout_add_visit_button.visibility == View.VISIBLE){
-            true->{
+        when (layout_add_visit_button.visibility == View.VISIBLE) {
+            true -> {
                 hideAddVisitButton()
             }
-            false->{
+            false -> {
                 super.onBackPressed()
             }
         }
@@ -148,8 +152,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
             drawer_layout.closeDrawer(GravityCompat.START)
         }
 
-        when(viewModel.role.value == "Sales"){
-            true-> {
+        when (viewModel.role.value == "Sales") {
+            true -> {
                 layout_add_visit_button.onClick {
                     hideAddVisitButton()
                 }
@@ -160,6 +164,15 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     override fun onItemViewClicked(name: Int) {
         toast(getString(name))
         hideAddVisitButton()
+
+        when (name) {
+            R.string.appointment -> startActivity<AppointmentDetailActivity>(
+                AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
+                AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
+                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
+                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+            R.string.accounts -> startActivity<AccountListActivity>()
+        }
     }
 
     fun showAddVisitButton() {
@@ -182,9 +195,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         setSupportActionBar(tb_home)
         setupNavigationDrawer()
         addFragment(HomeFragment())
+        initOneSignal()
 
-        when(viewModel.role.value == "Sales"){
-            true-> {
+        when (viewModel.role.value == "Sales") {
+            true -> {
                 addVisitButtonAdapter = AddVisitButtonAdapter(this)
                 addVisitButtonAdapter.setData(viewModel.addVisitButtonList.value!!)
 
@@ -199,6 +213,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
                 rv_add_visit_buttons.adapter = addVisitButtonAdapter
             }
         }
+    }
+
+    private fun initOneSignal() {
+        // OneSignal Initialization
+        val tags = JSONObject()
+
+        if (viewModel.role.value == "Sales") {
+            tags.put("nonsales", true)
+        } else {
+            tags.put("nonsales", true)
+        }
+        OneSignal.sendTags(tags)
     }
 
     private fun setupNavigationDrawer() {

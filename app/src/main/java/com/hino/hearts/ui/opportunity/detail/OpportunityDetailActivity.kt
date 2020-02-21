@@ -13,12 +13,15 @@ import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.adapter.OpportunityDetailPagerAdapter
 import com.hino.hearts.databinding.ActivityOpportunityDetailBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.account.AccountListActivity
+import com.hino.hearts.ui.appointment.AppointmentDetailActivity
 import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.activity_opportunity_detail.*
 import kotlinx.android.synthetic.main.layout_add_visit_buttons.*
+import org.jetbrains.anko.startActivity
 
 
-class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>(), AddVisitButtonAdapter.OnClick {
+class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>() {
 
     private val mViewModel: OpportunityDetailViewModel by lazy { ViewModelProvider(this).get(OpportunityDetailViewModel::class.java) }
     private var mAdapter: OpportunityDetailPagerAdapter? = null
@@ -47,6 +50,12 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
     private fun initData() {
         mViewModel.id = intent.getIntExtra(PARAM_OPPORTUNITY_ID, 0)
         mViewModel.opportunityName = intent.getStringExtra(PARAM_OPPORTUNITY_TITLE)
+
+        val accountName = intent.getStringExtra(PARAM_ACCOUNT_NAME)
+        if (accountName != null)
+            mViewModel.accountName = accountName
+
+        mViewModel.opportunityValue = intent.getLongExtra(PARAM_OPPORTUNITY_VALUE, 0)
     }
 
     override fun initObserver() {
@@ -103,7 +112,20 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
         mAdapter = OpportunityDetailPagerAdapter(supportFragmentManager, mViewModel)
         vp_opportunity.adapter = mAdapter
 
-        addVisitButtonAdapter = AddVisitButtonAdapter(this)
+        addVisitButtonAdapter = AddVisitButtonAdapter(object: AddVisitButtonAdapter.OnClick {
+            override fun onItemViewClicked(name: Int) {
+                layout_add_visit_button.visibility = View.GONE
+                when (name) {
+                    //TODO: Data
+                    R.string.appointment -> startActivity<AppointmentDetailActivity>(
+                        AppointmentDetailActivity.PARAM_ACCOUNT_NAME to mViewModel.accountName,
+                        AppointmentDetailActivity.PARAM_OPPORTUNITY to mViewModel.opportunityName,
+                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
+                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    R.string.accounts -> startActivity<AccountListActivity>()
+                }
+            }
+        })
         addVisitButtonAdapter?.setData(mViewModel.addVisitButtonList.value!!)
 
         val gridLayoutManager = GridLayoutManager(this, SIX)
@@ -122,10 +144,6 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
             true-> layout_add_visit_button.visibility = View.GONE
             false -> super.onBackPressed()
         }
-    }
-
-    override fun onItemViewClicked(name: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 

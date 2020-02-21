@@ -1,5 +1,9 @@
 package com.hino.hearts.util.module
 
+import com.hino.hearts.ui.event.EventDetailViewModel
+import com.hino.hearts.ui.event.EventViewModel
+import com.hino.hearts.ui.event.attendees.AttendeesViewModel
+import com.hino.hearts.ui.event.eventinformation.EventInformationViewModel
 import com.hino.hearts.ui.account.AccountListActivityViewModel
 import com.hino.hearts.ui.account.detail.accDetail.AccountDetailViewModel
 import com.hino.hearts.ui.account.detail.accDetail.editAccount.EditAccountDetailViewModel
@@ -10,10 +14,6 @@ import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailVie
 import com.hino.hearts.ui.approval.category.ApprovalTabViewModel
 import com.hino.hearts.ui.approval.detail.ApprovalDetailViewModel
 import com.hino.hearts.ui.approval.filter.ApprovalFilterViewModel
-import com.hino.hearts.ui.event.EventDetailViewModel
-import com.hino.hearts.ui.event.EventViewModel
-import com.hino.hearts.ui.event.attendees.AttendeesViewModel
-import com.hino.hearts.ui.event.eventinformation.EventInformationViewModel
 import com.hino.hearts.ui.home.HomeFragmentViewModel
 import com.hino.hearts.ui.home.HomeViewModel
 import com.hino.hearts.ui.login.LoginViewModel
@@ -37,7 +37,6 @@ val moduleViewModel = module {
     viewModel { OnboardingFirstViewModel() }
     viewModel { OnboardingSecondViewModel() }
     viewModel { OnboardingThirdViewModel() }
-
     viewModel { LoginViewModel() }
     viewModel { ApprovalTabViewModel() }
     viewModel { AccountContactViewModel() }
@@ -47,13 +46,11 @@ val moduleViewModel = module {
     viewModel { VehicleDetailViewModel() }
     viewModel { AccountOpportunityViewModel() }
     viewModel { EditAccountDetailViewModel() }
-//    viewModel { SplashViewModel() }
     viewModel { HomeViewModel() }
     viewModel { HomeFragmentViewModel() }
     viewModel { NotificationViewModel() }
     viewModel { NotificationDetailViewModel() }
     viewModel { PendingTransactionsViewModel() }
-
     viewModel { EventViewModel() }
     viewModel { ApprovalFilterViewModel() }
     viewModel { ApprovalDetailViewModel() }
@@ -61,6 +58,7 @@ val moduleViewModel = module {
     viewModel { EventInformationViewModel() }
     viewModel { AttendeesViewModel() }
 
+    //Opportunity
     viewModel { InformationViewModel() }
     viewModel { ActivitiesViewModel() }
 }
