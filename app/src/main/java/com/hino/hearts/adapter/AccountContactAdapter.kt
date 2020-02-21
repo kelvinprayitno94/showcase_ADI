@@ -10,10 +10,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.model.AccountContactModel
+import com.hino.hearts.network.response.account.AccountListResponse
 
 class AccountContactAdapter(
     var context: Context,
-    val document: List<AccountContactModel>,
+    val document: List<AccountListResponse.ContactData>?,
     val listener: OnAdapterTap
 ) :
     RecyclerView.Adapter<AccountContactAdapter.Holder>(){
@@ -33,16 +34,18 @@ class AccountContactAdapter(
     }
 
     override fun getItemCount(): Int {
-        return document.size
+        return document?.size!!
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        val obj = document[position]
+        val obj = document?.get(position)
 
-        holder.accountName.text = obj.accountName
+        obj?.let {
+            holder.accountName.text = it.name
 
-        holder.phoneNo.text = obj.phoneNo
+            holder.phoneNo.text = it.phoneNumber
+        }
 
         holder.edit.setOnClickListener {
             listener.onTap(position)

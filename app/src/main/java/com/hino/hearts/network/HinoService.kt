@@ -30,7 +30,7 @@ class HinoService{
             return Retrofit.Builder()
                 .baseUrl(BuildConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .client(client)
                 .build()
         }

@@ -8,10 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
+import com.hino.hearts.network.response.account.AccountListResponse
 
 class AccountDetailOpportunityAdapter(
-    var context: Context
-//    val document: ApprovalDocModel,
+    var context: Context,
+    var data : List<AccountListResponse.OpportunityData>?
 //    val listener: OnAdapterTap
 ) :
     RecyclerView.Adapter<AccountDetailOpportunityAdapter.Holder>(){
@@ -31,12 +32,17 @@ class AccountDetailOpportunityAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 4
+        return data?.size!!
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        var item = data?.get(position)
 
-
+        item?.let {
+            holder.itemName.text = it.opportunityName
+            holder.companyName.text = it.name
+            holder.price.text = it.opportunityValue
+        }
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -3,16 +3,16 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.hino.hearts.ui.approval.detail.ApprovalDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.home.HomeActivity">
+        android:layout_height="match_parent">
 
         <include layout="@layout/main_toolbar" />
 
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_approval_detail_title"
                     style="@style/PageTitle"
                     android:layout_width="wrap_content"
@@ -64,22 +64,22 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.5" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_so_num_value"
                         style="@style/BoldLabelText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="value"
+                        android:text="@{viewModel.iDataLiveData.approval.soNum}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_so_num"
                         app:layout_constraintWidth_percent="0.5" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_so_date_value"
                         style="@style/BoldLabelText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="SO Date"
+                        android:text="@{viewModel.soDateLiveData}"
                         app:layout_constraintStart_toEndOf="@+id/tv_so_num_value"
                         app:layout_constraintTop_toBottomOf="@+id/tv_so_date"
                         app:layout_constraintWidth_percent="0.5" />
@@ -106,22 +106,22 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_so_date_value"
                         app:layout_constraintWidth_percent="0.5" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_order_type_value"
                         style="@style/BoldLabelText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="value"
+                        android:text="@{viewModel.iDataLiveData.approval.orderType}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_order_type"
                         app:layout_constraintWidth_percent="0.5" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_cust_code_value"
                         style="@style/BoldLabelText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="value"
+                        android:text="@{viewModel.iDataLiveData.approval.customerCode}"
                         app:layout_constraintStart_toEndOf="@+id/tv_order_type_value"
                         app:layout_constraintTop_toBottomOf="@+id/tv_cust_code"
                         app:layout_constraintWidth_percent="0.5" />
@@ -148,22 +148,22 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_cust_code_value"
                         app:layout_constraintWidth_percent="0.5" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_cust_name_value"
                         style="@style/BoldLabelText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="value"
+                        android:text="@{viewModel.iDataLiveData.approval.customerName}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_cust_name"
                         app:layout_constraintWidth_percent="0.5" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_pr_doc_value"
                         style="@style/BoldLabelText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="value"
+                        android:text="@{viewModel.iDataLiveData.approval.prDocNo}"
                         app:layout_constraintStart_toEndOf="@+id/tv_cust_name_value"
                         app:layout_constraintTop_toBottomOf="@+id/tv_pr_doc"
                         app:layout_constraintWidth_percent="0.5" />
@@ -178,7 +178,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cl_approval_detail_upper" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_approval_order"
                     style="@style/BoldLabelText"
                     android:layout_width="wrap_content"
@@ -190,22 +190,71 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_invoice"
+                    style="@style/paddingExcpTop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimens_15dp"
                     android:nestedScrollingEnabled="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_approval_order" />
+
+                <TextView
+                    android:id="@+id/tv_discount"
+                    style="@style/LabelText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/dimens_15dp"
+                    android:text="Discount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_invoice"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_discount_price"
+                    style="@style/BoldLabelText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="end"
+                    android:paddingRight="@dimen/dimens_15dp"
+                    android:text="@{viewModel.discountLiveData}"
+                    app:layout_constraintStart_toEndOf="@+id/tv_discount"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_invoice"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/tv_total_amount"
+                    style="@style/LabelText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dimens_15dp"
+                    android:text="Total Amount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_discount"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_total_amount_price"
+                    style="@style/BoldLabelText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:paddingRight="@dimen/dimens_15dp"
+                    android:text="@{viewModel.totalAmountLiveData}"
+                    app:layout_constraintStart_toEndOf="@+id/tv_total_amount"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_discount_price"
+                    app:layout_constraintWidth_percent="0.5" />
 
                 <View
                     android:id="@+id/divider2"
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
+                    android:layout_marginTop="@dimen/dimens_15dp"
                     android:background="@color/grey50transparency"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_invoice" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_amount" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_approval_prog_title"
                     style="@style/BoldLabelText"
                     android:layout_width="wrap_content"
@@ -217,12 +266,48 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_approval_progress"
+                    style="@style/paddingExcpTop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimens_15dp"
                     android:nestedScrollingEnabled="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_approval_prog_title" />
+
+                <LinearLayout
+                    android:id="@+id/ll_approval_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimens_20dp"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dimens_15dp"
+                    android:visibility="@{viewModel.showActionLiveData ? View.VISIBLE : View.GONE}"
+                    android:weightSum="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_approval_progress">
+
+                    <Button
+                        android:id="@+id/btn_reject_approval"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dimens_10dp"
+                        android:layout_weight="0.4"
+                        android:background="@drawable/rounded_red_button"
+                        android:text="Reject"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btn_approve_approval"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimens_10dp"
+                        android:layout_weight="0.4"
+                        android:background="@drawable/rounded_green_button"
+                        android:text="Approve"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

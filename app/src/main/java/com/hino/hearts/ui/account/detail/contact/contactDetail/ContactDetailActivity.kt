@@ -6,6 +6,7 @@ import com.hino.hearts.databinding.ActivityContactDetailsBinding
 import com.hino.hearts.databinding.ActivityEditAccountDetailBinding
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailViewModel
+import kotlinx.android.synthetic.main.main_toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ContactDetailActivity : BaseActivity<ActivityContactDetailsBinding>() {
@@ -34,7 +35,9 @@ class ContactDetailActivity : BaseActivity<ActivityContactDetailsBinding>() {
 
     override fun initEvent() {
 
-
+        main_toolbar.setOnClickListener {
+            finish()
+        }
     }
 
     private fun initAdapter() {

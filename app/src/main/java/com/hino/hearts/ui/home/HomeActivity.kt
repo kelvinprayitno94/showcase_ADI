@@ -18,6 +18,7 @@ import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.appointment.AppointmentDetailActivity
+import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.notification.NotificationActivity
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsActivity
@@ -168,6 +169,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
             AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
             AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         )
+
+        startActivity<AccountListActivity>()
     }
 
     fun showAddVisitButton() {

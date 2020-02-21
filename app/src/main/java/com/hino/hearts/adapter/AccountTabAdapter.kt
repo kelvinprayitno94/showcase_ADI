@@ -4,28 +4,30 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
-import com.hino.hearts.network.response.account.AccountListResponse
+import com.hino.hearts.model.ApprovalDocModel
+import com.hino.hearts.model.ApprovalDocumentModel
+import org.jetbrains.anko.textColor
 
-class AccountListAdapter(
+class AccountTabAdapter(
     var context: Context,
-    val document: List<AccountListResponse.AccListData>,
+    val document: ApprovalDocModel,
     val listener: OnAdapterTap
 ) :
-    RecyclerView.Adapter<AccountListAdapter.Holder>(){
+    RecyclerView.Adapter<AccountTabAdapter.Holder>() {
 
     interface OnAdapterTap {
-        fun onTap(item: AccountListResponse.AccListData)
+        fun onTap(pos: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
             LayoutInflater.from(context).inflate(
-                R.layout.adapter_approval_document,
+                R.layout.adapter_approval_doc_type_tab,
                 parent,
                 false
             )
@@ -33,25 +35,30 @@ class AccountListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return document.size
+        return document.docList.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val doc = document[position]
+        val doc = document.docList[position]
 
-        holder.accountName.text = doc.account?.accountName
-
-        holder.documentType.text = doc.account?.address
+        holder.documentType.text = doc.accountName
 
         holder.root.setOnClickListener {
-            listener.onTap(doc)
+            listener.onTap(position)
+        }
+
+        if (document.prevSelected == position){
+            holder.documentType.textColor = ContextCompat.getColor(context, R.color.red)
+            holder.redIndicator.visibility = View.VISIBLE
+        }else{
+            holder.documentType.textColor = ContextCompat.getColor(context, R.color.black)
+            holder.redIndicator.visibility = View.INVISIBLE
         }
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val accountName = itemView.findViewById<TextView>(R.id.tv_adapter_approval_acc_name)
         val documentType = itemView.findViewById<TextView>(R.id.tv_adapter_approval_doc_type)
-        val righArrow = itemView.findViewById<ImageView>(R.id.iv_right_arrow)
+        val redIndicator = itemView.findViewById<View>(R.id.view_bot_indicator)
         val root = itemView.findViewById<ConstraintLayout>(R.id.cl_root)
     }
 }

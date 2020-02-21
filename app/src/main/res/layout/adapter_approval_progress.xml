@@ -17,9 +17,9 @@
 
     <ImageView
         android:id="@+id/iv_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_checked"
+        android:layout_width="12dip"
+        android:layout_height="12dip"
+        android:src="@drawable/ic_bullet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,8 +39,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_status"
         app:layout_constraintStart_toEndOf="@+id/iv_status"
         app:layout_constraintTop_toTopOf="@+id/iv_status">
@@ -57,7 +55,7 @@
 
         <TextView
             android:id="@+id/tv_approval_date"
-            style="@style/BoldLabelText"
+            style="@style/LabelText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Approval Date"

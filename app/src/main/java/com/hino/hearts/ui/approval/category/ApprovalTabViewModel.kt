@@ -5,6 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hino.hearts.model.ApprovalDocModel
 import com.hino.hearts.model.ApprovalDocumentModel
+import com.hino.hearts.network.HinoService
+import com.hino.hearts.network.response.approve.ApprovalListResponse
+import com.hino.hearts.network.service.approval.ApprovalService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 class ApprovalTabViewModel : ViewModel() {
 
@@ -12,7 +20,7 @@ class ApprovalTabViewModel : ViewModel() {
 
     val showCateTextLiveData = MutableLiveData<Boolean>()
     val animateArrorLiveData = MutableLiveData<Pair<Float, Float>>()
-    val animateListLiveData = MutableLiveData<Float>()
+    val approvalListLiveData = MutableLiveData<ApprovalListResponse>()
 
     val documentLivedata = MutableLiveData<ApprovalDocModel>()
 
@@ -38,7 +46,34 @@ class ApprovalTabViewModel : ViewModel() {
         }
     }
 
-    fun showSlideDown(){
-        animateListLiveData.value = 0f
+    fun getApproval(){
+        CoroutineScope(Dispatchers.IO).launch  {
+
+            try {
+
+                val call =
+                    HinoService.create(ApprovalService::class.java).ApprovalList()
+
+                val response = call.await()
+
+                if (response.meta.success) {
+                    approvalListLiveData.postValue(response)
+                }
+
+            } catch (t: Throwable){
+                t.printStackTrace()
+                when(t){
+                    is IOException -> {
+
+                    }
+                    is HttpException -> {
+
+                    }
+                    else -> {
+
+                    }
+                }
+            }
+        }
     }
 }

@@ -228,7 +228,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dimens_4dp"
                                     android:text="@string/approval_request_desc" />
-
                             </LinearLayout>
 
                             <FrameLayout
@@ -247,6 +246,7 @@
                                     android:background="?android:attr/selectableItemBackgroundBorderless"
                                     android:src="@drawable/ic_arrow_right"
                                     tools:ignore="contentDescription" />
+
 
                             </FrameLayout>
 

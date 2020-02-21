@@ -61,7 +61,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/dropdown"
+                    android:src="@drawable/ic_chevron_down"
                     app:layout_constraintBottom_toBottomOf="@+id/tl_category"
                     app:layout_constraintEnd_toEndOf="@+id/tl_category"
                     app:layout_constraintTop_toTopOf="@+id/tl_category" />
@@ -87,7 +87,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/dropdown"
+                    android:src="@drawable/ic_chevron_down"
                     app:layout_constraintBottom_toBottomOf="@+id/tl_type_unit"
                     app:layout_constraintEnd_toEndOf="@+id/tl_type_unit"
                     app:layout_constraintTop_toTopOf="@+id/tl_type_unit" />

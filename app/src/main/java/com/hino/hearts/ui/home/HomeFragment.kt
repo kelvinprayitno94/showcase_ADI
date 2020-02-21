@@ -3,6 +3,7 @@ package com.hino.hearts.ui.home
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
@@ -11,16 +12,21 @@ import com.hino.hearts.adapter.HomeMenuAdapter
 import com.hino.hearts.adapter.VisitTargetDialogAdapter
 import com.hino.hearts.databinding.FragmentHomeBinding
 import com.hino.hearts.ui.BaseFragment
+import com.hino.hearts.ui.account.AccountListActivity
+import com.hino.hearts.ui.approval.category.ApprovalTabActivity
+import com.hino.hearts.ui.event.EventActivity
+import com.hino.hearts.ui.opportunity.OpportunityActivity
 import com.hino.hearts.util.AlertManager
 import com.hino.hearts.util.InterfaceManager
 import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenuTap{
 
     companion object {
         private const val TWO = 2
@@ -161,7 +167,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setHomeMenu() {
-        adapter = HomeMenuAdapter()
+        adapter = HomeMenuAdapter(this)
         adapter.setData(viewModel.homeMenuList.value!!)
 
         var spanCount = 0
@@ -197,5 +203,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             },
             visitTargetDialogAdapter
         )
+    }
+
+    override fun onTap(menu: Int) {
+        when (menu) {
+            R.string.catalogues -> {
+                Toast.makeText(activity, "Coming Soon", Toast.LENGTH_SHORT).show()
+            }
+            R.string.accounts -> {
+                startActivity<AccountListActivity>()
+            }
+            R.string.spare_part -> {
+                Toast.makeText(activity, "Coming Soon", Toast.LENGTH_SHORT).show()
+            }
+            R.string.events -> {
+                startActivity<EventActivity>()
+            }
+            R.string.approvals -> {
+                startActivity<ApprovalTabActivity>()
+            }
+            R.string.opportunities -> {
+                startActivity<OpportunityActivity>()
+            }
+        }
     }
 }

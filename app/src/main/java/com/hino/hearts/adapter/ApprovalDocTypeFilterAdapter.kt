@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.model.ApprovalDocModel
 import com.hino.hearts.model.ApprovalDocumentModel
+import com.hino.hearts.network.response.approve.ApprovalListResponse
 import org.jetbrains.anko.textColor
 
 class ApprovalDocTypeFilterAdapter(
     var context: Context,
-    val document: ApprovalDocModel,
+    val document: ApprovalListResponse,
+    var selected: Int,
     val listener: OnAdapterTap
 ) :
     RecyclerView.Adapter<ApprovalDocTypeFilterAdapter.Holder>() {
@@ -34,23 +37,23 @@ class ApprovalDocTypeFilterAdapter(
     }
 
     override fun getItemCount(): Int {
-        return document.docList.size
+        return document.listData.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val doc = document.docList[position]
+        val doc = document.listData[position]
 
-        holder.documentType.text = doc.documentType
+        holder.documentType.text = doc.type
 
         holder.root.setOnClickListener {
             listener.onTap(position)
         }
 
-        if (doc.isSelected){
-            holder.documentType.textColor = context.resources.getColor(R.color.red)
+        if (position == selected){
+            holder.documentType.textColor = ContextCompat.getColor(context, R.color.red)
             holder.redIndicator.visibility = View.VISIBLE
         }else{
-            holder.documentType.textColor = context.resources.getColor(R.color.black)
+            holder.documentType.textColor = ContextCompat.getColor(context, R.color.black)
             holder.redIndicator.visibility = View.INVISIBLE
         }
     }
