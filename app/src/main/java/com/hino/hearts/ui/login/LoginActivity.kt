@@ -1,6 +1,7 @@
 package com.hino.hearts.ui.login
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -12,6 +13,7 @@ import com.hino.hearts.BuildConfig
 import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityLoginBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.approval.category.ApprovalTabActivity
 import com.hino.hearts.ui.home.HomeActivity
 import com.hino.hearts.ui.onboarding.OnboardingActivity
 import com.hino.hearts.util.NetworkManager
@@ -35,6 +37,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         super.onCreate(savedInstanceState)
         setBinding(R.layout.activity_login)
 
+        initBottomsheet()
         initObserver()
         initViewModel()
         initEvent()
@@ -139,11 +142,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         when (BuildConfig.FLAVOR == "staging") {
             true -> {
-//                edittext_employee_id.setText("test12345")
-//                edittext_password.setText("password")
+                edittext_employee_id.setText("test12345")
+                edittext_password.setText("password")
 
-                edittext_employee_id.setText("sales")
-                edittext_password.setText("sales")
+//                edittext_employee_id.setText("sales")
+//                edittext_password.setText("sales")
             }
         }
     }

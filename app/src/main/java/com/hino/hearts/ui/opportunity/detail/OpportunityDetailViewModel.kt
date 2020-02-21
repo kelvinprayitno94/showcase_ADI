@@ -24,6 +24,9 @@ class OpportunityDetailViewModel : ViewModel() {
 
     var id: Int = 0
     var opportunityName: String? = "Opportunity Name"
+    var accountName: String? = "Account Name Not Found"
+    var opportunityValue: Long? = 0
+
     var data: MutableLiveData<OpportunityModel> = MutableLiveData()
 
     val addVisitButtonList: MutableLiveData<ArrayList<HomeMenu>> = MutableLiveData()

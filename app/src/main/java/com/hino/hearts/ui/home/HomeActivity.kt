@@ -17,6 +17,7 @@ import com.hino.hearts.R
 import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.appointment.AppointmentDetailActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.notification.NotificationActivity
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsActivity
@@ -159,6 +160,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     override fun onItemViewClicked(name: Int) {
         toast(getString(name))
         hideAddVisitButton()
+
+        //TODO: Data
+        startActivity<AppointmentDetailActivity>(
+            AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
+            AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
+            AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
+            AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        )
     }
 
     fun showAddVisitButton() {

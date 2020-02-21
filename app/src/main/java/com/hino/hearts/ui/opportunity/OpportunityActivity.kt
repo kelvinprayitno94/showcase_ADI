@@ -83,7 +83,7 @@ class OpportunityActivity : BaseActivity<ActivityOpportunityBinding>() {
                         startActivity<OpportunityDetailActivity>(
                             OpportunityDetailActivity.PARAM_OPPORTUNITY_ID to item.id,
                             OpportunityDetailActivity.PARAM_OPPORTUNITY_TITLE to item.opportunityName,
-                            OpportunityDetailActivity.PARAM_ACCOUNT_NAME to (when (item.accountName != null) { true -> {item.accountName} false -> { "Account Name Not Found" }}),
+                            OpportunityDetailActivity.PARAM_ACCOUNT_NAME to item.accountName,
                             OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE to item.budget
                         )
                     }

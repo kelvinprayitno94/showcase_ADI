@@ -32,6 +32,7 @@
                 android:background="@drawable/shape_dragdrop_list_background"
                 android:backgroundTint="#D10000"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:text="@string/appointment" />
 
             <Button
@@ -41,6 +42,7 @@
                 android:background="@drawable/shape_dragdrop_list_background"
                 android:backgroundTint="@color/white"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:text="@string/task" />
 
             <Button
@@ -50,6 +52,7 @@
                 android:background="@drawable/shape_dragdrop_list_background"
                 android:backgroundTint="@color/white"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:text="@string/call_log" />
         </LinearLayout>
 
