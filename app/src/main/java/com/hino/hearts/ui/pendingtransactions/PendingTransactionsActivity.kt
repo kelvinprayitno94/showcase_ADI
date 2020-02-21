@@ -40,7 +40,7 @@ class PendingTransactionsActivity : BaseActivity<ActivityPendingTransactionsBind
 
     override fun initEvent() {
         fl_back.onClick {
-            finish()
+            onBackPressed()
         }
     }
 

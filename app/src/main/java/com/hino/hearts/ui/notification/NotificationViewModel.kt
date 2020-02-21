@@ -29,39 +29,39 @@ class NotificationViewModel : ViewModel() {
                 1,
                 "Notification Title",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date
+                "07 Feb 2020"
             )
         )
         notificationList.add(
             Notification(
                 2,
-                "Notification Title",
+                "Hino Meet Up",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date
+                "07 Feb 2020"
             )
         )
         notificationList.add(
             Notification(
                 3,
-                "Notification Title",
+                "Sales Gathering Jakarta",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date
+                "06 Feb 2020"
             )
         )
         notificationList.add(
             Notification(
                 4,
-                "Notification Title",
+                "Getting You Started",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date
+                "05 Feb 2020"
             )
         )
         notificationList.add(
             Notification(
                 5,
-                "Notification Title",
+                "Welcome to Hino Apps",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date
+                "04 Feb 2020"
             )
         )
 

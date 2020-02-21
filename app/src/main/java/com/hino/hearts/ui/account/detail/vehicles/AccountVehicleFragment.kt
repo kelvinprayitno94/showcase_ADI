@@ -7,19 +7,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.adapter.AccountContactAdapter
+import com.hino.hearts.adapter.AccountVehicleAdapter
 import com.hino.hearts.databinding.ActivityAccountDetailBinding
 import com.hino.hearts.model.AccountContactModel
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity
 import kotlinx.android.synthetic.main.fragment_account_detail_vehicles.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AccountVehicleFragment : BaseFragment<ActivityAccountDetailBinding>() {
+class AccountVehicleFragment(var data: List<AccountListResponse.VehicleData>?) : BaseFragment<ActivityAccountDetailBinding>() {
 
     private val viewModel by viewModel<AccountVehiclesViewModel>()
 
-    lateinit var adapter: AccountContactAdapter
+    lateinit var adapter: AccountVehicleAdapter
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_account_detail_vehicles
@@ -49,13 +51,7 @@ class AccountVehicleFragment : BaseFragment<ActivityAccountDetailBinding>() {
     private fun initAdapter() {
         context?.let {
 
-            val item: MutableList<AccountContactModel> = ArrayList()
-
-            for (i in 0 until 6) {
-                item.add(AccountContactModel("FJ 190 JP", "#123123"))
-            }
-
-            adapter = AccountContactAdapter(it, item, object : AccountContactAdapter.OnAdapterTap {
+            adapter = AccountVehicleAdapter(it, data, object : AccountVehicleAdapter.OnAdapterTap {
                 override fun onTap(pos: Int) {
                     startActivity(Intent(activity, VehicleDetailActivity::class.java))
                 }

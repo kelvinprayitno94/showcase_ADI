@@ -19,6 +19,7 @@ class AccountDetailViewModel : ViewModel() {
     var accNameLiveData = MutableLiveData<String>()
     var addressLiveData = MutableLiveData<String>()
     var cityLiveData = MutableLiveData<String>()
+    var dataLiveData = MutableLiveData<AccountListResponse.AccountData>()
 
     var accDetailsLiveData = MutableLiveData<AccountDetailResponse>()
 
@@ -26,8 +27,9 @@ class AccountDetailViewModel : ViewModel() {
         navEditContactLiveData.value = true
     }
 
-    fun init(data: AccountListResponse.AccListData?){
+    fun init(data: AccountListResponse.AccountData?){
         accNameLiveData.value = data?.accountName
+        dataLiveData.value = data
     }
 
     fun fetchAccountDetail(){

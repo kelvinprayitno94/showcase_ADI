@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.hino.hearts.ui.opportunity.detail.ActivitiesViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimens_24dp"
+        tools:context=".ui.opportunity.detail.ActivitiesFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="@dimen/dimens_24dp"
+            android:layout_marginEnd="@dimen/dimens_24dp"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/ButtonText14spBoldWhite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_dragdrop_list_background"
+                android:backgroundTint="#D10000"
+                android:layout_weight="1"
+                android:text="@string/appointment" />
+
+            <Button
+                style="@style/ButtonText14spBoldGrey4a"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_dragdrop_list_background"
+                android:backgroundTint="@color/white"
+                android:layout_weight="1"
+                android:text="@string/task" />
+
+            <Button
+                style="@style/ButtonText14spBoldGrey4a"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_dragdrop_list_background"
+                android:backgroundTint="@color/white"
+                android:layout_weight="1"
+                android:text="@string/call_log" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_appointment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_opportunity_activity"
+            tools:itemCount="4"/>
+    </LinearLayout>
+</layout>

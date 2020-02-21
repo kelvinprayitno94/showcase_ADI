@@ -9,6 +9,7 @@ import com.hino.hearts.R
 import com.hino.hearts.adapter.AccountListAdapter
 import com.hino.hearts.databinding.ActivityAccountListBinding
 import com.hino.hearts.model.AccountListModel
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.account.detail.AccountDetailActivity
 import com.hino.hearts.ui.approval.detail.ApprovalDetailActivity
@@ -39,10 +40,10 @@ class AccountListActivity : BaseActivity<ActivityAccountListBinding>() {
 
             approvalDocumentAdapter =
                 AccountListAdapter(this, it.listData, object : AccountListAdapter.OnAdapterTap {
-                    override fun onTap(pos: Int) {
 
+                    override fun onTap(item: AccountListResponse.AccListData) {
                         val intent = Intent(this@AccountListActivity, AccountDetailActivity::class.java)
-                        intent.putExtra(ConstantManager.INTENT_ACC_DATA, it.listData[pos])
+                        intent.putExtra(ConstantManager.INTENT_ACC_DATA, item)
 
                         startActivity(intent)
                     }

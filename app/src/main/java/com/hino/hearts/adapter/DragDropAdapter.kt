@@ -2,11 +2,10 @@ package com.hino.hearts.adapter
 
 import android.content.ClipData
 import android.os.Build
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
+import android.os.Handler
+import android.util.Log
+import android.view.*
 import android.view.View.DragShadowBuilder
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +16,24 @@ import java.text.NumberFormat
 
 
 class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), View.OnTouchListener {
-    var list: MutableList<OpportunityModel.OpportunityData> = ArrayList()
-    val formatter: NumberFormat = DecimalFormat("#,###")
+    var list: MutableList<OpportunityModel> = ArrayList()
+    var clickListener: ClickListener? = null
+
+    private val mFormatter: NumberFormat = DecimalFormat("#,###")
+    private var mSelectedItem: View? = null
+    private val mHandler: Handler = Handler()
+    private val mLongPressed = Runnable {
+        if (mSelectedItem != null) {
+            val data = ClipData.newPlainText("", "")
+            val shadowBuilder = DragShadowBuilder(mSelectedItem)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                mSelectedItem?.startDragAndDrop(data, shadowBuilder, mSelectedItem, 0)
+            }
+            else {
+                mSelectedItem?.startDrag(data, shadowBuilder, mSelectedItem, 0)
+            }
+        }
+    }
 
     companion object {
         const val ITEM_EMPTY: Int = 0
@@ -52,9 +67,12 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         if (position < list.size) {
             val item = list[position]
-            val formattedNumber = "Rp${formatter.format(item.opportunityValue)}"
-            holder.titleTextView?.text = item.title
-            holder.accountNameTextView?.text = item.accountName
+            val formattedNumber = "Rp${mFormatter.format(item.budget)}"
+            holder.titleTextView?.text = item.opportunityName
+            holder.accountNameTextView?.text = when (item.accountName != null) {
+                true -> item.accountName
+                false -> "Account Name Not Found"
+            }
             holder.opportunityValueTextView?.text = formattedNumber
 
             holder.rootFrameLayout.setOnTouchListener(this)
@@ -65,23 +83,31 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
+        Log.d("DragDrop", "Event ${event.action}")
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                val data = ClipData.newPlainText("", "")
-                val shadowBuilder = DragShadowBuilder(v)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    v.startDragAndDrop(data, shadowBuilder, v, 0)
-                } else {
-                    v.startDrag(data, shadowBuilder, v, 0)
-                }
-                return true
+                mSelectedItem = v
+                mHandler.postDelayed(mLongPressed, ViewConfiguration.getLongPressTimeout().toLong())
+            }
+            MotionEvent.ACTION_MOVE, MotionEvent.ACTION_CANCEL -> {
+                mHandler.removeCallbacks(mLongPressed)
+                mSelectedItem = null
             }
             MotionEvent.ACTION_UP -> {
-                v.performClick()
-                return true
+                mHandler.removeCallbacks(mLongPressed)
+
+                //Item Clicked
+                if (mSelectedItem != null) {
+                    val rootFrameLayout = mSelectedItem as FrameLayout
+                    val position = rootFrameLayout.tag as Int
+                    val item = list[position]
+                    clickListener?.onItemClicked(item)
+
+                    mSelectedItem = null
+                }
             }
         }
-        return false
+        return true
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -89,5 +115,9 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
         var titleTextView: TextView? = itemView.findViewById(R.id.tv_title)
         var accountNameTextView: TextView? = itemView.findViewById(R.id.tv_account_name)
         var opportunityValueTextView: TextView? = itemView.findViewById(R.id.tv_opportunity_value)
+    }
+
+    interface ClickListener {
+        fun onItemClicked(item: OpportunityModel)
     }
 }

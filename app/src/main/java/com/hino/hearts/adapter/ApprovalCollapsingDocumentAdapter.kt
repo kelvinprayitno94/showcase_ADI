@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.model.ApprovalDocModel
@@ -15,7 +16,8 @@ import org.jetbrains.anko.textColor
 
 class ApprovalCollapsingDocumentAdapter(
     var context: Context,
-    val document: List<ApprovalListResponse.ApprovalListData>,
+    val document: ApprovalListResponse,
+    val tabList: List<String>,
     var selected: Int,
     val listener: OnAdapterTap
 ) :
@@ -36,23 +38,23 @@ class ApprovalCollapsingDocumentAdapter(
     }
 
     override fun getItemCount(): Int {
-        return document.size
+        return tabList.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val doc = document[position]
+//        val doc = document.listData[position]
 
-        holder.documentType.text = doc.type
+        holder.documentType.text = tabList[position]
 
         holder.root.setOnClickListener {
             listener.onTap(position)
         }
 
-        if (position == selected){
-            holder.documentType.textColor = context.resources.getColor(R.color.red)
+        if (position == document.selected){
+            holder.documentType.textColor = ContextCompat.getColor(context, R.color.red)
             holder.redIndicator.visibility = View.VISIBLE
         }else{
-            holder.documentType.textColor = context.resources.getColor(R.color.black)
+            holder.documentType.textColor = ContextCompat.getColor(context, R.color.black)
             holder.redIndicator.visibility = View.INVISIBLE
         }
     }

@@ -92,7 +92,6 @@
                             android:layout_marginTop="@dimen/dimens_16dp"
                             android:layout_marginEnd="@dimen/dimens_24dp"
                             android:layout_marginBottom="@dimen/dimens_16dp"
-                            android:orientation="horizontal"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -172,312 +171,288 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cv_home_approval_request"
+                        style="@style/CardWhite"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:visibility="gone">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cv_home_approval_request"
-                            style="@style/CardWhite"
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dimens_24dp"
-                            android:layout_marginTop="@dimen/dimens_16dp"
-                            android:layout_marginEnd="@dimen/dimens_24dp"
-                            android:visibility="invisible"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_height="match_parent">
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/iv_home_approval_request"
+                                android:layout_width="@dimen/dimens_30dp"
+                                android:layout_height="@dimen/dimens_30dp"
+                                android:layout_marginStart="@dimen/dimens_24dp"
+                                android:layout_marginTop="@dimen/dimens_26dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_26dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/tick_inside_circle"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="contentDescription" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_home_approval_request"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_24dp"
+                                android:layout_marginEnd="@dimen/dimens_6dp"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/fl_next"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toEndOf="@id/iv_home_approval_request"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/tv_approval_request_count"
+                                    style="@style/Title21spGrey36"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{viewModel.approvalRequestCount}"
+                                    tools:text="24" />
+
+                                <TextView
+                                    android:id="@+id/tv_approval_request_desc"
+                                    style="@style/Desc13spGrey62"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dimens_4dp"
+                                    android:text="@string/approval_request_desc" />
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:id="@+id/fl_next"
+                                android:layout_width="@dimen/dimens_44dp"
+                                android:layout_height="@dimen/dimens_44dp"
+                                android:layout_marginEnd="@dimen/dimens_8dp"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_home_approval_request"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/iv_home_approval_request">
 
                                 <ImageView
-                                    android:id="@+id/iv_home_approval_request"
                                     android:layout_width="@dimen/dimens_30dp"
                                     android:layout_height="@dimen/dimens_30dp"
-                                    android:layout_marginStart="@dimen/dimens_24dp"
-                                    android:layout_marginTop="@dimen/dimens_26dp"
-                                    android:layout_marginEnd="@dimen/dimens_16dp"
-                                    android:layout_marginBottom="@dimen/dimens_26dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/tick_inside_circle"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:layout_gravity="center"
+                                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                                    android:src="@drawable/ic_arrow_right"
                                     tools:ignore="contentDescription" />
 
-                                <LinearLayout
-                                    android:id="@+id/ll_home_approval_request"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/dimens_24dp"
-                                    android:layout_marginEnd="@dimen/dimens_6dp"
-                                    android:orientation="vertical"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@id/fl_next"
-                                    app:layout_constraintHorizontal_bias="0"
-                                    app:layout_constraintStart_toEndOf="@id/iv_home_approval_request"
-                                    app:layout_constraintTop_toTopOf="parent">
 
-                                    <TextView
-                                        android:id="@+id/tv_approval_request_count"
-                                        style="@style/Title21spGrey36"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="@{viewModel.approvalRequestCount}"
-                                        tools:text="24" />
+                            </FrameLayout>
 
-                                    <TextView
-                                        android:id="@+id/tv_approval_request_desc"
-                                        style="@style/Desc13spGrey62"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/dimens_4dp"
-                                        android:text="@string/approval_request_desc" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                                </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-                                <FrameLayout
-                                    android:id="@+id/fl_next"
-                                    android:layout_width="@dimen/dimens_44dp"
-                                    android:layout_height="@dimen/dimens_44dp"
-                                    android:layout_marginEnd="@dimen/dimens_8dp"
-                                    app:layout_constraintBottom_toBottomOf="@id/iv_home_approval_request"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="@id/iv_home_approval_request">
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cv_home_approval_request_done"
+                        style="@style/CardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:visibility="gone">
 
-                                    <ImageView
-                                        android:layout_width="@dimen/dimens_30dp"
-                                        android:layout_height="@dimen/dimens_30dp"
-                                        android:layout_gravity="center"
-                                        android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_chevron_right"
-                                        tools:ignore="contentDescription" />
-
-                                </FrameLayout>
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cv_home_approval_request_done"
-                            style="@style/CardWhite"
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dimens_24dp"
-                            android:layout_marginTop="@dimen/dimens_16dp"
-                            android:layout_marginEnd="@dimen/dimens_24dp"
-                            android:visibility="invisible"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_height="match_parent">
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/iv_home_approval_request_done"
+                                android:layout_width="@dimen/dimens_30dp"
+                                android:layout_height="@dimen/dimens_30dp"
+                                android:layout_marginStart="@dimen/dimens_24dp"
+                                android:layout_marginTop="@dimen/dimens_26dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_26dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/tick_inside_circle"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="contentDescription" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_home_approval_request_done"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_24dp"
+                                android:layout_marginEnd="@dimen/dimens_6dp"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/fl_next_done"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toEndOf="@id/iv_home_approval_request_done"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/tv_approval_request_count_done"
+                                    style="@style/Desc13spGrey62"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/approval_request_done_title" />
+
+                                <TextView
+                                    android:id="@+id/tv_approval_request_desc_done"
+                                    style="@style/Title13spGrey62"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dimens_4dp"
+                                    android:text="@string/approval_request_done_desc" />
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:id="@+id/fl_next_done"
+                                android:layout_width="@dimen/dimens_44dp"
+                                android:layout_height="@dimen/dimens_44dp"
+                                android:layout_marginEnd="@dimen/dimens_8dp"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_home_approval_request_done"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/iv_home_approval_request_done">
 
                                 <ImageView
-                                    android:id="@+id/iv_home_approval_request_done"
                                     android:layout_width="@dimen/dimens_30dp"
                                     android:layout_height="@dimen/dimens_30dp"
-                                    android:layout_marginStart="@dimen/dimens_24dp"
-                                    android:layout_marginTop="@dimen/dimens_26dp"
-                                    android:layout_marginEnd="@dimen/dimens_16dp"
-                                    android:layout_marginBottom="@dimen/dimens_26dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/tick_inside_circle"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:layout_gravity="center"
+                                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                                    android:src="@drawable/ic_arrow_right"
                                     tools:ignore="contentDescription" />
 
-                                <LinearLayout
-                                    android:id="@+id/ll_home_approval_request_done"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/dimens_24dp"
-                                    android:layout_marginEnd="@dimen/dimens_6dp"
-                                    android:orientation="vertical"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@id/fl_next_done"
-                                    app:layout_constraintHorizontal_bias="0"
-                                    app:layout_constraintStart_toEndOf="@id/iv_home_approval_request_done"
-                                    app:layout_constraintTop_toTopOf="parent">
+                            </FrameLayout>
 
-                                    <TextView
-                                        android:id="@+id/tv_approval_request_count_done"
-                                        style="@style/Desc13spGrey62"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/approval_request_done_title" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                                    <TextView
-                                        android:id="@+id/tv_approval_request_desc_done"
-                                        style="@style/Title13spGrey62"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/dimens_4dp"
-                                        android:text="@string/approval_request_done_desc" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                                </LinearLayout>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cv_home_visit"
+                        style="@style/CardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:visibility="gone">
 
-                                <FrameLayout
-                                    android:id="@+id/fl_next_done"
-                                    android:layout_width="@dimen/dimens_44dp"
-                                    android:layout_height="@dimen/dimens_44dp"
-                                    android:layout_marginEnd="@dimen/dimens_8dp"
-                                    app:layout_constraintBottom_toBottomOf="@id/iv_home_approval_request_done"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="@id/iv_home_approval_request_done">
-
-                                    <ImageView
-                                        android:layout_width="@dimen/dimens_30dp"
-                                        android:layout_height="@dimen/dimens_30dp"
-                                        android:layout_gravity="center"
-                                        android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_chevron_right"
-                                        tools:ignore="contentDescription" />
-
-                                </FrameLayout>
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cv_home_visit"
-                            style="@style/CardWhite"
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dimens_24dp"
-                            android:layout_marginTop="@dimen/dimens_16dp"
-                            android:layout_marginEnd="@dimen/dimens_24dp"
-                            android:visibility="invisible"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_height="match_parent">
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/tv_home_card_info_sales_title"
+                                style="@style/Desc12spGrey4a"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_16dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:text="@string/card_info_sales"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                                <TextView
-                                    android:id="@+id/tv_home_card_info_sales_title"
-                                    style="@style/Desc12spGrey4a"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/dimens_16dp"
-                                    android:layout_marginTop="@dimen/dimens_16dp"
-                                    android:layout_marginEnd="@dimen/dimens_16dp"
-                                    android:text="@string/card_info_sales"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                            <TextView
+                                android:id="@+id/tv_home_card_progress_sales"
+                                style="@style/TitleGrey36"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_6dp"
+                                android:layout_marginBottom="@dimen/dimens_12dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_home_card_info_sales_title"
+                                app:layout_constraintVertical_bias="0"
+                                tools:text="3/4 done" />
 
-                                <TextView
-                                    android:id="@+id/tv_home_card_progress_sales"
-                                    style="@style/TitleGrey36"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/dimens_16dp"
-                                    android:layout_marginTop="@dimen/dimens_6dp"
-                                    android:layout_marginBottom="@dimen/dimens_12dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/tv_home_card_info_sales_title"
-                                    app:layout_constraintVertical_bias="0"
-                                    tools:text="3/4 done" />
+                            <ProgressBar
+                                android:id="@+id/home_sales_visit_progress"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/dimens_6dp"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_16dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_16dp"
+                                android:indeterminate="false"
+                                android:progressDrawable="@drawable/sales_visit_progress"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_home_card_progress_sales"
+                                tools:progress="30" />
 
-                                <ProgressBar
-                                    android:id="@+id/home_sales_visit_progress"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="0dp"
-                                    android:layout_height="@dimen/dimens_6dp"
-                                    android:layout_marginStart="@dimen/dimens_16dp"
-                                    android:layout_marginTop="@dimen/dimens_16dp"
-                                    android:layout_marginEnd="@dimen/dimens_16dp"
-                                    android:layout_marginBottom="@dimen/dimens_16dp"
-                                    android:indeterminate="false"
-                                    android:progressDrawable="@drawable/sales_visit_progress"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/tv_home_card_progress_sales"
-                                    tools:progress="30" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-                        </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cv_home_visit_done"
+                        style="@style/CardWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_24dp"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginEnd="@dimen/dimens_24dp"
+                        android:visibility="gone">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cv_home_visit_done"
-                            style="@style/CardWhite"
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dimens_24dp"
-                            android:layout_marginTop="@dimen/dimens_16dp"
-                            android:layout_marginEnd="@dimen/dimens_24dp"
-                            android:visibility="invisible"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_height="match_parent">
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/iv_visit_done"
+                                android:layout_width="@dimen/dimens_70dp"
+                                android:layout_height="@dimen/dimens_70dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/goodjob"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="contentDescription" />
 
-                                <ImageView
-                                    android:id="@+id/iv_visit_done"
-                                    android:layout_width="@dimen/dimens_40dp"
-                                    android:layout_height="@dimen/dimens_40dp"
-                                    android:layout_marginTop="@dimen/dimens_26dp"
-                                    android:layout_marginEnd="@dimen/dimens_16dp"
-                                    android:layout_marginBottom="@dimen/dimens_26dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_launcher_background"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    tools:ignore="contentDescription" />
+                            <TextView
+                                android:id="@+id/tv_visit_done"
+                                style="@style/DescGrey36"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimens_16dp"
+                                android:layout_marginTop="@dimen/dimens_23dp"
+                                android:layout_marginEnd="@dimen/dimens_16dp"
+                                android:layout_marginBottom="@dimen/dimens_23dp"
+                                android:text="@string/sales_visit_done"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/iv_visit_done"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                                <TextView
-                                    android:id="@+id/tv_visit_done"
-                                    style="@style/DescGrey36"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/dimens_16dp"
-                                    android:layout_marginTop="@dimen/dimens_23dp"
-                                    android:layout_marginEnd="@dimen/dimens_16dp"
-                                    android:layout_marginBottom="@dimen/dimens_23dp"
-                                    android:text="@string/sales_visit_done"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@id/iv_visit_done"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv_home_menu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimens_10dp"
-                            android:layout_marginBottom="@dimen/dimens_10dp"
-                            android:background="@color/white"
-                            android:nestedScrollingEnabled="false"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/cv_home_approval_request"
-                            app:layout_constraintVertical_bias="0" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_home_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimens_16dp"
+                        android:layout_marginBottom="@dimen/dimens_10dp"
+                        android:background="@color/white"
+                        android:nestedScrollingEnabled="false"
+                        app:layout_constraintVertical_bias="0" />
 
                 </LinearLayout>
 

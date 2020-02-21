@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_item_event"
+        style="@style/CardWhite20dp"
+        android:layout_width="@dimen/dimens_72dp"
+        android:layout_height="@dimen/dimens_72dp"
+        android:layout_marginStart="@dimen/dimens_24dp"
+        android:layout_marginTop="@dimen/dimens_24dp"
+        android:layout_marginBottom="@dimen/dimens_24dp"
+        android:background="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0">
+
+        <ImageView
+            android:id="@+id/iv_item_event"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            tools:ignore="contentDescription"
+            tools:src="@drawable/ic_launcher_background" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_item_event_title"
+        style="@style/Title16spGrey4a"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_24dp"
+        android:layout_marginEnd="@dimen/dimens_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cv_item_event"
+        app:layout_constraintTop_toTopOf="@id/cv_item_event"
+        tools:text="Record Activity" />
+
+    <TextView
+        android:id="@+id/tv_item_event_desc"
+        style="@style/Desc12spGrey4a"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_24dp"
+        android:layout_marginTop="@dimen/dimens_6dp"
+        android:layout_marginEnd="@dimen/dimens_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cv_item_event"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_event_title"
+        tools:text="07 Feb 2020" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_1dp"
+        android:layout_marginStart="@dimen/dimens_24dp"
+        android:layout_marginTop="@dimen/dimens_17dp"
+        android:layout_marginEnd="@dimen/dimens_24dp"
+        android:background="@color/greye1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_item_event" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

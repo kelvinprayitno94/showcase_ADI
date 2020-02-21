@@ -3,6 +3,7 @@ package com.hino.hearts.ui.home
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
@@ -13,9 +14,11 @@ import com.hino.hearts.databinding.FragmentHomeBinding
 import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.ui.approval.category.ApprovalTabActivity
-import com.hino.hearts.ui.dragdrop.DragDropActivity
+import com.hino.hearts.ui.event.EventActivity
+import com.hino.hearts.ui.opportunity.OpportunityActivity
 import com.hino.hearts.util.AlertManager
 import com.hino.hearts.util.InterfaceManager
+import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.startActivity
@@ -23,7 +26,7 @@ import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenuTap {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenuTap{
 
     companion object {
         private const val TWO = 2
@@ -46,6 +49,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
         initLayout()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.onGetHomeData("custom")
+    }
+
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
     }
@@ -54,12 +62,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
         viewModel.visitProgressPercentage.observe(viewLifecycleOwner, Observer {
             when (it == ONE_HUNDRED) {
                 true -> {
-                    cv_home_visit.visibility = View.INVISIBLE
+                    cv_home_visit.visibility = View.GONE
                     cv_home_visit_done.visibility = View.VISIBLE
                 }
                 false -> {
                     cv_home_visit.visibility = View.VISIBLE
-                    cv_home_visit_done.visibility = View.INVISIBLE
+                    cv_home_visit_done.visibility = View.GONE
 
                     tv_home_card_progress_sales.text = getString(
                         R.string.sales_visit_progress,
@@ -74,14 +82,37 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
         viewModel.approvalRequestCount.observe(viewLifecycleOwner, Observer {
             when(it == "0"){
                 true-> {
-                    cv_home_approval_request.visibility = View.INVISIBLE
+                    cv_home_approval_request.visibility = View.GONE
                     cv_home_approval_request_done.visibility = View.VISIBLE
                 }
                 false->{
                     cv_home_approval_request.visibility = View.VISIBLE
-                    cv_home_approval_request_done.visibility = View.INVISIBLE
+                    cv_home_approval_request_done.visibility = View.GONE
                 }
             }
+        })
+
+        viewModel.showLoading.observe(viewLifecycleOwner, Observer {
+            (activity as HomeActivity).showLoading()
+        })
+
+        viewModel.homeSuccess.observe(viewLifecycleOwner, Observer {
+            swipe_refresh_layout.isRefreshing = false
+            (activity as HomeActivity).hideLoading()
+        })
+
+        viewModel.errorBody.observe(viewLifecycleOwner, Observer {
+            swipe_refresh_layout.isRefreshing = false
+            (activity as HomeActivity).hideLoading()
+
+            NetworkManager.getInstance().handleResponse(context, it)
+        })
+
+        viewModel.responseError.observe(viewLifecycleOwner, Observer {
+            swipe_refresh_layout.isRefreshing = false
+            (activity as HomeActivity).hideLoading()
+
+            NetworkManager.getInstance().handleErrorResponse(context, it)
         })
     }
 
@@ -107,9 +138,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
         }
 
         swipe_refresh_layout.setOnRefreshListener {
-            toast("Swipe refresh activated")
+            swipe_refresh_layout.isRefreshing = true
 
-            swipe_refresh_layout.isRefreshing = false
+            viewModel.onGetHomeData("refresh")
         }
     }
 
@@ -119,13 +150,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_sales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_sales)
 
-                cv_home_approval_request.visibility = View.INVISIBLE
+                cv_home_approval_request.visibility = View.GONE
+                cv_home_approval_request_done.visibility = View.GONE
             }
             false -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_nonsales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_nonsales)
 
-                cv_home_approval_request.visibility = View.VISIBLE
+                cv_home_visit.visibility = View.GONE
+                cv_home_visit_done.visibility = View.GONE
             }
         }
 
@@ -174,22 +207,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
     override fun onTap(menu: Int) {
         when (menu) {
             R.string.catalogues -> {
-
+                Toast.makeText(activity, "Coming Soon", Toast.LENGTH_SHORT).show()
             }
             R.string.accounts -> {
                 startActivity<AccountListActivity>()
             }
             R.string.spare_part -> {
-
+                Toast.makeText(activity, "Coming Soon", Toast.LENGTH_SHORT).show()
             }
             R.string.events -> {
-
+                startActivity<EventActivity>()
             }
             R.string.approvals -> {
                 startActivity<ApprovalTabActivity>()
             }
             R.string.opportunities -> {
-                startActivity<DragDropActivity>()
+                startActivity<OpportunityActivity>()
             }
         }
     }

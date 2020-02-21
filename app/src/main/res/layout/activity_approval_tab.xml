@@ -66,26 +66,27 @@
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@+id/btn_expand_category">
 
-                            <com.google.android.material.tabs.TabLayout
+                            <com.hino.hearts.util.ui.CustomTabLayout
                                 android:id="@+id/tab_layout_approval"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                style="@style/TabLayout"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:tabGravity="center"
-                                app:tabIndicatorFullWidth="false"
+                                app:tabIndicator="@drawable/custom_tab_indicator"
                                 app:tabIndicatorColor="@color/red"
+                                app:tabIndicatorHeight="@dimen/dimens_4dp"
                                 app:tabMode="scrollable"
-                                app:tabSelectedTextColor="@color/red"
-                                app:tabTextColor="@color/black"
-                                android:visibility="gone"/>
+                                app:tabRippleColor="@color/white"
+                                app:tabTextColor="@color/black" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/rv_tab_layout_approval_doc_type"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"/>
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:visibility="gone"/>
 
                             <TextView
                                 android:id="@+id/tv_category_"

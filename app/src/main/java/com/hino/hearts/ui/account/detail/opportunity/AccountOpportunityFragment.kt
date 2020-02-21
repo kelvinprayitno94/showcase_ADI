@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.adapter.AccountDetailOpportunityAdapter
 import com.hino.hearts.databinding.ActivityAccountDetailBinding
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_account_detail_opportunity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AccountOpportunityFragment : BaseFragment<ActivityAccountDetailBinding>() {
+class AccountOpportunityFragment(var data: List<AccountListResponse.OpportunityData>?) : BaseFragment<ActivityAccountDetailBinding>() {
 
     private val viewModel by viewModel<AccountOpportunityViewModel>()
 
@@ -45,7 +46,7 @@ class AccountOpportunityFragment : BaseFragment<ActivityAccountDetailBinding>() 
 
     private fun initAdapter() {
         context?.let {
-            adapter = AccountDetailOpportunityAdapter(it)
+            adapter = AccountDetailOpportunityAdapter(it, data)
 
             rv_opportunty.adapter = adapter
             rv_opportunty.layoutManager = LinearLayoutManager(it, RecyclerView.VERTICAL, false)

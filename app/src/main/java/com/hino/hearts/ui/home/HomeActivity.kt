@@ -31,7 +31,7 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeActivity : BaseActivity<ActivityHomeBinding>() {
+class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.OnClick {
 
     companion object {
         private const val TWO_HUNDREDS: Long = 200
@@ -92,6 +92,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     override fun initEvent() {
+        layout_custom_loading.onClick {
+
+        }
+
         fl_close.onClick {
             val handler = Handler()
             handler.postDelayed({
@@ -153,6 +157,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         }
     }
 
+    override fun onItemViewClicked(name: Int) {
+        toast(getString(name))
+        hideAddVisitButton()
+    }
+
     fun showAddVisitButton() {
         layout_add_visit_button.visibility = View.VISIBLE
     }
@@ -163,6 +172,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         startActivity<AccountListActivity>()
     }
 
+    fun showLoading() {
+        layout_custom_loading.visibility = View.VISIBLE
+    }
+
+    fun hideLoading() {
+        layout_custom_loading.visibility = View.GONE
+    }
+
     private fun initLayout() {
         setSupportActionBar(tb_home)
         setupNavigationDrawer()
@@ -170,7 +187,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
         when(viewModel.role.value == "Sales"){
             true-> {
-                addVisitButtonAdapter = AddVisitButtonAdapter()
+                addVisitButtonAdapter = AddVisitButtonAdapter(this)
                 addVisitButtonAdapter.setData(viewModel.addVisitButtonList.value!!)
 
                 val gridLayoutManager = GridLayoutManager(this, SIX)
@@ -199,7 +216,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         tb_home.setNavigationIcon(R.drawable.ic_menu)
 
         Glide.with(this)
-            .load(viewModel.imagePath.value)
+//            .load(viewModel.imagePath.value)
+            .load(R.drawable.header)
             .into(iv_navigation_drawer)
 
         tv_header_view_name.text = viewModel.name.value

@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils.loadAnimation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -58,7 +60,13 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
     override fun initObserver() {
         viewModel.approvalListLiveData.observe(this, Observer {
 
+            var docType = resources.getStringArray(R.array.approval_tab_document).toList()
+
             var docList = it.listData
+
+            for (i in docType) {
+                tab_layout_approval.addTab(tab_layout_approval.newTab().setText(i))
+            }
 
             val roleid = UserDefaults.getInstance().getInt(UserDefaults.USER_ROLE_ID, 1)
 
@@ -84,7 +92,8 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
             approvalCollapsDocAdapter = ApprovalCollapsingDocumentAdapter(
                 this,
-                docList,
+                it,
+                docType,
                 selectedIndex,
                 object : ApprovalCollapsingDocumentAdapter.OnAdapterTap {
                     override fun onTap(pos: Int) {
@@ -93,7 +102,9 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 //                            it.docList[pos].isSelected = true
                         it.selected = pos
                         approvalCollapsDocAdapter.notifyDataSetChanged()
-                        approvalDocTypeFilterAdapter.notifyDataSetChanged()
+                        tab_layout_approval.getTabAt(pos)?.select()
+                        btn_expand_category.callOnClick()
+//                        approvalDocTypeFilterAdapter.notifyDataSetChanged()
 //                            it.prevSelected = pos
 //                            tab_layout_approval.getTabAt(pos)?.select()
 //                            approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
@@ -129,6 +140,10 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                 }
 
                 override fun onTabSelected(tab: TabLayout.Tab?) {
+                    tab?.let { _it ->
+                        it.selected = _it.position
+                        approvalCollapsDocAdapter.notifyDataSetChanged()
+                    }
 //                    approvalDocumentAdapter.filter.filter(tab?.text)
                 }
 
@@ -136,16 +151,21 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
             rv_approval.adapter = approvalDocumentAdapter
             rv_approval.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-            rv_approval.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
+            rv_approval.addItemDecoration(
+                DividerItemDecoration(
+                    ContextCompat.getDrawable(
+                        this@ApprovalTabActivity,
+                        R.drawable.divider
+                    )
+                )
+            )
 
             rv_collapsing_category_list.adapter = approvalCollapsDocAdapter
             rv_collapsing_category_list.layoutManager =
                 LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             rv_collapsing_category_list.addItemDecoration(
                 DividerItemDecoration(
-                    resources.getDrawable(
-                        R.drawable.divider
-                    )
+                    ContextCompat.getDrawable(this@ApprovalTabActivity, R.drawable.divider)
                 )
             )
 
@@ -215,6 +235,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                 }
 
             })
+//            animSlideDown.fillAfter = true
             cl_collapsing_doc_type.startAnimation(animSlideDown)
 
         } else {
@@ -234,6 +255,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                 }
 
             })
+//            animSlideDown.fillAfter = true
             cl_collapsing_doc_type.startAnimation(animSlideDown)
         }
 
@@ -276,10 +298,10 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                 cl_collapsing_doc_type.visibility
             )
 
-            main_toolbar.setOnClickListener {
-                finish()
-            }
+        }
 
+        main_toolbar.setOnClickListener {
+            finish()
         }
     }
 

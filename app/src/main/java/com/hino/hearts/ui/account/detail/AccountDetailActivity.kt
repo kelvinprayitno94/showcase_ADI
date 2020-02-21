@@ -10,6 +10,7 @@ import com.hino.hearts.adapter.ApprovalDocTypeFilterAdapter
 import com.hino.hearts.databinding.ActivityAccountDetailBinding
 import com.hino.hearts.model.ApprovalDocModel
 import com.hino.hearts.model.ApprovalDocumentModel
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.util.ConstantManager
 import kotlinx.android.synthetic.main.activity_account_detail.*
@@ -49,11 +50,14 @@ class AccountDetailActivity : BaseActivity<ActivityAccountDetailBinding>() {
     }
 
     private fun initAdapter() {
+
+        val data = intent.getParcelableExtra<AccountListResponse.AccListData>(ConstantManager.INTENT_ACC_DATA)
+
         var titles = resources.getStringArray(R.array.account_tab_title).toList()
         tabAdapter = AccountDetailTabAdapter(
             supportFragmentManager,
             titles,
-            intent.getParcelableExtra(ConstantManager.INTENT_ACC_DATA)
+            data
         )
 
         vp_account_detail_tab.adapter = tabAdapter
@@ -72,6 +76,8 @@ class AccountDetailActivity : BaseActivity<ActivityAccountDetailBinding>() {
                 )
             )
         }
+
+
 
         approvalDocTypeFilterAdapter = AccountTabAdapter(this, tabItem,
             object : AccountTabAdapter.OnAdapterTap {

@@ -9,6 +9,10 @@ class ConstantManager {
 
         // Intent
         const val INTENT_ACC_DATA = "acc_data"
+        const val EVENT_ID: String = "event_id"
+
+        const val EVENT_INFORMATION: String = "Event Information"
+        const val ATTENDEES: String = "Attendees"
     }
 
 }

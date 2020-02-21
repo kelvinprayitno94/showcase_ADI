@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.event.EventActivity"/>
+        <activity android:name=".ui.event.EventDetailActivity"/>
+        <activity android:name=".ui.event.EventActivity" />
         <activity android:name=".ui.pendingtransactions.PendingTransactionsActivity" />
         <activity android:name=".ui.notification.NotificationDetailActivity" />
         <activity android:name=".ui.notification.NotificationActivity" />
@@ -36,12 +37,12 @@
         <activity android:name=".ui.account.AccountListActivity" />
         <activity android:name=".ui.account.detail.AccountDetailActivity" />
         <activity android:name="com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity" />
-        <activity android:name=".ui.dragdrop.DragDropActivity"/>
         <activity android:name=".ui.account.detail.contact.contactDetail.ContactDetailActivity" />
         <activity android:name=".ui.account.detail.contact.newContact.NewContactActivity" />
         <activity android:name=".ui.account.detail.accDetail.editAccount.EditAccountDetailActivity" />
-        <activity android:name=".ui.splash.SplashActivity">
-        </activity>
+<!--        <activity android:name=".ui.splash.SplashActivity"></activity>-->
+        <activity android:name=".ui.opportunity.OpportunityActivity"/>
+        <activity android:name=".ui.opportunity.detail.OpportunityDetailActivity" />
     </application>
 
 </manifest>

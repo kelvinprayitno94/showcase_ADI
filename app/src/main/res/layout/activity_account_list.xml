@@ -27,7 +27,6 @@
             android:id="@+id/rv_account"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingLeft="@dimen/dimens_15dp"
             android:paddingRight="@dimen/dimens_15dp"
             android:paddingBottom="@dimen/dimens_15dp"
             app:layout_constraintBottom_toBottomOf="parent"

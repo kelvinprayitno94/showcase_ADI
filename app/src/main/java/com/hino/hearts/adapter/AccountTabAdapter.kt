@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.model.ApprovalDocModel
@@ -47,10 +48,10 @@ class AccountTabAdapter(
         }
 
         if (document.prevSelected == position){
-            holder.documentType.textColor = context.resources.getColor(R.color.red)
+            holder.documentType.textColor = ContextCompat.getColor(context, R.color.red)
             holder.redIndicator.visibility = View.VISIBLE
         }else{
-            holder.documentType.textColor = context.resources.getColor(R.color.black)
+            holder.documentType.textColor = ContextCompat.getColor(context, R.color.black)
             holder.redIndicator.visibility = View.INVISIBLE
         }
     }

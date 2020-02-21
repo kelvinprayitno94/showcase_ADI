@@ -11,6 +11,7 @@ import com.hino.hearts.R
 import com.hino.hearts.adapter.AccountContactAdapter
 import com.hino.hearts.databinding.ActivityAccountDetailBinding
 import com.hino.hearts.model.AccountContactModel
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.ui.account.detail.contact.contactDetail.ContactDetailActivity
 import com.hino.hearts.ui.account.detail.contact.newContact.NewContactActivity
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_account_detail_contact.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AccountContactFragment : BaseFragment<ActivityAccountDetailBinding>() {
+class AccountContactFragment(var data: List<AccountListResponse.ContactData>?) : BaseFragment<ActivityAccountDetailBinding>() {
 
     private val viewModel by viewModel<AccountContactViewModel>()
 
@@ -60,13 +61,7 @@ class AccountContactFragment : BaseFragment<ActivityAccountDetailBinding>() {
     private fun initAdapter() {
         context?.let {
 
-            val item : MutableList<AccountContactModel> = ArrayList()
-
-            for (i in 0 until 6){
-                item.add(AccountContactModel("Reinaldo", "08112233xxx"))
-            }
-
-            adapter = AccountContactAdapter(it, item, object : AccountContactAdapter.OnAdapterTap{
+            adapter = AccountContactAdapter(it, data, object : AccountContactAdapter.OnAdapterTap{
                 override fun onTap(pos: Int) {
                     viewModel.editContactTap()
                 }

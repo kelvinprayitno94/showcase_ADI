@@ -22,20 +22,20 @@ class AccountDetailTabAdapter(fragmentManager: FragmentManager, var titles: List
     override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> {
-                return AccountDetailFragment(data)
+                return AccountDetailFragment(data?.account)
             }
 
             1 -> {
-                return AccountContactFragment()
+                return AccountContactFragment(data?.contact)
 
             }
 
             2 -> {
-                return AccountOpportunityFragment()
+                return AccountOpportunityFragment(data?.opportunity)
             }
 
             else -> {
-                return AccountVehicleFragment()
+                return AccountVehicleFragment(data?.vehicle)
             }
         }
     }

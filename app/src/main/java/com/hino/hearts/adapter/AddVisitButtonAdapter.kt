@@ -15,10 +15,14 @@ import kotlinx.android.synthetic.main.item_add_visit_button.view.*
 /**
  * Created by Dihardja Software on 2020-02-18.
  */
-class AddVisitButtonAdapter  : RecyclerView.Adapter<AddVisitButtonAdapter.AddVisitButtonHolder>(){
+class AddVisitButtonAdapter(var onclick: OnClick) : RecyclerView.Adapter<AddVisitButtonAdapter.AddVisitButtonHolder>(){
 
     lateinit var context: Context
     private val mData = ArrayList<HomeMenu>()
+
+    interface OnClick{
+        fun onItemViewClicked(name: Int)
+    }
 
     fun setData(items: ArrayList<HomeMenu>) {
         mData.clear()
@@ -34,20 +38,18 @@ class AddVisitButtonAdapter  : RecyclerView.Adapter<AddVisitButtonAdapter.AddVis
     }
 
     override fun onBindViewHolder(holder: AddVisitButtonHolder, position: Int) {
+        val homeMenu = mData[position]
+
         holder.itemView.setOnClickListener { v: View? ->
-            when (mData[position].name) {
+            when (homeMenu.name) {
                 R.string.appointment -> {
-                    Toast.makeText(context, "Appointment", Toast.LENGTH_SHORT).show()
-                    (context as HomeActivity).hideAddVisitButton()
+                    onclick.onItemViewClicked(homeMenu.name)
                 }
                 R.string.task -> {
-                    Toast.makeText(context, "Task", Toast.LENGTH_SHORT).show()
-                    (context as HomeActivity).hideAddVisitButton()
+                    onclick.onItemViewClicked(homeMenu.name)
                 }
                 R.string.call_log -> {
-                    Toast.makeText(context, "Call Log", Toast.LENGTH_SHORT).show()
-                    (context as HomeActivity).hideAddVisitButton()
-
+                    onclick.onItemViewClicked(homeMenu.name)
                 }
             }
         }

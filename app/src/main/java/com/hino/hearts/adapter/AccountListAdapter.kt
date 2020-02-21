@@ -19,7 +19,7 @@ class AccountListAdapter(
     RecyclerView.Adapter<AccountListAdapter.Holder>(){
 
     interface OnAdapterTap {
-        fun onTap(pos: Int)
+        fun onTap(item: AccountListResponse.AccListData)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -39,12 +39,12 @@ class AccountListAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val doc = document[position]
 
-        holder.accountName.text = doc.accountName
+        holder.accountName.text = doc.account?.accountName
 
-        holder.documentType.text = doc.address
+        holder.documentType.text = doc.account?.address
 
         holder.root.setOnClickListener {
-            listener.onTap(position)
+            listener.onTap(doc)
         }
     }
 
