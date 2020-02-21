@@ -157,6 +157,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
         setHomeMenu()
+        swipe_refresh_layout.setColorSchemeResources(R.color.red)
     }
 
     private fun setHomeMenu() {
