@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.event.EventDetailActivity"/>
+        <activity android:name=".ui.event.EventDetailActivity" />
         <activity android:name=".ui.event.EventActivity" />
         <activity android:name=".ui.pendingtransactions.PendingTransactionsActivity" />
         <activity android:name=".ui.notification.NotificationDetailActivity" />
