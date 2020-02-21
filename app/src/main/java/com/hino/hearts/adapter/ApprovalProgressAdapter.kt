@@ -42,9 +42,9 @@ class ApprovalProgressAdapter(var context: Context, var data: ApprovalListRespon
         var item = data.approvalProgress?.get(position)
         item?.run {
             if (approved!!) {
-                holder.status.setImageResource(R.drawable.ic_bullet)
-            } else
                 holder.status.setImageResource(R.drawable.ic_checked_round)
+            } else
+                holder.status.setImageResource(R.drawable.ic_bullet)
 
             holder.approvalDept.text = name
             holder.approvalDate.text = InterfaceManager.getInstance().convertStringFromDate(

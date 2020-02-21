@@ -1,6 +1,7 @@
 package com.hino.hearts.ui.approval.detail
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -46,6 +47,10 @@ class ApprovalDetailActivity : BaseActivity<ActivityApprovalDetailBinding>() {
             rv_approval_progress.adapter = progressAdapter
             rv_approval_progress.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         })
+
+        viewModel.errorLiveData.observe(this, Observer {
+            Toast.makeText(this@ApprovalDetailActivity, it.meta.message, Toast.LENGTH_SHORT).show()
+        })
     }
 
     override fun initViewModel() {
@@ -57,6 +62,10 @@ class ApprovalDetailActivity : BaseActivity<ActivityApprovalDetailBinding>() {
     override fun initEvent() {
         main_toolbar.setOnClickListener {
             finish()
+        }
+
+        btn_approve_approval.setOnClickListener {
+            viewModel.approve("")
         }
 
     }

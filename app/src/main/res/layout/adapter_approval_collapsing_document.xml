@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_adapter_approval_collapsing_acc_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +16,7 @@
         android:text="Pt dihardja"
         android:textColor="@color/black"
         android:textSize="18sp"
+        style="@style/BoldLabelText"
         app:layout_constraintStart_toEndOf="@+id/view_bot_indicator"
         app:layout_constraintTop_toTopOf="parent" />
 
