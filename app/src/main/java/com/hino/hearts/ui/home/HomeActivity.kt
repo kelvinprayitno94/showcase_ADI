@@ -168,8 +168,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
 
     fun hideAddVisitButton() {
         layout_add_visit_button.visibility = View.GONE
-
-        startActivity<AccountListActivity>()
     }
 
     fun showLoading() {
