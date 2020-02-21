@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.model.ApprovalDocModel
 import com.hino.hearts.model.ApprovalDocumentModel
+import com.hino.hearts.network.response.approve.ApprovalListResponse
 import org.jetbrains.anko.textColor
 
 class ApprovalCollapsingDocumentAdapter(
     var context: Context,
-    val document: ApprovalDocModel,
+    val document: List<ApprovalListResponse.ApprovalListData>,
+    var selected: Int,
     val listener: OnAdapterTap
 ) :
     RecyclerView.Adapter<ApprovalCollapsingDocumentAdapter.Holder>() {
@@ -34,19 +36,19 @@ class ApprovalCollapsingDocumentAdapter(
     }
 
     override fun getItemCount(): Int {
-        return document.docList.size
+        return document.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val doc = document.docList[position]
+        val doc = document[position]
 
-        holder.documentType.text = doc.documentType
+        holder.documentType.text = doc.type
 
         holder.root.setOnClickListener {
             listener.onTap(position)
         }
 
-        if (doc.isSelected){
+        if (position == selected){
             holder.documentType.textColor = context.resources.getColor(R.color.red)
             holder.redIndicator.visibility = View.VISIBLE
         }else{

@@ -6,13 +6,14 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.hino.hearts.R
 import com.hino.hearts.databinding.FragmentAccountDetailsBinding
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity
 import kotlinx.android.synthetic.main.fragment_account_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AccountDetailFragment : BaseFragment<FragmentAccountDetailsBinding>() {
+class AccountDetailFragment(var data: AccountListResponse.AccListData?) : BaseFragment<FragmentAccountDetailsBinding>() {
 
     private val viewModel by viewModel<AccountDetailViewModel>()
 
@@ -22,6 +23,8 @@ class AccountDetailFragment : BaseFragment<FragmentAccountDetailsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.viewModel = viewModel
 
         initObserver()
         initViewModel()
@@ -36,7 +39,7 @@ class AccountDetailFragment : BaseFragment<FragmentAccountDetailsBinding>() {
     }
 
     override fun initViewModel() {
-
+        viewModel.init(data)
     }
 
     override fun initEvent() {

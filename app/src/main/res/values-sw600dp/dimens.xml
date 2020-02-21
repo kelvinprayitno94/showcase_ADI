@@ -2,9 +2,11 @@
 <resources>
     <dimen name="dimens_1dp">2dp</dimen>
     <dimen name="dimens_2dp">4dp</dimen>
+    <dimen name="dimens_3dp">6dp</dimen>
     <dimen name="dimens_4dp">8dp</dimen>
     <dimen name="dimens_6dp">12dp</dimen>
     <dimen name="dimens_8dp">16dp</dimen>
+    <dimen name="dimens_10dp">20dp</dimen>
     <dimen name="dimens_11dp">22dp</dimen>
     <dimen name="dimens_12dp">24dp</dimen>
     <dimen name="dimens_14dp">28dp</dimen>
@@ -25,6 +27,7 @@
     <dimen name="dimens_55dp">110dp</dimen>
     <dimen name="dimens_70dp">140dp</dimen>
     <dimen name="dimens_72dp">144dp</dimen>
+    <dimen name="dimens_75dp">150dp</dimen>
     <dimen name="dimens_108dp">216dp</dimen>
     <dimen name="dimens_136dp">272dp</dimen>
     <dimen name="dimens_184dp">268dp</dimen>

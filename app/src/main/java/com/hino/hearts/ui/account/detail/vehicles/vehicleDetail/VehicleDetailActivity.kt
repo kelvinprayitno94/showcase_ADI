@@ -5,6 +5,7 @@ import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityEditAccountDetailBinding
 import com.hino.hearts.databinding.ActivityVehicleDetailBinding
 import com.hino.hearts.ui.BaseActivity
+import kotlinx.android.synthetic.main.main_toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VehicleDetailActivity : BaseActivity<ActivityVehicleDetailBinding>() {
@@ -32,7 +33,9 @@ class VehicleDetailActivity : BaseActivity<ActivityVehicleDetailBinding>() {
     }
 
     override fun initEvent() {
-
+        main_toolbar.setOnClickListener {
+            finish()
+        }
 
     }
 

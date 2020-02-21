@@ -69,6 +69,13 @@
         <item name="android:textColor">@color/grey4a</item>
     </style>
 
+    <style name="Title13spGrey62">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/text_13sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/grey62</item>
+    </style>
+
     <style name="DescGrey36">
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textSize">@dimen/text_16sp</item>
@@ -127,7 +134,7 @@
 
     <style name="PageTitle">
         <item name="fontFamily">@font/roboto_bold</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:padding">15dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/black</item>
@@ -151,8 +158,12 @@
         <item name="android:paddingBottom">0dp</item>
     </style>
 
-    <style name="BoldLabelText" parent="LabelText">
+    <style name="BoldLabelText" >
         <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/grey4a</item>
     </style>
 
     <style name="ButtonText14spRed">
@@ -195,5 +206,11 @@
 
     <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="paddingExcpTop" parent="@android:style/Widget.PopupMenu">
+        <item name="android:paddingLeft">@dimen/dimens_15dp</item>
+        <item name="android:paddingBottom">@dimen/dimens_15dp</item>
+        <item name="android:paddingRight">@dimen/dimens_15dp</item>
     </style>
 </resources>

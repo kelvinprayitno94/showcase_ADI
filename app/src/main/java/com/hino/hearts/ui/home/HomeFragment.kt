@@ -11,21 +11,24 @@ import com.hino.hearts.adapter.HomeMenuAdapter
 import com.hino.hearts.adapter.VisitTargetDialogAdapter
 import com.hino.hearts.databinding.FragmentHomeBinding
 import com.hino.hearts.ui.BaseFragment
+import com.hino.hearts.ui.account.AccountListActivity
+import com.hino.hearts.ui.approval.category.ApprovalTabActivity
+import com.hino.hearts.ui.dragdrop.DragDropActivity
 import com.hino.hearts.util.AlertManager
 import com.hino.hearts.util.InterfaceManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenuTap {
 
     companion object {
         private const val TWO = 2
         private const val SIX = 6
         private const val EIGHT = 8
-        private const val TEN = 10
         private const val ONE_HUNDRED = 100
     }
 
@@ -67,6 +70,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
         })
+
+        viewModel.approvalRequestCount.observe(viewLifecycleOwner, Observer {
+            when(it == "0"){
+                true-> {
+                    cv_home_approval_request.visibility = View.INVISIBLE
+                    cv_home_approval_request_done.visibility = View.VISIBLE
+                }
+                false->{
+                    cv_home_approval_request.visibility = View.VISIBLE
+                    cv_home_approval_request_done.visibility = View.INVISIBLE
+                }
+            }
+        })
     }
 
     override fun initViewModel() {
@@ -80,6 +96,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         cv_home_visit_done.onClick {
             showVisitTargetDialog()
+        }
+
+        cv_home_approval_request.onClick {
+            toast("Approval card clicked")
+        }
+
+        cv_home_approval_request_done.onClick {
+            toast("Approval card clicked")
         }
 
         swipe_refresh_layout.setOnRefreshListener {
@@ -109,20 +133,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setHomeMenu() {
-        adapter = HomeMenuAdapter()
+        adapter = HomeMenuAdapter(this)
         adapter.setData(viewModel.homeMenuList.value!!)
 
         var spanCount = 0
         when (context?.let { InterfaceManager.getInstance().isTablet(it) }) {
             true -> {
-                spanCount = when (viewModel.role.value == "Sales") {
-                    true -> {
-                        EIGHT
-                    }
-                    false -> {
-                        TEN
-                    }
-                }
+                spanCount = EIGHT
             }
             false -> {
                 spanCount = SIX
@@ -152,5 +169,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             },
             visitTargetDialogAdapter
         )
+    }
+
+    override fun onTap(menu: Int) {
+        when (menu) {
+            R.string.catalogues -> {
+
+            }
+            R.string.accounts -> {
+                startActivity<AccountListActivity>()
+            }
+            R.string.spare_part -> {
+
+            }
+            R.string.events -> {
+
+            }
+            R.string.approvals -> {
+                startActivity<ApprovalTabActivity>()
+            }
+            R.string.opportunities -> {
+                startActivity<DragDropActivity>()
+            }
+        }
     }
 }

@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.animation.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils.loadAnimation
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -16,14 +19,14 @@ import com.hino.hearts.adapter.ApprovalCollapsingDocumentAdapter
 import com.hino.hearts.adapter.ApprovalDocTypeFilterAdapter
 import com.hino.hearts.adapter.ApprovalDocumentAdapter
 import com.hino.hearts.databinding.ActivityApprovalTabBinding
-import com.hino.hearts.model.ApprovalDocumentModel
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.approval.detail.ApprovalDetailActivity
 import com.hino.hearts.ui.approval.filter.ApprovalFilterActivity
 import com.hino.hearts.util.DividerItemDecoration
+import com.hino.hearts.util.UserDefaults
 import kotlinx.android.synthetic.main.activity_approval_tab.*
+import kotlinx.android.synthetic.main.main_toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.math.abs
 
 
 class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
@@ -36,9 +39,13 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
     var open = true
 
+    var selectedIndex = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding(R.layout.activity_approval_tab)
+
+
 
         binding.viewModel = viewModel
 
@@ -49,65 +56,65 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
     }
 
     override fun initObserver() {
-        viewModel.documentLivedata.observe(this, Observer {
-            val document = resources.getStringArray(R.array.approval_tab_document).toList()
-            val branch = resources.getStringArray(R.array.approval_tab_branch).toList()
+        viewModel.approvalListLiveData.observe(this, Observer {
 
-            for (index in document.indices) {
-                it.docList.add(
-                    ApprovalDocumentModel(
-                        "PT. Dihardja",
-                        document[index],
-                        branch[index]
-                    )
-                )
-                val newTab = tab_layout_approval.newTab()
-                newTab.text = document[index]
-                tab_layout_approval.addTab(newTab)
-            }
+            var docList = it.listData
 
-            it.docList[0].isSelected = true
+            val roleid = UserDefaults.getInstance().getInt(UserDefaults.USER_ROLE_ID, 1)
 
             approvalDocumentAdapter =
-                ApprovalDocumentAdapter(this, it, object : ApprovalDocumentAdapter.OnAdapterTap {
-                    override fun onTap(pos: Int) {
-                        startActivity(
-                            Intent(
+                ApprovalDocumentAdapter(
+                    this,
+                    docList,
+                    roleid,
+                    object : ApprovalDocumentAdapter.OnAdapterTap {
+                        override fun onTap(pos: Int) {
+
+                            val intent = Intent(
                                 this@ApprovalTabActivity,
                                 ApprovalDetailActivity::class.java
                             )
-                        )
-                    }
 
-                })
+                            intent.putExtra("data", docList[pos])
+
+                            startActivity(intent)
+                        }
+
+                    })
 
             approvalCollapsDocAdapter = ApprovalCollapsingDocumentAdapter(
                 this,
-                it,
+                docList,
+                selectedIndex,
                 object : ApprovalCollapsingDocumentAdapter.OnAdapterTap {
                     override fun onTap(pos: Int) {
-                        if (!it.docList[pos].isSelected) {
-                            it.docList[it.prevSelected].isSelected = false
-                            it.docList[pos].isSelected = true
-                            approvalCollapsDocAdapter.notifyDataSetChanged()
-                            it.prevSelected = pos
+//                        if (!it.docList[pos].isSelected) {
+//                            it.docList[it.prevSelected].isSelected = false
+//                            it.docList[pos].isSelected = true
+                        it.selected = pos
+                        approvalCollapsDocAdapter.notifyDataSetChanged()
+                        approvalDocTypeFilterAdapter.notifyDataSetChanged()
+//                            it.prevSelected = pos
 //                            tab_layout_approval.getTabAt(pos)?.select()
-                            approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
-                        }
+//                            approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
+//                        }
                     }
 
                 })
 
             approvalDocTypeFilterAdapter = ApprovalDocTypeFilterAdapter(this, it,
+                selectedIndex,
                 object : ApprovalDocTypeFilterAdapter.OnAdapterTap {
                     override fun onTap(pos: Int) {
-                        if (!it.docList[pos].isSelected) {
-                            it.docList[it.prevSelected].isSelected = false
-                            it.docList[pos].isSelected = true
-                            approvalDocTypeFilterAdapter.notifyDataSetChanged()
-                            it.prevSelected = pos
-                            approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
-                        }
+//                        if (!it.docList[pos].isSelected) {
+//                            it.docList[it.prevSelected].isSelected = false
+//                            it.docList[pos].isSelected = true
+                        it.selected = pos
+                        approvalDocTypeFilterAdapter.notifyDataSetChanged()
+                        approvalCollapsDocAdapter.notifyDataSetChanged()
+//                            it.prevSelected = pos
+//                            approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
+//                        }
                     }
 
                 })
@@ -122,7 +129,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                 }
 
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-                    approvalDocumentAdapter.filter.filter(tab?.text)
+//                    approvalDocumentAdapter.filter.filter(tab?.text)
                 }
 
             })
@@ -151,7 +158,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
         })
 
         viewModel.showCateTextLiveData.observe(this, Observer {
-            //            animate(it)
+            animate(it)
         })
 
         viewModel.animateArrorLiveData.observe(this, Observer {
@@ -192,130 +199,15 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
         //show
         if (flag) {
-//            val animation: Animation = TranslateAnimation(
-//                0f, 0f, -100f, 0f
-//            )
-//            animation.duration = 250
-            val anim = AnimationUtils.loadAnimation(this, R.anim.slide_out_to_top)
-            anim.fillAfter = true
-            anim.setAnimationListener(object : Animation.AnimationListener {
+
+            val animSlideDown =
+                loadAnimation(applicationContext, R.anim.slide_in_from_top)
+            animSlideDown.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationRepeat(animation: Animation?) {
 
                 }
 
                 override fun onAnimationEnd(animation: Animation?) {
-//                    cl_collapsing_doc_type.visibility = View.INVISIBLE
-                    open = false
-                }
-
-                override fun onAnimationStart(animation: Animation?) {
-                }
-
-            })
-
-//            val animate = TranslateAnimation(
-//                0f,  // fromXDelta
-//                0f,  // toXDelta
-//                cl_collapsing_doc_type.height.toFloat(),  // fromYDelta
-//                0f
-//            ) // toYDelta
-//            animate.setAnimationListener(object : Animation.AnimationListener {
-//                override fun onAnimationRepeat(animation: Animation?) {
-//
-//                }
-//
-//                override fun onAnimationEnd(animation: Animation?) {
-////                    cl_collapsing_doc_type.visibility = View.INVISIBLE
-//                    open = true
-//                }
-//
-//                override fun onAnimationStart(animation: Animation?) {
-//                }
-//
-//            })
-//
-//            animate.repeatMode = Animation.REVERSE
-//            animate.duration = 500
-//            animate.fillAfter = true
-//            animate.interpolator = ReverseInterpolator()
-
-            cl_collapsing_doc_type.startAnimation(anim)
-
-//            cl_collapsing_doc_type.animate()
-//                .translationY(cl_collapsing_doc_type.height.toFloat())
-//                .alpha(1.0f)
-//                .setListener(object : Animator.AnimatorListener{
-//                    override fun onAnimationRepeat(animation: Animator?) {
-//                    }
-//
-//                    override fun onAnimationEnd(animation: Animator?) {
-//                        open = true
-//                    }
-//
-//                    override fun onAnimationCancel(animation: Animator?) {
-//                    }
-//
-//                    override fun onAnimationStart(animation: Animator?) {
-//                    }
-//
-//                })
-        } else {
-
-//            val animate = TranslateAnimation(
-//                0f,  // fromXDelta
-//                0f,  // toXDelta
-//                0f,  // fromYDelta
-//                cl_collapsing_doc_type.height.toFloat()
-//            ) // toYDelta
-//            animate.setAnimationListener(object : Animation.AnimationListener {
-//                override fun onAnimationRepeat(animation: Animation?) {
-//
-//                }
-//
-//                override fun onAnimationEnd(animation: Animation?) {
-////                    cl_collapsing_doc_type.visibility = View.INVISIBLE
-//                    open = false
-//                }
-//
-//                override fun onAnimationStart(animation: Animation?) {
-//                }
-//
-//            })
-//
-//            animate.duration = 500
-//            animate.interpolator = ReverseInterpolator()
-//            animate.fillAfter = true
-//            animate.repeatMode = Animation.REVERSE
-
-//            cl_collapsing_doc_type.startAnimation(animate)
-
-//            val animation: Animation = TranslateAnimation(
-//                0f, 0f, 0f, -100f
-//            )
-//            animation.duration = 250
-//            animation.setAnimationListener(object : Animation.AnimationListener {
-//                override fun onAnimationRepeat(animation: Animation?) {
-//
-//                }
-//
-//                override fun onAnimationEnd(animation: Animation?) {
-//                    cl_collapsing_doc_type.visibility = View.VISIBLE
-//                }
-//
-//                override fun onAnimationStart(animation: Animation?) {
-//                }
-//
-//            })
-
-            val anim = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_top)
-            anim.fillAfter = true
-            anim.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationRepeat(animation: Animation?) {
-
-                }
-
-                override fun onAnimationEnd(animation: Animation?) {
-//                    cl_collapsing_doc_type.visibility = View.VISIBLE
                     open = true
                 }
 
@@ -323,54 +215,32 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                 }
 
             })
-            cl_collapsing_doc_type.startAnimation(anim)
-//
-//            cl_collapsing_doc_type.animate()
-//                .translationY(0f)
-//                .alpha(0.0f)
-//                .setListener(object : Animator.AnimatorListener{
-//                    override fun onAnimationRepeat(animation: Animator?) {
-//                    }
-//
-//                    override fun onAnimationEnd(animation: Animator?) {
-//                        open = false
-//                    }
-//
-//                    override fun onAnimationCancel(animation: Animator?) {
-//                    }
-//
-//                    override fun onAnimationStart(animation: Animator?) {
-//                    }
-//
-//                })
+            cl_collapsing_doc_type.startAnimation(animSlideDown)
+
+        } else {
+
+            val animSlideDown =
+                loadAnimation(applicationContext, R.anim.slide_out_to_top)
+            animSlideDown.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {
+
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    open = false
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                }
+
+            })
+            cl_collapsing_doc_type.startAnimation(animSlideDown)
         }
 
-
-//        cl_collapsing_doc_type.animate()
-//            .translationY(flag)
-//            .setDuration(250)
-//            .setListener(object : Animator.AnimatorListener {
-//                override fun onAnimationRepeat(animation: Animator?) {
-//
-//                }
-//
-//                override fun onAnimationEnd(animation: Animator?) {
-//
-//                }
-//
-//                override fun onAnimationCancel(animation: Animator?) {
-//
-//                }
-//
-//                override fun onAnimationStart(animation: Animator?) {
-//
-//                }
-//
-//            })
     }
 
     override fun initViewModel() {
-        viewModel.getTabTitle()
+        viewModel.getApproval()
 
     }
 
@@ -398,15 +268,17 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
     override fun initEvent() {
 
+        setSupportActionBar(main_toolbar)
+
         btn_expand_category.setOnClickListener {
 
             viewModel.showDocTypeSlidingView(
                 cl_collapsing_doc_type.visibility
             )
 
-
-//            animate(open)
-
+            main_toolbar.setOnClickListener {
+                finish()
+            }
 
         }
     }
@@ -415,11 +287,4 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
 
     }
-}
-
-class ReverseInterpolator : Interpolator {
-    override fun getInterpolation(input: Float): Float {
-        return abs(input - 1f)
-    }
-
 }

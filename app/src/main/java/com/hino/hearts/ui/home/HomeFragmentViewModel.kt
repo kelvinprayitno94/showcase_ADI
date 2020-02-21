@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import com.hino.hearts.R
 import com.hino.hearts.model.HomeMenu
 import com.hino.hearts.model.VisitTarget
+import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.util.InterfaceManager
 import com.hino.hearts.util.UserDefaults
-import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
@@ -66,7 +66,7 @@ class HomeFragmentViewModel : ViewModel() {
                 leftInfo.value = "247"
                 rightInfo.value = "Rp3.254.120"
 
-                approvalRequestCount.value = "24"
+                approvalRequestCount.value = "1"
             }
         }
 
@@ -111,11 +111,8 @@ class HomeFragmentViewModel : ViewModel() {
         homeMenuList.add(HomeMenu(R.drawable.ic_accounts, R.string.accounts))
         homeMenuList.add(HomeMenu(R.drawable.ic_spareparts, R.string.spare_part))
         homeMenuList.add(HomeMenu(R.drawable.ic_events, R.string.events))
-        when (role.value != "Sales") {
-            true -> {
-                homeMenuList.add(HomeMenu(R.drawable.ic_approval, R.string.approvals))
-            }
-        }
+        homeMenuList.add(HomeMenu(R.drawable.ic_approval, R.string.approvals))
+        homeMenuList.add(HomeMenu(R.drawable.ic_opportunity, R.string.opportunities))
 
         return homeMenuList
     }

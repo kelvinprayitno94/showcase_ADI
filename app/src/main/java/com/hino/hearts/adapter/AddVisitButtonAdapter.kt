@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.hino.hearts.R
 import com.hino.hearts.model.HomeMenu
 import com.hino.hearts.ui.home.HomeActivity
-import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.item_add_visit_button.view.*
 
 /**
@@ -48,6 +47,7 @@ class AddVisitButtonAdapter  : RecyclerView.Adapter<AddVisitButtonAdapter.AddVis
                 R.string.call_log -> {
                     Toast.makeText(context, "Call Log", Toast.LENGTH_SHORT).show()
                     (context as HomeActivity).hideAddVisitButton()
+
                 }
             }
         }

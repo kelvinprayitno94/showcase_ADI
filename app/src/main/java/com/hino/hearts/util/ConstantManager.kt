@@ -6,6 +6,9 @@ package com.hino.hearts.util
 class ConstantManager {
     companion object {
         const val PAGE_COUNT: Int = 1
+
+        // Intent
+        const val INTENT_ACC_DATA = "acc_data"
     }
 
 }

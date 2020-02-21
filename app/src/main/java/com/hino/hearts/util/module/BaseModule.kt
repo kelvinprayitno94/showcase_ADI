@@ -7,13 +7,19 @@ import com.hino.hearts.ui.account.detail.contact.AccountContactViewModel
 import com.hino.hearts.ui.account.detail.opportunity.AccountOpportunityViewModel
 import com.hino.hearts.ui.account.detail.vehicles.AccountVehiclesViewModel
 import com.hino.hearts.ui.approval.category.ApprovalTabViewModel
+import com.hino.hearts.ui.approval.detail.ApprovalDetailViewModel
+import com.hino.hearts.ui.approval.filter.ApprovalFilterViewModel
+import com.hino.hearts.ui.event.EventViewModel
 import com.hino.hearts.ui.home.HomeFragmentViewModel
 import com.hino.hearts.ui.home.HomeViewModel
 import com.hino.hearts.ui.login.LoginViewModel
 import com.hino.hearts.ui.notification.NotificationDetailViewModel
 import com.hino.hearts.ui.notification.NotificationViewModel
+import com.hino.hearts.ui.onboarding.OnboardingViewModel
+import com.hino.hearts.ui.onboarding.first.OnboardingFirstViewModel
+import com.hino.hearts.ui.onboarding.second.OnboardingSecondViewModel
+import com.hino.hearts.ui.onboarding.third.OnboardingThirdViewModel
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsViewModel
-import com.hino.hearts.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -21,6 +27,11 @@ import org.koin.dsl.module
  * Created by Dihardja Software on 2020-02-10.
  */
 val moduleViewModel = module {
+    viewModel { OnboardingViewModel() }
+    viewModel { OnboardingFirstViewModel() }
+    viewModel { OnboardingSecondViewModel() }
+    viewModel { OnboardingThirdViewModel() }
+
     viewModel { LoginViewModel() }
     viewModel { ApprovalTabViewModel() }
     viewModel { AccountContactViewModel() }
@@ -29,10 +40,14 @@ val moduleViewModel = module {
     viewModel { AccountVehiclesViewModel() }
     viewModel { VehicleDetailViewModel() }
     viewModel { AccountOpportunityViewModel() }
-    viewModel { SplashViewModel() }
+//    viewModel { SplashViewModel() }
     viewModel { HomeViewModel() }
     viewModel { HomeFragmentViewModel() }
     viewModel { NotificationViewModel() }
     viewModel { NotificationDetailViewModel() }
     viewModel { PendingTransactionsViewModel() }
+
+    viewModel { EventViewModel() }
+    viewModel { ApprovalFilterViewModel() }
+    viewModel { ApprovalDetailViewModel() }
 }

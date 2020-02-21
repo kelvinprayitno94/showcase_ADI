@@ -14,9 +14,9 @@ abstract class BaseActivity<U : ViewDataBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(main_toolbar)
-        actionBar?.setHomeAsUpIndicator(R.drawable.back)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+
+//        actionBar?.setHomeAsUpIndicator(R.drawable.back)
+//        actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     fun setBinding(layoutResID: Int) {

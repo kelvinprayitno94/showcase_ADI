@@ -29,12 +29,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="@dimen/dimens_15dp"
+            android:paddingRight="@dimen/dimens_15dp"
+            android:id="@+id/rv_tab_layout_acc_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_name"/>
+
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            style="@style/paddingExcpTop"
             android:id="@+id/vp_account_detail_tab"
+            android:layout_marginTop="@dimen/dimens_10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/account_name"
+            app:layout_constraintTop_toBottomOf="@+id/rv_tab_layout_acc_detail"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.tabs.TabLayout
@@ -43,9 +55,10 @@
                 android:layout_height="wrap_content"
                 app:tabGravity="center"
                 app:tabIndicatorColor="@color/red"
-                app:tabMode="scrollable"
+                app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/red"
-                app:tabTextColor="@color/black" />
+                app:tabTextColor="@color/black"
+                android:visibility="gone"/>
 
         </androidx.viewpager.widget.ViewPager>
 

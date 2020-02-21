@@ -15,10 +15,14 @@ import kotlinx.android.synthetic.main.item_home_menu.view.*
 /**
  * Created by Dihardja Software on 2020-02-13.
  */
-class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
+class HomeMenuAdapter(var listener: OnMenuTap) : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
 
     lateinit var context: Context
     private val mData = ArrayList<HomeMenu>()
+
+    interface OnMenuTap{
+        fun onTap(menu: Int)
+    }
 
     fun setData(items: ArrayList<HomeMenu>) {
         mData.clear()
@@ -35,6 +39,9 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.itemView.setOnClickListener { v: View? ->
+
+            listener.onTap(mData[position].name)
+
             when (mData[position].name) {
                 R.string.catalogues -> {
                     Toast.makeText(context, "Catalogues item clicked", Toast.LENGTH_SHORT).show()
@@ -50,6 +57,9 @@ class HomeMenuAdapter : RecyclerView.Adapter<HomeMenuAdapter.HomeViewHolder>(){
                 }
                 R.string.approvals -> {
                     Toast.makeText(context, "Approvals item clicked", Toast.LENGTH_SHORT).show()
+                }
+                R.string.opportunities -> {
+                    Toast.makeText(context, "Opportunities item clicked", Toast.LENGTH_SHORT).show()
                 }
             }
         }

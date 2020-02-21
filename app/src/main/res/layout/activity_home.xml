@@ -118,7 +118,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_arrow_right"
+                                        android:src="@drawable/ic_chevron_right"
                                         tools:ignore="contentDescription" />
 
                                 </FrameLayout>
@@ -171,7 +171,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_arrow_right"
+                                        android:src="@drawable/ic_chevron_right"
                                         tools:ignore="contentDescription" />
 
                                 </FrameLayout>
@@ -224,7 +224,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:background="?android:attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_arrow_right"
+                                        android:src="@drawable/ic_chevron_right"
                                         tools:ignore="contentDescription" />
 
                                 </FrameLayout>

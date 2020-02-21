@@ -4,22 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
-import com.hino.hearts.model.AccountListModel
-import com.hino.hearts.model.ApprovalDocModel
-import com.hino.hearts.model.ApprovalDocumentModel
-import java.util.*
-import kotlin.collections.ArrayList
+import com.hino.hearts.network.response.account.AccountListResponse
 
 class AccountListAdapter(
     var context: Context,
-    val document: MutableList<AccountListModel>,
+    val document: List<AccountListResponse.AccListData>,
     val listener: OnAdapterTap
 ) :
     RecyclerView.Adapter<AccountListAdapter.Holder>(){
@@ -45,11 +39,9 @@ class AccountListAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val doc = document[position]
 
-        holder.accountName.text = doc.companyName
+        holder.accountName.text = doc.accountName
 
         holder.documentType.text = doc.address
-
-        holder.righArrow.rotation = 90f
 
         holder.root.setOnClickListener {
             listener.onTap(position)

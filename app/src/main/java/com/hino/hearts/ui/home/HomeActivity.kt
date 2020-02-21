@@ -17,6 +17,7 @@ import com.hino.hearts.R
 import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
+import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.notification.NotificationActivity
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsActivity
@@ -158,6 +159,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     fun hideAddVisitButton() {
         layout_add_visit_button.visibility = View.GONE
+
+        startActivity<AccountListActivity>()
     }
 
     private fun initLayout() {
@@ -197,7 +200,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
         Glide.with(this)
             .load(viewModel.imagePath.value)
-            .into(iv_add_visit_progress)
+            .into(iv_navigation_drawer)
 
         tv_header_view_name.text = viewModel.name.value
         tv_header_view_role.text = viewModel.role.value
