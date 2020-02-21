@@ -14,10 +14,6 @@ import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailVie
 import com.hino.hearts.ui.approval.category.ApprovalTabViewModel
 import com.hino.hearts.ui.approval.detail.ApprovalDetailViewModel
 import com.hino.hearts.ui.approval.filter.ApprovalFilterViewModel
-import com.hino.hearts.ui.event.EventDetailViewModel
-import com.hino.hearts.ui.event.EventViewModel
-import com.hino.hearts.ui.event.attendees.AttendeesViewModel
-import com.hino.hearts.ui.event.eventinformation.EventInformationViewModel
 import com.hino.hearts.ui.home.HomeFragmentViewModel
 import com.hino.hearts.ui.home.HomeViewModel
 import com.hino.hearts.ui.login.LoginViewModel
