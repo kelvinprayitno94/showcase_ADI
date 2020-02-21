@@ -13,6 +13,7 @@ import com.hino.hearts.databinding.FragmentHomeBinding
 import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.util.AlertManager
 import com.hino.hearts.util.InterfaceManager
+import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.toast
@@ -40,6 +41,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         initViewModel()
         initEvent()
         initLayout()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onGetHomeData("custom")
     }
 
     override fun getLayoutId(): Int {
@@ -79,6 +85,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
         })
+
+        viewModel.showLoading.observe(viewLifecycleOwner, Observer {
+            (activity as HomeActivity).showLoading()
+        })
+
+        viewModel.homeSuccess.observe(viewLifecycleOwner, Observer {
+            swipe_refresh_layout.isRefreshing = false
+            (activity as HomeActivity).hideLoading()
+        })
+
+        viewModel.errorBody.observe(viewLifecycleOwner, Observer {
+            swipe_refresh_layout.isRefreshing = false
+            (activity as HomeActivity).hideLoading()
+
+            NetworkManager.getInstance().handleResponse(context, it)
+        })
+
+        viewModel.responseError.observe(viewLifecycleOwner, Observer {
+            swipe_refresh_layout.isRefreshing = false
+            (activity as HomeActivity).hideLoading()
+
+            NetworkManager.getInstance().handleErrorResponse(context, it)
+        })
     }
 
     override fun initViewModel() {
@@ -103,9 +132,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
         swipe_refresh_layout.setOnRefreshListener {
-            toast("Swipe refresh activated")
+            swipe_refresh_layout.isRefreshing = true
 
-            swipe_refresh_layout.isRefreshing = false
+            viewModel.onGetHomeData("refresh")
         }
     }
 
@@ -116,12 +145,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_sales)
 
                 cv_home_approval_request.visibility = View.GONE
+                cv_home_approval_request_done.visibility = View.GONE
             }
             false -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_nonsales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_nonsales)
 
-                cv_home_approval_request.visibility = View.VISIBLE
+                cv_home_visit.visibility = View.GONE
+                cv_home_visit_done.visibility = View.GONE
             }
         }
 

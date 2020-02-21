@@ -40,12 +40,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         initEvent()
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        Log.d("lalala", viewModel.showLoading.value.toString())
-    }
-
     override fun initObserver() {
         viewModel.loginSuccess.observe(this, Observer {
             layout_custom_loading.visibility = View.GONE
@@ -145,8 +139,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         when (BuildConfig.FLAVOR == "staging") {
             true -> {
-                edittext_employee_id.setText("test12345")
-                edittext_password.setText("password")
+//                edittext_employee_id.setText("test12345")
+//                edittext_password.setText("password")
+
+                edittext_employee_id.setText("sales")
+                edittext_password.setText("sales")
             }
         }
     }

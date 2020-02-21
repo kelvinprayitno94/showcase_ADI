@@ -12,6 +12,7 @@
     <color name="colorOnSecondary">@color/white</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="white80transparency">#CCFFFFFF</color>
     <color name="black">#000000</color>
     <color name="black70transparency">#B3000000</color>
     <color name="grey">#CCCCCC</color>

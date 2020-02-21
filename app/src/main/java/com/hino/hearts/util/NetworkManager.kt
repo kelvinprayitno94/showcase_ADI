@@ -58,7 +58,7 @@ class NetworkManager {
         return result
     }
 
-    fun handleResponse(context: Context, responseBody: ResponseBody) {
+    fun handleResponse(context: Context?, responseBody: ResponseBody) {
         var errorString = ""
         try {
             errorString = responseBody.string()

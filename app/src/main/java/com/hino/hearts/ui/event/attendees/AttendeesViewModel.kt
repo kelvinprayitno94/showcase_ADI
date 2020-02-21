@@ -17,18 +17,11 @@ class AttendeesViewModel : ViewModel(){
     private fun initAttendees(): ArrayList<Attendees> {
         val attendeesList: ArrayList<Attendees> = ArrayList()
 
-        attendeesList.add(Attendees(1, "PT Dihardja Software", "Abdul Rahmat", true, false))
-        attendeesList.add(Attendees(2, "PT Dihardja Software", "Abdul Salim", true, false))
-        attendeesList.add(Attendees(3, "PT Dihardja Software", "Abdul Bena", true, true))
-        attendeesList.add(Attendees(4, "PT Dihardja Software", "Abdul Siji", false, false))
-        attendeesList.add(Attendees(5, "PT Dihardja Software", "Abdul Loro", false, false))
-        attendeesList.add(Attendees(6, "PT Dihardja Software", "Abdul Loro", false, false))
-        attendeesList.add(Attendees(7, "PT Dihardja Software", "Abdul Loro", false, false))
-        attendeesList.add(Attendees(8, "PT Dihardja Software", "Abdul Loro", false, false))
-        attendeesList.add(Attendees(9, "PT Dihardja Software", "Abdul Loro", false, false))
-        attendeesList.add(Attendees(10, "PT Dihardja Software", "Abdul Loro", false, false))
-        attendeesList.add(Attendees(11, "PT Dihardja Software", "Abdul Loro", false, false))
-        attendeesList.add(Attendees(12, "PT Dihardja Software", "Abdul Loro", false, false))
+        attendeesList.add(Attendees(1, "PT Dihardja Software", "Sales: Abdul", true, false))
+        attendeesList.add(Attendees(2, "PT Bumi Indah Indonesia", "Gabriel Salazar", true, false))
+        attendeesList.add(Attendees(3, "PT Besi Baja Indonesia", "Cecelia Watson", true, true))
+        attendeesList.add(Attendees(4, "PT Citra Guna Mandiri", "Marian Hunt", false, false))
+        attendeesList.add(Attendees(5, "PT Dihardja Software", "Nell Townsend", false, false))
 
         return attendeesList
     }

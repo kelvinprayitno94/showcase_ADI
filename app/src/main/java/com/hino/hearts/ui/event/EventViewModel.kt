@@ -26,7 +26,7 @@ class EventViewModel : ViewModel() {
         eventList.add(
             Event(
                 1,
-                "Event Title",
+                "HINO Conference  2020",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
                 "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
@@ -35,7 +35,7 @@ class EventViewModel : ViewModel() {
         eventList.add(
             Event(
                 2,
-                "Event Title",
+                "BOD Meet Up",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
                 "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
@@ -44,7 +44,7 @@ class EventViewModel : ViewModel() {
         eventList.add(
             Event(
                 3,
-                "Event Title",
+                "HINO FJ 120 J Grand Launching",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
                 "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
@@ -53,7 +53,7 @@ class EventViewModel : ViewModel() {
         eventList.add(
             Event(
                 4,
-                "Event Title",
+                "Event Info",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
                 "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
@@ -62,7 +62,7 @@ class EventViewModel : ViewModel() {
         eventList.add(
             Event(
                 5,
-                "Event Title",
+                "Event Info",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
                 "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
