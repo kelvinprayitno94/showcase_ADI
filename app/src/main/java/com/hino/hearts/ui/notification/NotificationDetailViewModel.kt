@@ -22,9 +22,9 @@ class NotificationDetailViewModel : ViewModel() {
 
         val notification = Notification(
             1,
-            "Notification Title",
+            "Hino Meet Up",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-            date
+            "07 Feb 2020"
         )
 
         return notification

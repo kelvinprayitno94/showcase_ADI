@@ -17,7 +17,7 @@ import org.jetbrains.anko.startActivity
 /**
  * Created by Dihardja Software on 2020-02-19.
  */
-class EventAdapter : RecyclerView.Adapter<EventAdapter.EventHolder>(){
+class EventAdapter : RecyclerView.Adapter<EventAdapter.EventHolder>() {
 
     lateinit var context: Context
     private val mData = ArrayList<Event>()
@@ -49,12 +49,15 @@ class EventAdapter : RecyclerView.Adapter<EventAdapter.EventHolder>(){
         return mData.size
     }
 
-    inner class EventHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class EventHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(event: Event) {
-            with(itemView){
+            with(itemView) {
                 tv_item_event_title.text = event.title
                 tv_item_event_desc.text = event.date
-                Glide.with(context).load(BuildConfig.IMAGE_URL+event.imgUrl).placeholder(R.drawable.header).into(iv_item_event)
+                Glide.with(context)
+//                    .load(BuildConfig.IMAGE_URL+event.imgUrl)
+                    .load(R.drawable.home_image)
+                    .placeholder(R.drawable.header).into(iv_item_event)
             }
         }
     }
