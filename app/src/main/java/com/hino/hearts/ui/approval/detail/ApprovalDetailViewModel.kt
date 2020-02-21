@@ -28,7 +28,7 @@ class ApprovalDetailViewModel : ViewModel() {
     var iData : ApprovalListResponse.ApprovalListData? = null
 
     fun checkUser(roleId: Int){
-        showActionLiveData.value = roleId > 1
+        showActionLiveData.value = roleId != 7
     }
 
     fun init(iData : ApprovalListResponse.ApprovalListData?){
