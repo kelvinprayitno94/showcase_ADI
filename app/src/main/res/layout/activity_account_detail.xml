@@ -37,7 +37,8 @@
             android:paddingRight="@dimen/dimens_15dp"
             android:id="@+id/rv_tab_layout_acc_detail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/account_name"/>
+            app:layout_constraintTop_toBottomOf="@+id/account_name"
+            android:visibility="gone"/>
 
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
@@ -49,16 +50,17 @@
             app:layout_constraintTop_toBottomOf="@+id/rv_tab_layout_acc_detail"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <com.google.android.material.tabs.TabLayout
+            <com.hino.hearts.util.ui.CustomTabLayout
                 android:id="@+id/tab_layout_account_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/TabLayout"
                 app:tabGravity="center"
                 app:tabIndicatorColor="@color/red"
                 app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/red"
                 app:tabTextColor="@color/black"
-                android:visibility="gone"/>
+                />
 
         </androidx.viewpager.widget.ViewPager>
 
