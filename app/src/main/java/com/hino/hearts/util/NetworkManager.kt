@@ -66,7 +66,16 @@ class NetworkManager {
                 errorString,
                 ErrorResponse::class.java
             )
-            Toast.makeText(context, errorResponse.meta.message, Toast.LENGTH_SHORT).show()
+
+            when(errorResponse.meta.message == "jwt expired"){
+                true->{
+                    Toast.makeText(context, context?.getString(R.string.token_expired), Toast.LENGTH_SHORT).show()
+                }
+                false->{
+                    Toast.makeText(context, errorResponse.meta.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+
         } catch (e: Exception) {
             e.printStackTrace()
             if (responseBody.contentType()!!.type == "text" && responseBody.contentType()!!.subtype == "plain") {

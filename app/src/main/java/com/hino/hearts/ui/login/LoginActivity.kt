@@ -60,22 +60,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         })
 
         viewModel.token.observe(this, Observer {
-            initBottomsheet()
-//            when (it != null) {
-//                true -> {
-//                    redirect("home")
-//                }
-//                false -> {
-//                    when (isFirstTime()) {
-//                        true -> {
-//                            redirect("onboarding")
-//                        }
-//                        false -> {
-//                            initBottomsheet()
-//                        }
-//                    }
-//                }
-//            }
+            when (it != null) {
+                true -> {
+                    redirect("home")
+                }
+                false -> {
+                    when (isFirstTime()) {
+                        true -> {
+                            redirect("onboarding")
+                        }
+                        false -> {
+                            initBottomsheet()
+                        }
+                    }
+                }
+            }
         })
     }
 
@@ -96,7 +95,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                             )
                         }
                         false -> {
-                            toast(getString(R.string.no_internet))
+                            toast(getString(R.string.no_internet)).show()
                         }
                     }
                 }
@@ -141,11 +140,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         when (BuildConfig.FLAVOR == "staging") {
             true -> {
-//                edittext_employee_id.setText("test12345")
-//                edittext_password.setText("password")
+                edittext_employee_id.setText("test12345")
+                edittext_password.setText("password")
 
-                edittext_employee_id.setText("sales")
-                edittext_password.setText("sales")
+//                edittext_employee_id.setText("sales")
+//                edittext_password.setText("sales")
             }
         }
     }

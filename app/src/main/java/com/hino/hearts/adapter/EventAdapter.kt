@@ -56,7 +56,7 @@ class EventAdapter : RecyclerView.Adapter<EventAdapter.EventHolder>() {
                 tv_item_event_desc.text = event.date
                 Glide.with(context)
 //                    .load(BuildConfig.IMAGE_URL+event.imgUrl)
-                    .load(R.drawable.home_image)
+                    .load(R.drawable.event_placeholder)
                     .placeholder(R.drawable.header).into(iv_item_event)
             }
         }
