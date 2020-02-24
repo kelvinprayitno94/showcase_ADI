@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.hino.hearts.network.HinoService
 import com.hino.hearts.network.response.ErrorResponse
 import com.hino.hearts.network.response.approve.ApprovalListResponse
-import com.hino.hearts.network.service.account.AccountService
 import com.hino.hearts.network.service.approval.ApprovalService
 import com.hino.hearts.util.InterfaceManager
 import kotlinx.coroutines.CoroutineScope
@@ -25,13 +24,16 @@ class ApprovalDetailViewModel : ViewModel() {
 
     val errorLiveData = MutableLiveData<ErrorResponse>()
 
-    var iData : ApprovalListResponse.ApprovalListData? = null
+    var iData: ApprovalListResponse.ApprovalListData? = null
 
-    fun checkUser(roleId: Int){
-        showActionLiveData.value = roleId != 7
+    var roleID = 0
+
+    fun checkUser(roleId: Int) {
+        roleID = roleId
+        showActionLiveData.value = roleID != 7
     }
 
-    fun init(iData : ApprovalListResponse.ApprovalListData?){
+    fun init(iData: ApprovalListResponse.ApprovalListData?) {
         this.iData = iData
         iDataLiveData.value = this.iData
         discountLiveData.value = "Rp ${iData?.discount}"
@@ -40,16 +42,19 @@ class ApprovalDetailViewModel : ViewModel() {
         val date = iData?.approval?.soDate
 
 
-        soDateLiveData.value = InterfaceManager.getInstance().convertStringFromDate(InterfaceManager.getInstance().convertDateFromString(date))
+        soDateLiveData.value = InterfaceManager.getInstance()
+            .convertStringFromDate(InterfaceManager.getInstance().convertDateFromString(date))
     }
 
-    fun approve(){
-        CoroutineScope(Dispatchers.IO).launch  {
+    fun approve() {
+        CoroutineScope(Dispatchers.IO).launch {
 
             try {
 
+                val index= if (roleID == 1) { 1 } else if (roleID ==    )
+
                 val call =
-                    HinoService.create(ApprovalService::class.java).Approve(iData?.id.toString(), 0)
+                    HinoService.create(ApprovalService::class.java).Approve(iData?.id.toString(), index)
 
                 val response = call.await()
 
@@ -57,9 +62,9 @@ class ApprovalDetailViewModel : ViewModel() {
                     errorLiveData.postValue(response)
                 }
 
-            } catch (t: Throwable){
+            } catch (t: Throwable) {
                 t.printStackTrace()
-                when(t){
+                when (t) {
                     is IOException -> {
 
                     }
