@@ -44,7 +44,7 @@ class ApprovalDocumentAdapter(
 
         holder.documentType.text = doc.type
 
-        if (roleID > 1) {
+        if (roleID != 7) {
             holder.greenDot.visibility = View.VISIBLE
         } else
             holder.greenDot.visibility = View.INVISIBLE

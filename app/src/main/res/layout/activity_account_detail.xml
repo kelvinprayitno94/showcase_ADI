@@ -55,9 +55,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/TabLayout"
+                android:layout_marginBottom="@dimen/dimens_15dp"
                 app:tabGravity="center"
                 app:tabIndicatorColor="@color/red"
-                app:tabMode="fixed"
+                app:tabMode="scrollable"
                 app:tabSelectedTextColor="@color/red"
                 app:tabTextColor="@color/black"
                 />
