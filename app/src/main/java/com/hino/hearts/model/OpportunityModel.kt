@@ -1,5 +1,7 @@
 package com.hino.hearts.model
 
+import java.io.Serializable
+
 /*
   "id": 1,
   "createdBy": 1,
@@ -9,7 +11,9 @@ package com.hino.hearts.model
   "accountId": 1,
   "deletedAt": null,
   "createdAt": "2020-02-13T07:21:25.773Z",
-  "updatedAt": "2020-02-13T09:59:57.793Z"
+  "updatedAt": "2020-02-13T09:59:57.793Z",
+  "account": { AccountModel }
 */
 
-data class OpportunityModel(val id: Int, val opportunityName: String, val stage: String, val accountName: String?, val budget: Long)
+data class OpportunityModel(val id: Int, val opportunityName: String, var stage: String,
+                            val account: AccountModel?, val budget: Long) : Serializable

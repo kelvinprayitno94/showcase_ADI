@@ -80,11 +80,5 @@
             android:animateLayoutChanges="true"
             android:visibility="gone"
             tools:visibility="gone" />
-
-        <include
-            android:id="@+id/layout_custom_loading"
-            layout="@layout/layout_custom_loading"
-            android:visibility="gone"
-            tools:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -10,13 +10,14 @@ import com.hino.hearts.ui.opportunity.detail.OpportunityDetailViewModel
 /**
  * Created by Dihardja Software on 2020-02-18.
  */
-class OpportunityDetailPagerAdapter(fm : FragmentManager, viewModel: OpportunityDetailViewModel) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    private val mParentViewModel: OpportunityDetailViewModel = viewModel
+class OpportunityDetailPagerAdapter(fm : FragmentManager, opportunityId: Int) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private val informationFragment: InformationFragment = InformationFragment(opportunityId)
+    private val activitiesFragment: ActivitiesFragment = ActivitiesFragment(opportunityId)
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> InformationFragment()
-            else -> ActivitiesFragment()
+            0 -> informationFragment
+            else -> activitiesFragment
         }
     }
 

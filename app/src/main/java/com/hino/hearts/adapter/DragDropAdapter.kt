@@ -13,13 +13,18 @@ import com.hino.hearts.R
 import com.hino.hearts.model.OpportunityModel
 import java.text.DecimalFormat
 import java.text.NumberFormat
+import kotlin.math.abs
 
 
-class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), View.OnTouchListener {
+class DragDropAdapter(listener: DragDropListener.DragDropEventHandler): RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), View.OnTouchListener {
     var list: MutableList<OpportunityModel> = ArrayList()
     var clickListener: ClickListener? = null
+    private val mListener = listener
 
     private val mFormatter: NumberFormat = DecimalFormat("#,###")
+
+    private var mDownX: Float = -1f
+    private var mDownY: Float = -1f
     private var mSelectedItem: View? = null
     private val mHandler: Handler = Handler()
     private val mLongPressed = Runnable {
@@ -38,6 +43,7 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
     companion object {
         const val ITEM_EMPTY: Int = 0
         const val ITEM_DATA: Int = 1
+        private const val SCROLL_THRESHOLD = 10f
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -69,8 +75,8 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
             val item = list[position]
             val formattedNumber = "Rp${mFormatter.format(item.budget)}"
             holder.titleTextView?.text = item.opportunityName
-            holder.accountNameTextView?.text = when (item.accountName != null) {
-                true -> item.accountName
+            holder.accountNameTextView?.text = when (item.account != null) {
+                true -> item.account.accountName
                 false -> "Account Name Not Found"
             }
             holder.opportunityValueTextView?.text = formattedNumber
@@ -79,17 +85,26 @@ class DragDropAdapter: RecyclerView.Adapter<DragDropAdapter.ListViewHolder>(), V
         }
 
         holder.rootFrameLayout.tag = position
-        holder.rootFrameLayout.setOnDragListener(DragDropListener())
+        holder.rootFrameLayout.setOnDragListener(DragDropListener(mListener))
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         Log.d("DragDrop", "Event ${event.action}")
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                mDownX = event.x
+                mDownY = event.y
+
                 mSelectedItem = v
                 mHandler.postDelayed(mLongPressed, ViewConfiguration.getLongPressTimeout().toLong())
             }
-            MotionEvent.ACTION_MOVE, MotionEvent.ACTION_CANCEL -> {
+            MotionEvent.ACTION_MOVE -> {
+                if (mSelectedItem != null && (abs(mDownX - event.x) > SCROLL_THRESHOLD || abs(mDownY - event.y) > SCROLL_THRESHOLD)) {
+                    mHandler.removeCallbacks(mLongPressed)
+                    mSelectedItem = null
+                }
+            }
+            MotionEvent.ACTION_CANCEL -> {
                 mHandler.removeCallbacks(mLongPressed)
                 mSelectedItem = null
             }

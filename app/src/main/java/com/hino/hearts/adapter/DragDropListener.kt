@@ -12,16 +12,17 @@ import com.hino.hearts.model.OpportunityModel
 import com.hino.hearts.ui.opportunity.DragDropList
 
 
-class DragDropListener() : OnDragListener {
+class DragDropListener(listener: DragDropEventHandler) : OnDragListener {
     private var mScrollView: HorizontalScrollView? = null
     private var mDirection: Int = DIRECTION_LEFT
+    private val mListener = listener
 
     companion object {
         const val DIRECTION_LEFT: Int = 0
         const val DIRECTION_RIGHT: Int = 1
     }
 
-    constructor(scrollView: HorizontalScrollView, direction: Int): this() {
+    constructor(scrollView: HorizontalScrollView, direction: Int, listener: DragDropEventHandler): this(listener) {
         this.mScrollView = scrollView
         this.mDirection = direction
     }
@@ -97,9 +98,6 @@ class DragDropListener() : OnDragListener {
                         }
                     }
 
-                    if (target == null)
-                        return false
-
                     val source = viewSource.parent as RecyclerView
                     val positionSource = viewSource.tag as Int
 
@@ -107,9 +105,17 @@ class DragDropListener() : OnDragListener {
                     val listSource: MutableList<OpportunityModel> = adapterSource.list
                     val listItem: OpportunityModel = listSource[positionSource]
 
+                    if (target == null) {
+                        mListener.onDragDropFailed(listItem)
+                        return false
+                    }
+
                     //Remove item from source
                     listSource.removeAt(positionSource)
                     adapterSource.notifyDataSetChanged()
+
+                    val stageBefore: String = source.tag as String
+                    val stageAfter: String = target.tag as String
 
                     val adapterTarget: DragDropAdapter = target.adapter as DragDropAdapter
                     val customListTarget: MutableList<OpportunityModel> = adapterTarget.list
@@ -118,11 +124,19 @@ class DragDropListener() : OnDragListener {
                     } else {
                         customListTarget.add(listItem)
                     }
+                    listItem.stage = stageAfter
                     adapterTarget.notifyDataSetChanged()
+
+                    mListener.onDragDropSuccess(listItem, stageBefore, stageAfter)
                 }
             }
         }
 
         return true
+    }
+
+    interface DragDropEventHandler {
+        fun onDragDropSuccess(model: OpportunityModel, stageBefore: String, stageAfter: String)
+        fun onDragDropFailed(model: OpportunityModel)
     }
 }

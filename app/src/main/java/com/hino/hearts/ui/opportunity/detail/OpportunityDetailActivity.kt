@@ -12,13 +12,14 @@ import com.hino.hearts.R
 import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.adapter.OpportunityDetailPagerAdapter
 import com.hino.hearts.databinding.ActivityOpportunityDetailBinding
+import com.hino.hearts.model.OpportunityModel
 import com.hino.hearts.ui.BaseActivity
-import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.ui.appointment.AppointmentDetailActivity
 import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.activity_opportunity_detail.*
 import kotlinx.android.synthetic.main.layout_add_visit_buttons.*
 import org.jetbrains.anko.startActivity
+import java.io.Serializable
 
 
 class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>() {
@@ -32,6 +33,7 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
         const val PARAM_OPPORTUNITY_TITLE: String = "opportunity_name"
         const val PARAM_ACCOUNT_NAME: String = "account_name"
         const val PARAM_OPPORTUNITY_VALUE: String = "opportunity_value"
+        const val PARAM_OPPORTUNITY_OBJECT: String = "opportunity_object"
         private const val TWO = 2
         private const val SIX = 6
     }
@@ -40,44 +42,18 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
         super.onCreate(savedInstanceState)
         setBinding(R.layout.activity_opportunity_detail)
 
-        initData()
         initObserver()
         initViewModel()
         initLayout()
         initEvent()
     }
 
-    private fun initData() {
-        mViewModel.id = intent.getIntExtra(PARAM_OPPORTUNITY_ID, 0)
-        mViewModel.opportunityName = intent.getStringExtra(PARAM_OPPORTUNITY_TITLE)
-
-        val accountName = intent.getStringExtra(PARAM_ACCOUNT_NAME)
-        if (accountName != null)
-            mViewModel.accountName = accountName
-
-        mViewModel.opportunityValue = intent.getLongExtra(PARAM_OPPORTUNITY_VALUE, 0)
-    }
-
     override fun initObserver() {
-        val context: Context = this
         mViewModel.backClicked.observe(this, Observer {
             onBackPressed()
         })
         mViewModel.addClicked.observe(this, Observer {
 
-        })
-
-        mViewModel.showLoading.observe(this, Observer {
-            layout_custom_loading.visibility = when (it) {
-                true -> View.VISIBLE
-                false -> View.GONE
-            }
-        })
-        mViewModel.errorBody.observe(this, Observer {
-            NetworkManager.getInstance().handleResponse(context, it)
-        })
-        mViewModel.responseError.observe(this, Observer {
-            NetworkManager.getInstance().handleErrorResponse(context, it)
         })
         mViewModel.addClicked.observe(this, Observer {
             layout_add_visit_button.visibility = when (layout_add_visit_button.visibility) {
@@ -85,13 +61,24 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
                 else -> View.VISIBLE
             }
         })
-
-        if (mViewModel.id > 0)
-            mViewModel.getOpportunity(mViewModel.id)
     }
 
     override fun initViewModel() {
         binding.viewModel = mViewModel
+
+        mViewModel.opportunityId = intent.getIntExtra(PARAM_OPPORTUNITY_ID, 0)
+        mViewModel.opportunityName = intent.getStringExtra(PARAM_OPPORTUNITY_TITLE)
+
+        val accountName = intent.getStringExtra(PARAM_ACCOUNT_NAME)
+        if (accountName != null)
+            mViewModel.accountName = accountName
+
+        mViewModel.opportunityValue = intent.getLongExtra(PARAM_OPPORTUNITY_VALUE, 0)
+        val serializable: Serializable? = intent.getSerializableExtra(PARAM_OPPORTUNITY_OBJECT)
+        mViewModel.opportunity = when (serializable != null) {
+            true -> serializable as OpportunityModel
+            false -> null
+        }
     }
 
     override fun initEvent() {
@@ -109,7 +96,7 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
     }
 
     private fun initLayout() {
-        mAdapter = OpportunityDetailPagerAdapter(supportFragmentManager, mViewModel)
+        mAdapter = OpportunityDetailPagerAdapter(supportFragmentManager, mViewModel.opportunityId)
         vp_opportunity.adapter = mAdapter
 
         addVisitButtonAdapter = AddVisitButtonAdapter(object: AddVisitButtonAdapter.OnClick {

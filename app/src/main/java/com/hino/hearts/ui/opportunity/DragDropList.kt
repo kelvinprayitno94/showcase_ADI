@@ -13,11 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.adapter.DragDropAdapter
+import com.hino.hearts.adapter.DragDropListener
 import com.hino.hearts.model.OpportunityModel
 import org.jetbrains.anko.backgroundResource
 
-class DragDropList(context: Context, attributeSet: AttributeSet?, defStyleRes: Int, headerText: String, background: Drawable, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel>) : LinearLayout(context, attributeSet, defStyleRes) {
-    private val mAdapter: DragDropAdapter = DragDropAdapter()
+class DragDropList(context: Context, attributeSet: AttributeSet?, defStyleRes: Int, headerText: String, background: Drawable, dragDropEventHandler: DragDropListener.DragDropEventHandler, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel>) : LinearLayout(context, attributeSet, defStyleRes) {
+    private val mAdapter: DragDropAdapter = DragDropAdapter(dragDropEventHandler)
 
     init {
         val inflater = LayoutInflater.from(context)
@@ -31,12 +32,14 @@ class DragDropList(context: Context, attributeSet: AttributeSet?, defStyleRes: I
         val recyclerView: RecyclerView = view.findViewById(R.id.rv_dragdrop)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = mAdapter
+        recyclerView.tag = headerText
+
         mAdapter.list = data
         mAdapter.clickListener = clickListener
 
         addView(view)
     }
 
-    constructor(context: Context, headerText: String, background: Drawable, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel>) : this(context, null, 0, headerText, background, clickListener, data)
-    constructor(context: Context, attributeSet: AttributeSet?, headerText: String, background: Drawable, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel>) : this(context, attributeSet, 0, headerText, background, clickListener, data)
+    constructor(context: Context, headerText: String, background: Drawable, dragDropEventHandler: DragDropListener.DragDropEventHandler, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel>) : this(context, null, 0, headerText, background, dragDropEventHandler, clickListener, data)
+    constructor(context: Context, attributeSet: AttributeSet?, headerText: String, background: Drawable, dragDropEventHandler: DragDropListener.DragDropEventHandler, clickListener: DragDropAdapter.ClickListener?, data: MutableList<OpportunityModel>) : this(context, attributeSet, 0, headerText, background, dragDropEventHandler, clickListener, data)
 }

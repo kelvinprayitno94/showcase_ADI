@@ -141,11 +141,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         when (BuildConfig.FLAVOR == "staging") {
             true -> {
-//                edittext_employee_id.setText("test12345")
-//                edittext_password.setText("password")
+                edittext_employee_id.setText("test12345")
+                edittext_password.setText("password")
 
-                edittext_employee_id.setText("sales")
-                edittext_password.setText("sales")
+//                edittext_employee_id.setText("sales")
+//                edittext_password.setText("sales")
             }
         }
     }

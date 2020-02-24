@@ -65,6 +65,8 @@ class LoginViewModel : ViewModel() {
 
                         UserDefaults.getInstance().setString(UserDefaults.TOKEN_KEY, data.token)
                         UserDefaults.getInstance()
+                            .setInt(UserDefaults.USER_ID, data.userData!!.id)
+                        UserDefaults.getInstance()
                             .setString(UserDefaults.USER_NAME, data.userData?.name)
                         UserDefaults.getInstance().setString(UserDefaults.USER_ROLE,
                             data.userData?.role?.name
