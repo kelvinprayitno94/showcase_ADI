@@ -197,12 +197,12 @@ class HomeFragmentViewModel : ViewModel() {
     private fun initHomeMenu(): ArrayList<HomeMenu> {
         val homeMenuList: ArrayList<HomeMenu> = ArrayList()
 
-        homeMenuList.add(HomeMenu(R.drawable.ic_catalogues, R.string.catalogues))
         homeMenuList.add(HomeMenu(R.drawable.ic_accounts, R.string.accounts))
-        homeMenuList.add(HomeMenu(R.drawable.ic_spareparts, R.string.spare_part))
-        homeMenuList.add(HomeMenu(R.drawable.ic_events, R.string.events))
-        homeMenuList.add(HomeMenu(R.drawable.ic_approval, R.string.approvals))
         homeMenuList.add(HomeMenu(R.drawable.ic_opportunity, R.string.opportunities))
+        homeMenuList.add(HomeMenu(R.drawable.ic_approval, R.string.approvals))
+        homeMenuList.add(HomeMenu(R.drawable.ic_events, R.string.events))
+        homeMenuList.add(HomeMenu(R.drawable.ic_spareparts, R.string.spare_part))
+        homeMenuList.add(HomeMenu(R.drawable.ic_catalogues, R.string.catalogues))
 
         return homeMenuList
     }

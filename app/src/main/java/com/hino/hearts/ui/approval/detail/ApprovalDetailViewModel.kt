@@ -43,13 +43,13 @@ class ApprovalDetailViewModel : ViewModel() {
         soDateLiveData.value = InterfaceManager.getInstance().convertStringFromDate(InterfaceManager.getInstance().convertDateFromString(date))
     }
 
-    fun approve(id: String){
+    fun approve(){
         CoroutineScope(Dispatchers.IO).launch  {
 
             try {
 
                 val call =
-                    HinoService.create(ApprovalService::class.java).Approve("1", 0)
+                    HinoService.create(ApprovalService::class.java).Approve(iData?.id.toString(), 0)
 
                 val response = call.await()
 

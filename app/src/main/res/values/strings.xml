@@ -76,6 +76,8 @@
 
     <!-- Appointment Detail -->
     <string name="appointment_details">Appointment Details</string>
+    <string name="task_details">Task Details</string>
+    <string name="call_log_details">Call Log Details</string>
     <string name="appointment_description">Please explain the detail of your activity</string>
     <string name="appointment_account">Account</string>
     <string name="appointment_opportunity">Opportunity</string>

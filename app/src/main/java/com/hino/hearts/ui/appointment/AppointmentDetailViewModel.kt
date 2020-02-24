@@ -27,6 +27,8 @@ class AppointmentDetailViewModel : ViewModel() {
     var opportunity: String? = "Opportunity Name"
     var activityDetail: String? = ""
     var opportunityEnabled: Boolean = false
+    var pageType: Int = 0
+    var pageTitle: Int = R.string.appointment_details
 
     fun onBackPressed() {
         backClicked.value = true

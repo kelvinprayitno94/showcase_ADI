@@ -13,10 +13,15 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
     private val mViewModel: AppointmentDetailViewModel by lazy { ViewModelProvider(this).get(AppointmentDetailViewModel::class.java) }
 
     companion object {
+        const val PARAM_PAGE_TYPE: String = "page_type"
         const val PARAM_ACCOUNT_NAME: String = "account_name"
         const val PARAM_OPPORTUNITY: String = "opportunity_name"
         const val PARAM_OPPORTUNITY_ENABLED: String = "opportunity_enabled"
         const val PARAM_ACTIVITY_DETAIL: String = "activity_detail"
+
+        const val PAGE_TYPE_APPOINTMENT: Int = 0
+        const val PAGE_TYPE_TASK: Int = 1
+        const val PAGE_TYPE_CALL_LOG: Int = 2
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +31,7 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
         initData()
         initObserver()
         initViewModel()
+        initLayout()
         initEvent()
     }
 
@@ -37,6 +43,13 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
             mViewModel.accountName = accountName
 
         mViewModel.activityDetail = intent.getStringExtra(PARAM_ACTIVITY_DETAIL)
+        mViewModel.pageType = intent.getIntExtra(PARAM_PAGE_TYPE, PAGE_TYPE_APPOINTMENT)
+        mViewModel.pageTitle = when(mViewModel.pageType) {
+            PAGE_TYPE_APPOINTMENT -> R.string.appointment_details
+            PAGE_TYPE_TASK -> R.string.task_details
+            PAGE_TYPE_CALL_LOG -> R.string.call_log_details
+            else -> R.string.appointment_details
+        }
     }
 
     override fun initObserver() {
@@ -68,6 +81,10 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
 
     override fun initViewModel() {
         binding.viewModel = mViewModel
+    }
+
+    private fun initLayout() {
+        tv_appointment_title.setText(mViewModel.pageTitle)
     }
 
     override fun initEvent() {
