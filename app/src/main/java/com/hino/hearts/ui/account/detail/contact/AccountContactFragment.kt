@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.ui.account.detail.contact.contactDetail.ContactDetailActivity
 import com.hino.hearts.ui.account.detail.contact.newContact.NewContactActivity
+import com.hino.hearts.util.DividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_account_detail_contact.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -70,6 +72,7 @@ class AccountContactFragment(var data: List<AccountListResponse.ContactData>?) :
 
             rv_contact.adapter = adapter
             rv_contact.layoutManager = LinearLayoutManager(it, RecyclerView.VERTICAL, false)
+            rv_contact.addItemDecoration(DividerItemDecoration(ContextCompat.getDrawable(context!!, R.drawable.transparant_divider)))
         }
     }
 

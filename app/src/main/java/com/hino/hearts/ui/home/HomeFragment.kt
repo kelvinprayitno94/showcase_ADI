@@ -130,11 +130,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
         }
 
         cv_home_approval_request.onClick {
-            toast("Approval card clicked")
+            startActivity<ApprovalTabActivity>()
         }
 
         cv_home_approval_request_done.onClick {
-            toast("Approval card clicked")
+            startActivity<ApprovalTabActivity>()
         }
 
         swipe_refresh_layout.setOnRefreshListener {
@@ -208,13 +208,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
     override fun onTap(menu: Int) {
         when (menu) {
             R.string.catalogues -> {
-                Toast.makeText(activity, "Coming Soon", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
             }
             R.string.accounts -> {
                 startActivity<AccountListActivity>()
             }
             R.string.spare_part -> {
-                Toast.makeText(activity, "Coming Soon", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
             }
             R.string.events -> {
                 startActivity<EventActivity>()

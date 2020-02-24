@@ -60,22 +60,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         })
 
         viewModel.token.observe(this, Observer {
-            initBottomsheet()
-//            when (it != null) {
-//                true -> {
-//                    redirect("home")
-//                }
-//                false -> {
-//                    when (isFirstTime()) {
-//                        true -> {
-//                            redirect("onboarding")
-//                        }
-//                        false -> {
-//                            initBottomsheet()
-//                        }
-//                    }
-//                }
-//            }
+            when (it != null) {
+                true -> {
+                    redirect("home")
+                }
+                false -> {
+                    when (isFirstTime()) {
+                        true -> {
+                            redirect("onboarding")
+                        }
+                        false -> {
+                            initBottomsheet()
+                        }
+                    }
+                }
+            }
         })
     }
 
@@ -96,7 +95,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                             )
                         }
                         false -> {
-                            toast(getString(R.string.no_internet))
+                            toast(getString(R.string.no_internet)).show()
                         }
                     }
                 }

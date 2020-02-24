@@ -28,13 +28,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_adapter_contact_acc_name" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btn_detail_contact_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:background="@drawable/btn_red_border"
         android:text="Edit"
+        style="@style/LabelText"
+        android:paddingLeft="@dimen/dimens_30dp"
+        android:paddingRight="@dimen/dimens_30dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

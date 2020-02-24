@@ -22,7 +22,7 @@ class HomeViewModel : ViewModel() {
         versionName.value = BuildConfig.VERSION_NAME
         name.value = UserDefaults.getInstance().getString(UserDefaults.USER_NAME)
         role.value = UserDefaults.getInstance().getString(UserDefaults.USER_ROLE)
-        imagePath.value = BuildConfig.IMAGE_URL + UserDefaults.getInstance().getString(UserDefaults.USER_IMAGE_PATH)
+//        imagePath.value = BuildConfig.IMAGE_URL + UserDefaults.getInstance().getString(UserDefaults.USER_IMAGE_PATH)
 
         when(role.value == "Sales"){
             true->{

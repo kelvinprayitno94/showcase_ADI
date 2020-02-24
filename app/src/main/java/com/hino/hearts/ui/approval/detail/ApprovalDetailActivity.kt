@@ -65,7 +65,7 @@ class ApprovalDetailActivity : BaseActivity<ActivityApprovalDetailBinding>() {
         }
 
         btn_approve_approval.setOnClickListener {
-            viewModel.approve("")
+            viewModel.approve()
         }
 
     }

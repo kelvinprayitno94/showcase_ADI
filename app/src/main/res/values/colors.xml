@@ -15,6 +15,7 @@
     <color name="white80transparency">#CCFFFFFF</color>
     <color name="black">#000000</color>
     <color name="black70transparency">#B3000000</color>
+    <color name="black30transparency">#4D000000</color>
     <color name="grey">#CCCCCC</color>
     <color name="grey50transparency">#80CCCCCC</color>
     <color name="grey36">#363636</color>

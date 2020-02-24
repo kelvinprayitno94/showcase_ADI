@@ -1,15 +1,16 @@
 buildscript {
     repositories {
         maven { url 'https://plugins.gradle.org/m2/'}
+        mavenCentral()
     }
     dependencies {
         classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.12.6'
     }
 }
-apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 repositories {
     maven { url 'https://maven.google.com' }
+    mavenCentral()
 }
 
 apply plugin: 'com.android.application'
@@ -19,6 +20,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 android {
     compileSdkVersion 29
@@ -51,12 +54,13 @@ android {
         production {
             dimension = 'version'
             buildConfigField "String", "SERVER_URL", '"http://54.254.139.1:8081/api/v1/"'
-            buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
+//            buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
         }
         staging {
             dimension = 'version'
             buildConfigField "String", "SERVER_URL", '"http://54.254.139.1:8081/api/v1/"'
-            buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
+//            buildConfigField "String", "SERVER_URL", '"https://1f306962.ngrok.io/api/v1/"'
+//            buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
         }
     }
     compileOptions {
@@ -139,6 +143,9 @@ dependencies {
 
     //Material
     implementation "com.google.android.material:material:$material_version"
+
+    //Gif image view
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 
     //Testing Dependencies
     testImplementation 'junit:junit:4.12'

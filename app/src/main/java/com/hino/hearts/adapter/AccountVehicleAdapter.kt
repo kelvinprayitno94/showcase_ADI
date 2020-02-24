@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.model.AccountContactModel
@@ -55,6 +56,6 @@ class AccountVehicleAdapter(
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val accountName = itemView.findViewById<TextView>(R.id.tv_adapter_contact_acc_name)
         val phoneNo = itemView.findViewById<TextView>(R.id.tv_adapter_contact_phone_no)
-        val edit = itemView.findViewById<Button>(R.id.btn_detail_contact_edit)
+        val edit = itemView.findViewById<AppCompatTextView>(R.id.btn_detail_contact_edit)
     }
 }
