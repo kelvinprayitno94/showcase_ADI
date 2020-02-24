@@ -66,17 +66,17 @@ class ApprovalListResponse : ErrorResponse() {
 
     class ApprovalData() : Parcelable{
         @SerializedName("soNum")
-        var soNum: String? = ""
+        var soNum: String? = "-"
         @SerializedName("orderType")
-        var orderType: String? = ""
+        var orderType: String? = "-"
         @SerializedName("customerName")
         var customerName: String? = ""
         @SerializedName("customerCode")
         var customerCode: String? = ""
         @SerializedName("prDocNo")
-        var prDocNo: String? = ""
+        var prDocNo: String? = "-"
         @SerializedName("soDate")
-        var soDate: String? = ""
+        var soDate: String? = "-"
 
         constructor(parcel: Parcel) : this() {
             soNum = parcel.readString()

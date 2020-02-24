@@ -24,6 +24,10 @@
         <item>Branch 9</item>
     </string-array>
 
+    <string-array name="edit_acc_bf">
+        <item>Information &amp; Technology Service</item>
+    </string-array>
+
     <string-array name="account_tab_title">
         <item>Acc Detail</item>
         <item>Contacts</item>
@@ -36,5 +40,13 @@
     </string-array>
     <string-array name="city_list">
         <item>Tangerang</item>
+    </string-array>
+
+    <string-array name="vehicle_category_list">
+        <item>Category</item>
+    </string-array>
+
+    <string-array name="vehicle_type_unit_list">
+        <item>Type Unit</item>
     </string-array>
 </resources>

@@ -61,4 +61,5 @@ val moduleViewModel = module {
     //Opportunity
     viewModel { InformationViewModel() }
     viewModel { ActivitiesViewModel() }
+    viewModel { com.hino.hearts.ui.account.detail.AccountDetailViewModel() }
 }

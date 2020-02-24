@@ -18,6 +18,11 @@
         android:background="@color/white"
         tools:context=".ui.approval.category.ApprovalTabActivity">
 
+        <include
+            android:id="@+id/layout_custom_loading"
+            layout="@layout/layout_custom_loading"
+            android:visibility="@{viewModel.loadingLiveData ? View.VISIBLE : View.GONE}"/>
+
         <include layout="@layout/main_toolbar" />
 
         <TextView

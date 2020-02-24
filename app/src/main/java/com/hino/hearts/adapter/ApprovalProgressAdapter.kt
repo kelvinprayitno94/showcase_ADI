@@ -52,6 +52,8 @@ class ApprovalProgressAdapter(var context: Context, var data: ApprovalListRespon
             holder.approvalDept.text = name
             holder.approvalDate.text = InterfaceManager.getInstance().convertStringFromDate(
                 InterfaceManager.getInstance().convertDateFromString(date))
+
+//            holder.approvalName.text =
         }
     }
 
@@ -61,5 +63,6 @@ class ApprovalProgressAdapter(var context: Context, var data: ApprovalListRespon
         val status = itemView.findViewById<ImageView>(R.id.iv_status)
         val approvalDept = itemView.findViewById<TextView>(R.id.tv_approval_dept)
         val approvalDate = itemView.findViewById<TextView>(R.id.tv_approval_date)
+        val approvalName = itemView.findViewById<TextView>(R.id.tv_approval_name)
     }
 }

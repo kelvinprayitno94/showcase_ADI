@@ -29,6 +29,8 @@ class AccountDetailActivity : BaseActivity<ActivityAccountDetailBinding>() {
         super.onCreate(savedInstanceState)
         setBinding(R.layout.activity_account_detail)
 
+        binding.viewModel = viewModel
+
         initObserver()
         initViewModel()
         initEvent()
@@ -53,7 +55,9 @@ class AccountDetailActivity : BaseActivity<ActivityAccountDetailBinding>() {
 
         val data = intent.getParcelableExtra<AccountListResponse.AccListData>(ConstantManager.INTENT_ACC_DATA)
 
-        var titles = resources.getStringArray(R.array.account_tab_title).toList()
+        viewModel.accountNameLivedata.value = data.account?.accountName
+
+        val titles = resources.getStringArray(R.array.account_tab_title).toList()
         tabAdapter = AccountDetailTabAdapter(
             supportFragmentManager,
             titles,

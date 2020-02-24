@@ -143,6 +143,8 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                     tab?.let { _it ->
                         it.selected = _it.position
                         approvalCollapsDocAdapter.notifyDataSetChanged()
+
+                        viewModel.getApproval()
                     }
 //                    approvalDocumentAdapter.filter.filter(tab?.text)
                 }
@@ -172,8 +174,8 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
             rv_tab_layout_approval_doc_type.adapter = approvalDocTypeFilterAdapter
             rv_tab_layout_approval_doc_type.layoutManager =
                 LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-            val snapHelper: SnapHelper = LinearSnapHelper()
-            snapHelper.attachToRecyclerView(rv_tab_layout_approval_doc_type)
+//            val snapHelper: SnapHelper = LinearSnapHelper()
+//            snapHelper.attachToRecyclerView(rv_tab_layout_approval_doc_type)
 
         })
 
