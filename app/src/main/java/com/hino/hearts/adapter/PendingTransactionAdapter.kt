@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.model.PendingTransaction
 import kotlinx.android.synthetic.main.item_pending_transaction.view.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.toast
 
 /**
  * Created by Dihardja Software on 2020-02-18.
@@ -32,6 +34,12 @@ class PendingTransactionAdapter : RecyclerView.Adapter<PendingTransactionAdapter
     }
 
     override fun onBindViewHolder(holder: PendingTransactionHolder, position: Int) {
+
+
+        holder.itemView.fl_cancel.onClick {
+            context.toast(context.getString(R.string.coming_soon)).show()
+        }
+
         holder.bind(mData[position])
     }
 
@@ -42,6 +50,15 @@ class PendingTransactionAdapter : RecyclerView.Adapter<PendingTransactionAdapter
     inner class PendingTransactionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(pendingTransaction: PendingTransaction) {
             with(itemView) {
+                when(pendingTransaction.id == 1){
+                    true->{
+                        fl_pending.visibility = View.VISIBLE
+                    }
+                    false->{
+                        fl_pending.visibility = View.INVISIBLE
+                    }
+                }
+
                 tv_pending_transactions_item_title.text = pendingTransaction.title
                 tv_pending_transactions_item_time.text = pendingTransaction.date
             }

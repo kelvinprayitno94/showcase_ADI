@@ -27,35 +27,21 @@ class PendingTransactionsViewModel : ViewModel() {
         pendingTransactionList.add(
             PendingTransaction(
                 1,
-                "Pending Transaction Title",
+                "Record Activity",
                 date
             )
         )
         pendingTransactionList.add(
             PendingTransaction(
                 2,
-                "Pending Transaction Title",
+                "Opportunity Progress",
                 date
             )
         )
         pendingTransactionList.add(
             PendingTransaction(
                 3,
-                "Pending Transaction Title",
-                date
-            )
-        )
-        pendingTransactionList.add(
-            PendingTransaction(
-                4,
-                "Pending Transaction Title",
-                date
-            )
-        )
-        pendingTransactionList.add(
-            PendingTransaction(
-                5,
-                "Pending Transaction Title",
+                "Invite Attendee",
                 date
             )
         )

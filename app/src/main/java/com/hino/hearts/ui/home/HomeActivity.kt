@@ -18,7 +18,6 @@ import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.appointment.AppointmentDetailActivity
-import com.hino.hearts.ui.account.AccountListActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.notification.NotificationActivity
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsActivity
@@ -31,7 +30,6 @@ import kotlinx.android.synthetic.main.nav_header_view.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import org.json.JSONException
 import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -107,14 +105,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
             }, TWO_HUNDREDS)
         }
 
-        nav_header_view.onClick {
-            val handler = Handler()
-            handler.postDelayed({
-                toast("Profile item clicked")
-            }, TWO_HUNDREDS)
-
-            drawer_layout.closeDrawer(GravityCompat.START)
-        }
+//        nav_header_view.onClick {
+//            val handler = Handler()
+//            handler.postDelayed({
+//                toast("Profile item clicked")
+//            }, TWO_HUNDREDS)
+//
+//            drawer_layout.closeDrawer(GravityCompat.START)
+//        }
 
         cl_pending_transaction.onClick {
             startActivity<PendingTransactionsActivity>()
@@ -125,7 +123,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         cl_privacy_prolicy.onClick {
             val handler = Handler()
             handler.postDelayed({
-                toast("Privacy Policy item clicked")
+                toast(getString(R.string.coming_soon)).show()
             }, TWO_HUNDREDS)
 
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -134,7 +132,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         cl_help.onClick {
             val handler = Handler()
             handler.postDelayed({
-                toast("Help item clicked")
+                toast(getString(R.string.coming_soon)).show()
             }, TWO_HUNDREDS)
 
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -164,7 +162,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     override fun onItemViewClicked(name: Int) {
         hideAddVisitButton()
 
-        //TODO: Data
         when (name) {
             R.string.appointment -> startActivity<AppointmentDetailActivity>(
                 AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_APPOINTMENT,
@@ -255,7 +252,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
 
         Glide.with(this)
 //            .load(viewModel.imagePath.value)
-            .load(R.drawable.header)
+            .load(R.drawable.profpic)
             .into(iv_navigation_drawer)
 
         tv_header_view_name.text = viewModel.name.value

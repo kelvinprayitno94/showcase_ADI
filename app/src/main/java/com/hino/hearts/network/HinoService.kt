@@ -19,6 +19,7 @@ class HinoService{
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             val client = httpBuilder
                 .addInterceptor(HinoHeaderInterceptor())
+                .addInterceptor(ResponseInterceptor())
                 .addInterceptor(httpLoggingInterceptor.apply {
                     httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
                 })
