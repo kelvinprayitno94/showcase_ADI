@@ -50,6 +50,7 @@ class ApprovalProgressAdapter(var context: Context, var data: ApprovalListRespon
             }
 
             holder.approvalDept.text = name
+            holder.approvalName.text = approver?.name
             holder.approvalDate.text = InterfaceManager.getInstance().convertStringFromDate(
                 InterfaceManager.getInstance().convertDateFromString(date))
 

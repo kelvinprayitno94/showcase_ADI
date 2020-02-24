@@ -118,17 +118,21 @@ class ApprovalListResponse : ErrorResponse() {
         var approved: Boolean? = false
         @SerializedName("date")
         var date: String? = ""
+        @SerializedName("approver")
+        var approver: Approver? = Approver()
 
         constructor(parcel: Parcel) : this() {
             name = parcel.readString()
             approved = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
             date = parcel.readString()
+            approver = parcel.readParcelable(Approver::class.java.classLoader)
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             parcel.writeString(name)
             parcel.writeValue(approved)
             parcel.writeString(date)
+            parcel.writeParcelable(approver, flags)
         }
 
         override fun describeContents(): Int {
@@ -141,6 +145,53 @@ class ApprovalListResponse : ErrorResponse() {
             }
 
             override fun newArray(size: Int): Array<ApprovalProgressData?> {
+                return arrayOfNulls(size)
+            }
+        }
+    }
+
+    class Approver() : Parcelable{
+        @SerializedName("id")
+        var id: Int? = 0
+        @SerializedName("email")
+        var email: String? = ""
+        @SerializedName("phoneNumber")
+        var phoneNumber: String? = ""
+        @SerializedName("name")
+        var name: String? = ""
+        @SerializedName("roleId")
+        var roleId: Int? = 0
+        @SerializedName("employeeId")
+        var employeeId: String? = ""
+
+        constructor(parcel: Parcel) : this() {
+            id = parcel.readValue(Int::class.java.classLoader) as? Int
+            email = parcel.readString()
+            phoneNumber = parcel.readString()
+            name = parcel.readString()
+            roleId = parcel.readValue(Int::class.java.classLoader) as? Int
+            employeeId = parcel.readString()
+        }
+
+        override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeValue(id)
+            parcel.writeString(email)
+            parcel.writeString(phoneNumber)
+            parcel.writeString(name)
+            parcel.writeValue(roleId)
+            parcel.writeString(employeeId)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        companion object CREATOR : Parcelable.Creator<Approver> {
+            override fun createFromParcel(parcel: Parcel): Approver {
+                return Approver(parcel)
+            }
+
+            override fun newArray(size: Int): Array<Approver?> {
                 return arrayOfNulls(size)
             }
         }
