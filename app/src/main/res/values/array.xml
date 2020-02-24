@@ -2,14 +2,14 @@
 <resources>
     <string-array name="approval_tab_document">
         <item>All</item>
-        <item>sales order</item>
-        <item>sales order invoice</item>
-        <item>sales order invoice return</item>
-        <item>assignment letter</item>
+        <item>Sales Order</item>
+        <item>Sales Order Invoice</item>
+        <item>Sales Order Invoice Return</item>
+        <item>Assignment Letter</item>
         <item>PDI Receipt</item>
-        <item>work order</item>
-        <item>work order invoice</item>
-        <item>work order invoice return</item>
+        <item>Work Order</item>
+        <item>Work Order Invoice</item>
+        <item>Work Order Invoice Return</item>
     </string-array>
 
     <string-array name="approval_tab_branch">
@@ -48,5 +48,9 @@
 
     <string-array name="vehicle_type_unit_list">
         <item>Type Unit</item>
+    </string-array>
+
+    <string-array name="account_visit_list">
+        <item>PT Dihardja Software</item>
     </string-array>
 </resources>

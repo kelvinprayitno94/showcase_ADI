@@ -144,7 +144,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                         it.selected = _it.position
                         approvalCollapsDocAdapter.notifyDataSetChanged()
 
-                        viewModel.getApproval()
+                        viewModel.getApproval(query = docType[_it.position])
                     }
 //                    approvalDocumentAdapter.filter.filter(tab?.text)
                 }

@@ -85,7 +85,7 @@
                         android:theme="@style/TextInputLayoutHint"
                         android:hint="@string/appointment_account"
                         android:inputType="text"
-                        android:text="@{viewModel.accountName}"/>
+                        android:text="@{viewModel.accountLivedata}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +95,8 @@
                     android:src="@drawable/dropdown"
                     app:layout_constraintBottom_toBottomOf="@id/tl_acc_name"
                     app:layout_constraintEnd_toEndOf="@+id/tl_acc_name"
-                    app:layout_constraintTop_toTopOf="@+id/tl_acc_name" />
+                    app:layout_constraintTop_toTopOf="@+id/tl_acc_name"
+                    android:id="@+id/iv_account_dropdown"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tl_opportunity_field"
@@ -124,7 +125,8 @@
                     android:src="@drawable/dropdown"
                     app:layout_constraintBottom_toBottomOf="@id/tl_opportunity_field"
                     app:layout_constraintEnd_toEndOf="@+id/tl_opportunity_field"
-                    app:layout_constraintTop_toTopOf="@+id/tl_opportunity_field" />
+                    app:layout_constraintTop_toTopOf="@+id/tl_opportunity_field"
+                    android:id="@+id/iv_opportunity_dropdown"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tl_activity"

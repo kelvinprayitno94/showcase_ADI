@@ -11,6 +11,7 @@ import com.hino.hearts.network.service.approval.ApprovalService
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.io.IOException
+import kotlin.coroutines.CoroutineContext
 
 class ApprovalTabViewModel : ViewModel() {
 
@@ -24,6 +25,9 @@ class ApprovalTabViewModel : ViewModel() {
     val documentLivedata = MutableLiveData<ApprovalDocModel>()
 
     var isOpen = false
+
+    private val parentJob = Job()
+    private val coroutineContext : CoroutineContext get() = parentJob + Dispatchers.Default
 
     fun showDocTypeSlidingView(view: Int
 //                               , height: Float
@@ -49,14 +53,23 @@ class ApprovalTabViewModel : ViewModel() {
         }
     }
 
-    fun getApproval(){
+    fun getApproval(query: String? = ""){
+
+        coroutineContext.cancel()
+
         loading(flag = true)
-        CoroutineScope(Dispatchers.IO).launch  {
+
+        var hashmap = HashMap<String, String>()
+        if (query!!.isNotBlank()){
+            hashmap.put("type", query)
+        }
+
+        var job = CoroutineScope(Dispatchers.IO).launch  {
 
             try {
 
                 val call =
-                    HinoService.create(ApprovalService::class.java).ApprovalList()
+                    HinoService.create(ApprovalService::class.java).ApprovalList(hashmap)
 
                 val response = call.await()
 
@@ -76,7 +89,7 @@ class ApprovalTabViewModel : ViewModel() {
 
                     }
                     else -> {
-
+                        loading(flag = false)
                     }
                 }
             }

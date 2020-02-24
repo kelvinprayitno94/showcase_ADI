@@ -1,6 +1,9 @@
 package com.hino.hearts.ui.appointment
 
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
+import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hino.hearts.R
@@ -10,7 +13,11 @@ import kotlinx.android.synthetic.main.activity_appointment_detail.*
 
 class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>() {
 
-    private val mViewModel: AppointmentDetailViewModel by lazy { ViewModelProvider(this).get(AppointmentDetailViewModel::class.java) }
+    private val mViewModel: AppointmentDetailViewModel by lazy {
+        ViewModelProvider(this).get(
+            AppointmentDetailViewModel::class.java
+        )
+    }
 
     companion object {
         const val PARAM_PAGE_TYPE: String = "page_type"
@@ -28,6 +35,8 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
         super.onCreate(savedInstanceState)
         setBinding(R.layout.activity_appointment_detail)
 
+        binding.viewModel = mViewModel
+
         initData()
         initObserver()
         initViewModel()
@@ -40,11 +49,11 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
 
         val accountName = intent.getStringExtra(PARAM_ACCOUNT_NAME)
         if (accountName != null)
-            mViewModel.accountName = accountName
+            mViewModel.accountLivedata.value = accountName
 
         mViewModel.activityDetail = intent.getStringExtra(PARAM_ACTIVITY_DETAIL)
         mViewModel.pageType = intent.getIntExtra(PARAM_PAGE_TYPE, PAGE_TYPE_APPOINTMENT)
-        mViewModel.pageTitle = when(mViewModel.pageType) {
+        mViewModel.pageTitle = when (mViewModel.pageType) {
             PAGE_TYPE_APPOINTMENT -> R.string.appointment_details
             PAGE_TYPE_TASK -> R.string.task_details
             PAGE_TYPE_CALL_LOG -> R.string.call_log_details
@@ -88,6 +97,29 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
     }
 
     override fun initEvent() {
+        iv_account_dropdown.setOnClickListener {
+            createPopupMenu(
+                resources.getStringArray(R.array.account_visit_list).toList()
+                )
+        }
+    }
 
+    fun createPopupMenu(list: List<String>) {
+        val menu = PopupMenu(this, tv_acc_name)
+
+        for (i in list.iterator()) {
+            menu.menu.add(i)
+        }
+
+        menu.gravity = Gravity.CENTER
+
+        menu.setOnMenuItemClickListener {
+
+            mViewModel.accountLivedata.value = it.title.toString()
+
+            return@setOnMenuItemClickListener false
+        }
+
+        menu.show()
     }
 }
