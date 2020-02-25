@@ -67,11 +67,11 @@ class LoginViewModel : ViewModel() {
                         UserDefaults.getInstance()
                             .setInt(UserDefaults.USER_ID, data.userData!!.id)
                         UserDefaults.getInstance()
-                            .setString(UserDefaults.USER_NAME, data.userData?.name)
+                            .setString(UserDefaults.USER_NAME, data.userData.name)
                         UserDefaults.getInstance().setString(UserDefaults.USER_ROLE,
-                            data.userData?.role?.name
+                            data.userData.role.name
                         )
-                        data.userData?.role?.id?.let {
+                        data.userData.role.id.let {
                             UserDefaults.getInstance().setInt(UserDefaults.USER_ROLE_ID,
                                 it
                             )

@@ -23,7 +23,7 @@ class EventDetailViewModel : ViewModel(){
         val event = Event(
             1,
             "HINO Conference 2020",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam",
             date,
             "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
         )

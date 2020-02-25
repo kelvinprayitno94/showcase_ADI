@@ -1,4 +1,4 @@
-package com.hino.hearts.ui.opportunity.detail
+package com.hino.hearts.ui.opportunity.detail.activities
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,10 +22,16 @@ class ActivitiesViewModel : ViewModel() {
 
     var opportunityId: Int = 0
     val activityData: MutableLiveData<MutableList<OpportunityVisitModel>> = MutableLiveData()
+    val activityDataWhole: MutableLiveData<MutableList<OpportunityVisitModel>> = MutableLiveData()
+
+    var isEmpty: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         val items:MutableList<OpportunityVisitModel> = ArrayList()
         activityData.value = items
+        activityDataWhole.value = items
+
+        isEmpty.value = false
     }
 
     fun getOpportunity(opportunityId: Int) {
@@ -43,12 +49,35 @@ class ActivitiesViewModel : ViewModel() {
                 showLoading.value = false
 
                 if (response.isSuccessful && response.body()?.data != null && response.body()!!.meta.success) {
-                    activityData.value = response.body()?.data!!.opportunityVisit
+                    activityDataWhole.value = response.body()?.data!!.opportunityVisit
+                    changeVisitType("Appointment")
                 }
                 else {
                     errorBody.value = response.errorBody()
                 }
             }
         })
+    }
+
+    fun changeVisitType(type: String){
+        val filteredList: ArrayList<OpportunityVisitModel> = ArrayList()
+
+        for(visit in activityDataWhole.value!!){
+            when(visit.type == type){
+                true -> {
+                    filteredList.add(visit)
+                }
+            }
+        }
+
+        when(filteredList.size > 0){
+            true->{
+                activityData.value = filteredList
+                isEmpty.value = false
+            }
+            false->{
+                isEmpty.value = true
+            }
+        }
     }
 }

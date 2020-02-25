@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.hino.hearts.ui.opportunity.detail.InformationViewModel" />
+            type="com.hino.hearts.ui.opportunity.detail.information.InformationViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="@dimen/dimens_24dp"
-        tools:context=".ui.opportunity.detail.InformationFragment">
+        android:paddingTop="@dimen/dimens_24dp"
+        android:paddingBottom="@dimen/dimens_24dp"
+        tools:context=".ui.opportunity.detail.information.InformationFragment">
 
         <TextView
             style="@style/Desc14spGrey4a"

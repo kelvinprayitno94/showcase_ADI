@@ -43,6 +43,7 @@ object HomeDataResponse {
 
     data class Result(val meta: Meta, val data: Data, val links: String, val include: String)
     data class Meta(val message: String, val success: Boolean)
-    data class Data(val userName: String, val monthlyVisit: Int, val totalOpportunity: Int, val todayVisit: ArrayList<TodayVisit>)
+    data class Data(val userName: String, val monthlyVisit: Int, val totalOpportunity: Int, val todayVisit: ArrayList<TodayVisit>, val pendingApprovals: ArrayList<PendingApprovals>)
     data class TodayVisit(val id: Int, val organization: String, val visit: Boolean)
+    data class PendingApprovals(val name: String, val approved: Boolean)
 }

@@ -1,4 +1,4 @@
-package com.hino.hearts.ui.appointment
+package com.hino.hearts.ui.opportunity.appointment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +14,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AppointmentDetailViewModel : ViewModel() {
-    var backClicked: MutableLiveData<Boolean> = MutableLiveData()
     var saveClicked: MutableLiveData<Boolean> = MutableLiveData()
 
     /*val showLoading: MutableLiveData<Boolean> = MutableLiveData()
@@ -29,10 +28,6 @@ class AppointmentDetailViewModel : ViewModel() {
     var opportunityEnabled: Boolean = false
     var pageType: Int = 0
     var pageTitle: Int = R.string.appointment_details
-
-    fun onBackPressed() {
-        backClicked.value = true
-    }
 
     /*fun getOpportunity(opportunityId: Int) {
         showLoading.value = true

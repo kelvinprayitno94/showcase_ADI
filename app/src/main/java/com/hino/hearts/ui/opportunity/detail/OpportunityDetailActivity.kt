@@ -14,10 +14,12 @@ import com.hino.hearts.adapter.OpportunityDetailPagerAdapter
 import com.hino.hearts.databinding.ActivityOpportunityDetailBinding
 import com.hino.hearts.model.OpportunityModel
 import com.hino.hearts.ui.BaseActivity
-import com.hino.hearts.ui.appointment.AppointmentDetailActivity
+import com.hino.hearts.ui.opportunity.appointment.AppointmentDetailActivity
 import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.activity_opportunity_detail.*
 import kotlinx.android.synthetic.main.layout_add_visit_buttons.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import java.io.Serializable
 
@@ -49,12 +51,7 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
     }
 
     override fun initObserver() {
-        mViewModel.backClicked.observe(this, Observer {
-            onBackPressed()
-        })
-        mViewModel.addClicked.observe(this, Observer {
 
-        })
         mViewModel.addClicked.observe(this, Observer {
             layout_add_visit_button.visibility = when (layout_add_visit_button.visibility) {
                 View.VISIBLE -> View.GONE
@@ -93,6 +90,10 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+
+        fl_back.onClick{
+            onBackPressed()
+        }
     }
 
     private fun initLayout() {

@@ -63,7 +63,7 @@ class VisitTargetDialogAdapter : RecyclerView.Adapter<VisitTargetDialogAdapter.V
                         }
                     }
                     false -> {
-                        Glide.with(context).load(context.getDrawable(R.drawable.ic_bullet)).into(iv_item_visit_dialog)
+                        Glide.with(context).load(context.getDrawable(R.drawable.ic_visit_unchecked)).into(iv_item_visit_dialog)
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             tv_item_visit_dialog.setTextColor(context.getColor(R.color.grey4a))

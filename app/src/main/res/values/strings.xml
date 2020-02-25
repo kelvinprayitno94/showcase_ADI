@@ -71,6 +71,9 @@
     <string name="venue">Venue</string>
     <string name="checked_in">Checked In</string>
 
+    <string name="no_data">No data</string>
+    <string name="save">Save</string>
+
     <!-- Opportunity -->
     <string name="opportunity_account">Account</string>
     <string name="opportunity_value">Value</string>

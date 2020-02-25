@@ -92,6 +92,13 @@
         <item name="android:textColor">@color/grey36</item>
     </style>
 
+    <style name="DescGrey62">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/text_16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/grey62</item>
+    </style>
+
     <style name="DescWhite">
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textSize">@dimen/dimens_16dp</item>
@@ -165,9 +172,10 @@
     </style>
 
     <style name="TextInputLayoutHint" >
+        <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/grey4a</item>
         <item name="android:textColorHint">@color/black</item>
-
+        <item name="android:textSize">@dimen/text_16sp</item>
     </style>
 
     <style name="LabelTextwhPadding" parent="LabelText">

@@ -1,4 +1,4 @@
-package com.hino.hearts.ui.opportunity.detail
+package com.hino.hearts.ui.opportunity.detail.information
 
 
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.View
 import com.hino.hearts.R
 import com.hino.hearts.databinding.FragmentOpportunityInformationBinding
 import com.hino.hearts.ui.BaseFragment
+import com.hino.hearts.ui.opportunity.detail.OpportunityDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InformationFragment(opportunityId: Int) : BaseFragment<FragmentOpportunityInformationBinding>() {

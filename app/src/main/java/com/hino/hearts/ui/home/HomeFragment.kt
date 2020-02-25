@@ -145,7 +145,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeMenuAdapter.OnMenu
     }
 
     private fun initLayout() {
-        when (viewModel.role.value == "Sales") {
+        when (viewModel.roleId.value == 7) {
             true -> {
                 tv_home_left_info_desc.text = getString(R.string.home_left_info_sales)
                 tv_home_right_info_desc.text = getString(R.string.home_right_info_sales)

@@ -28,6 +28,7 @@
     <dimen name="dimens_70dp">140dp</dimen>
     <dimen name="dimens_72dp">144dp</dimen>
     <dimen name="dimens_75dp">150dp</dimen>
+    <dimen name="dimens_85dp">170dp</dimen>
     <dimen name="dimens_108dp">216dp</dimen>
     <dimen name="dimens_136dp">272dp</dimen>
     <dimen name="dimens_184dp">268dp</dimen>

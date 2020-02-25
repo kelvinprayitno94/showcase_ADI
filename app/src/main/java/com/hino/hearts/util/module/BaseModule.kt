@@ -23,8 +23,8 @@ import com.hino.hearts.ui.onboarding.OnboardingViewModel
 import com.hino.hearts.ui.onboarding.first.OnboardingFirstViewModel
 import com.hino.hearts.ui.onboarding.second.OnboardingSecondViewModel
 import com.hino.hearts.ui.onboarding.third.OnboardingThirdViewModel
-import com.hino.hearts.ui.opportunity.detail.ActivitiesViewModel
-import com.hino.hearts.ui.opportunity.detail.InformationViewModel
+import com.hino.hearts.ui.opportunity.detail.activities.ActivitiesViewModel
+import com.hino.hearts.ui.opportunity.detail.information.InformationViewModel
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

@@ -1,4 +1,4 @@
-package com.hino.hearts.ui.opportunity.detail
+package com.hino.hearts.ui.opportunity.detail.information
 
 import androidx.lifecycle.ViewModel
 import java.text.DecimalFormat

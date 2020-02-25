@@ -1,4 +1,4 @@
-package com.hino.hearts.ui.appointment
+package com.hino.hearts.ui.opportunity.appointment
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -7,10 +7,13 @@ import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityAppointmentDetailBinding
 import com.hino.hearts.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_appointment_detail.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>() {
 
-    private val mViewModel: AppointmentDetailViewModel by lazy { ViewModelProvider(this).get(AppointmentDetailViewModel::class.java) }
+    private val mViewModel: AppointmentDetailViewModel by lazy { ViewModelProvider(this).get(
+        AppointmentDetailViewModel::class.java) }
 
     companion object {
         const val PARAM_PAGE_TYPE: String = "page_type"
@@ -43,7 +46,10 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
             mViewModel.accountName = accountName
 
         mViewModel.activityDetail = intent.getStringExtra(PARAM_ACTIVITY_DETAIL)
-        mViewModel.pageType = intent.getIntExtra(PARAM_PAGE_TYPE, PAGE_TYPE_APPOINTMENT)
+        mViewModel.pageType = intent.getIntExtra(
+            PARAM_PAGE_TYPE,
+            PAGE_TYPE_APPOINTMENT
+        )
         mViewModel.pageTitle = when(mViewModel.pageType) {
             PAGE_TYPE_APPOINTMENT -> R.string.appointment_details
             PAGE_TYPE_TASK -> R.string.task_details
@@ -53,9 +59,6 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
     }
 
     override fun initObserver() {
-        mViewModel.backClicked.observe(this, Observer {
-            onBackPressed()
-        })
         mViewModel.saveClicked.observe(this, Observer {
             //TODO: Do something
             finish()
@@ -88,6 +91,8 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
     }
 
     override fun initEvent() {
-
+        fl_back.onClick{
+            onBackPressed()
+        }
     }
 }

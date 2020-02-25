@@ -3,6 +3,7 @@ package com.hino.hearts.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,7 +18,7 @@ import com.hino.hearts.R
 import com.hino.hearts.adapter.AddVisitButtonAdapter
 import com.hino.hearts.databinding.ActivityHomeBinding
 import com.hino.hearts.ui.BaseActivity
-import com.hino.hearts.ui.appointment.AppointmentDetailActivity
+import com.hino.hearts.ui.opportunity.appointment.AppointmentDetailActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.notification.NotificationActivity
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsActivity
@@ -87,6 +88,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     }
 
     override fun initObserver() {
+
     }
 
     override fun initViewModel() {
@@ -150,7 +152,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
             drawer_layout.closeDrawer(GravityCompat.START)
         }
 
-        when (viewModel.role.value == "Sales") {
+        when (viewModel.roleId.value == 7) {
             true -> {
                 layout_add_visit_button.onClick {
                     hideAddVisitButton()
@@ -208,7 +210,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         addFragment(HomeFragment())
         initOneSignal()
 
-        when (viewModel.role.value == "Sales") {
+        when (viewModel.roleId.value == 7) {
             true -> {
                 addVisitButtonAdapter = AddVisitButtonAdapter(this)
                 addVisitButtonAdapter.setData(viewModel.addVisitButtonList.value!!)
@@ -227,14 +229,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     }
 
     private fun initOneSignal() {
-        // OneSignal Initialization
         val tags = JSONObject()
 
-        if (viewModel.role.value == "Sales") {
-            tags.put("nonsales", true)
-        } else {
-            tags.put("nonsales", true)
+        when(viewModel.roleId.value){
+            1 -> {
+                tags.put("salesarea", true)
+            }
+            5 -> {
+                tags.put("dealermanager", true)
+            }
+
         }
+
         OneSignal.sendTags(tags)
     }
 

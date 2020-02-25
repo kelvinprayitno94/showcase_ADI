@@ -8,6 +8,8 @@ import com.hino.hearts.model.HomeMenu
 import com.hino.hearts.model.VisitTarget
 import com.hino.hearts.network.HinoService
 import com.hino.hearts.network.response.home.HomeDataResponse
+import com.hino.hearts.network.response.home.HomeDataResponse.PendingApprovals as PendingApprovals
+import com.hino.hearts.network.response.home.HomeDataResponse.TodayVisit as TodayVisit
 import com.hino.hearts.network.service.home.HomeService
 import com.hino.hearts.util.InterfaceManager
 import com.hino.hearts.util.UserDefaults
@@ -45,11 +47,12 @@ class HomeFragmentViewModel : ViewModel() {
     var leftInfo: MutableLiveData<String> = MutableLiveData()
     var rightInfo: MutableLiveData<String> = MutableLiveData()
     var todayDate: MutableLiveData<String> = MutableLiveData()
-    var approvalRequestCount: MutableLiveData<String> = MutableLiveData()
 
+    var roleId: MutableLiveData<Int> = MutableLiveData()
     var visitProgress: MutableLiveData<Int> = MutableLiveData()
     var visitProgressTotal: MutableLiveData<Int> = MutableLiveData()
     var visitProgressPercentage: MutableLiveData<Int> = MutableLiveData()
+    var approvalRequestCount: MutableLiveData<String> = MutableLiveData()
 
     var homeSuccess: MutableLiveData<Boolean> = MutableLiveData()
     var showLoading: MutableLiveData<Boolean> = MutableLiveData()
@@ -69,17 +72,12 @@ class HomeFragmentViewModel : ViewModel() {
         greetings.value = getGreetingMessage()
         name.value = UserDefaults.getInstance().getString(UserDefaults.USER_NAME)
         role.value = UserDefaults.getInstance().getString(UserDefaults.USER_ROLE)
+        roleId.value = UserDefaults.getInstance().getInt(UserDefaults.USER_ROLE_ID, 0)
 
-        when (role.value == "Sales") {
+        when (roleId.value == 7) {
             true -> {
                 val current = Calendar.getInstance().time
                 todayDate.value = InterfaceManager.getInstance().convertStringFromDate(current)
-            }
-            false -> {
-                leftInfo.value = "247"
-                rightInfo.value = "Rp3.254.120"
-
-                approvalRequestCount.value = "1"
             }
         }
 
@@ -122,9 +120,14 @@ class HomeFragmentViewModel : ViewModel() {
                             leftInfo.value = data.monthlyVisit.toString()
                             rightInfo.value = formatCurrency(data.totalOpportunity)
 
-                            if(UserDefaults.getInstance().getString(UserDefaults.USER_ROLE) == "Sales"){
-                                visitProgressTotal.value = data.todayVisit.size
-                                getTodayVisitData(data.todayVisit)
+                            when(roleId.value == 7){
+                                true->{
+                                    visitProgressTotal.value = data.todayVisit.size
+                                    getTodayVisitData(data.todayVisit)
+                                }
+                                false->{
+                                    getTodayPendingApprovalsData(data.pendingApprovals)
+                                }
                             }
 
                             homeSuccess.value = true
@@ -139,7 +142,7 @@ class HomeFragmentViewModel : ViewModel() {
         }
     }
 
-    private fun getTodayVisitData(data: ArrayList<HomeDataResponse.TodayVisit>){
+    private fun getTodayVisitData(data: ArrayList<TodayVisit>){
         val visitTargetList: ArrayList<VisitTarget> = ArrayList()
 
         for (i in 0 until data.size) {
@@ -154,6 +157,22 @@ class HomeFragmentViewModel : ViewModel() {
 
         this.visitTargetList.value = visitTargetList
         visitProgressPercentage.value = calculateProgress()
+    }
+
+    private fun getTodayPendingApprovalsData(data: ArrayList<PendingApprovals>){
+        var requestCount = 0
+
+        for (i in 0 until data.size) {
+
+            when(data[i].approved){
+                false->{
+                    requestCount++
+                }
+            }
+        }
+        Log.d("lalala", requestCount.toString())
+
+        approvalRequestCount.value = requestCount.toString()
     }
 
     private fun formatCurrency(amount: Int): String {

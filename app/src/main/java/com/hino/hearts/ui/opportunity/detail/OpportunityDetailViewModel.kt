@@ -17,7 +17,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class OpportunityDetailViewModel : ViewModel() {
-    var backClicked: MutableLiveData<Boolean> = MutableLiveData()
     var addClicked: MutableLiveData<Boolean> = MutableLiveData()
 
     var opportunityId: Int = 0
@@ -36,10 +35,6 @@ class OpportunityDetailViewModel : ViewModel() {
         addButtonList.add(HomeMenu(R.drawable.ic_task, R.string.task))
         addButtonList.add(HomeMenu(R.drawable.ic_call_log, R.string.call_log))
         addVisitButtonList.value = addButtonList
-    }
-
-    fun onBackPressed() {
-        backClicked.value = true
     }
 
     fun onAddPressed() {

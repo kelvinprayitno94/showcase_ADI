@@ -42,7 +42,7 @@
         <activity android:name=".ui.account.detail.accDetail.editAccount.EditAccountDetailActivity" />
         <activity android:name=".ui.opportunity.OpportunityActivity"/>
         <activity android:name=".ui.opportunity.detail.OpportunityDetailActivity" />
-        <activity android:name=".ui.appointment.AppointmentDetailActivity" />
+        <activity android:name=".ui.opportunity.appointment.AppointmentDetailActivity" />
     </application>
 
 </manifest>
