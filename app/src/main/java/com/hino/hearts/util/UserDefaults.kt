@@ -13,6 +13,7 @@ class UserDefaults {
 
         //key
         const val TOKEN_KEY = "service_token"
+        const val USER_ID = "user_id"
         const val USER_NAME = "user_name"
         const val USER_ROLE_ID = "user_role_id"
         const val USER_ROLE = "user_role"

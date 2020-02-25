@@ -1,7 +1,6 @@
 package com.hino.hearts.ui.opportunity
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -78,13 +77,15 @@ class OpportunityActivity : BaseActivity<ActivityOpportunityBinding>() {
                 this,
                 header,
                 backgroundDrawable,
+                mViewModel.dragDropEventHandler,
                 object : DragDropAdapter.ClickListener {
                     override fun onItemClicked(item: OpportunityModel) {
                         startActivity<OpportunityDetailActivity>(
                             OpportunityDetailActivity.PARAM_OPPORTUNITY_ID to item.id,
                             OpportunityDetailActivity.PARAM_OPPORTUNITY_TITLE to item.opportunityName,
-                            OpportunityDetailActivity.PARAM_ACCOUNT_NAME to item.accountName,
-                            OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE to item.budget
+                            OpportunityDetailActivity.PARAM_ACCOUNT_NAME to when (item.account != null) { true -> item.account.accountName false -> null },
+                            OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE to item.budget,
+                            OpportunityDetailActivity.PARAM_OPPORTUNITY_OBJECT to item
                         )
                     }
                 },
@@ -97,7 +98,7 @@ class OpportunityActivity : BaseActivity<ActivityOpportunityBinding>() {
     }
 
     override fun initEvent() {
-        v_left_area.setOnDragListener(DragDropListener(hs_dragdrop, DragDropListener.DIRECTION_LEFT))
-        v_right_area.setOnDragListener(DragDropListener(hs_dragdrop, DragDropListener.DIRECTION_RIGHT))
+        v_left_area.setOnDragListener(DragDropListener(hs_dragdrop, DragDropListener.DIRECTION_LEFT, mViewModel.dragDropEventHandler))
+        v_right_area.setOnDragListener(DragDropListener(hs_dragdrop, DragDropListener.DIRECTION_RIGHT, mViewModel.dragDropEventHandler))
     }
 }

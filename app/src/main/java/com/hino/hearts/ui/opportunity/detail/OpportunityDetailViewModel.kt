@@ -5,9 +5,12 @@ import androidx.lifecycle.ViewModel
 import com.hino.hearts.R
 import com.hino.hearts.model.HomeMenu
 import com.hino.hearts.model.OpportunityModel
+import com.hino.hearts.model.OpportunityVisitModel
 import com.hino.hearts.network.HinoService
+import com.hino.hearts.network.response.opportunity.ChangeStatusResponse
 import com.hino.hearts.network.response.opportunity.OpportunityResponse
 import com.hino.hearts.network.service.opportunity.OpportunityService
+import com.hino.hearts.network.service.opportunity.StatusRequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,17 +20,13 @@ class OpportunityDetailViewModel : ViewModel() {
     var backClicked: MutableLiveData<Boolean> = MutableLiveData()
     var addClicked: MutableLiveData<Boolean> = MutableLiveData()
 
-    val showLoading: MutableLiveData<Boolean> = MutableLiveData()
-    private val service: OpportunityService = HinoService.create(OpportunityService::class.java)
-    var errorBody: MutableLiveData<ResponseBody> = MutableLiveData()
-    var responseError: MutableLiveData<Throwable> = MutableLiveData()
-
-    var id: Int = 0
+    var opportunityId: Int = 0
     var opportunityName: String? = "Opportunity Name"
     var accountName: String? = "Account Name Not Found"
     var opportunityValue: Long? = 0
+    var opportunity: OpportunityModel? = null
 
-    var data: MutableLiveData<OpportunityModel> = MutableLiveData()
+    var data: MutableLiveData<List<OpportunityVisitModel>> = MutableLiveData()
 
     val addVisitButtonList: MutableLiveData<ArrayList<HomeMenu>> = MutableLiveData()
 
@@ -41,30 +40,6 @@ class OpportunityDetailViewModel : ViewModel() {
 
     fun onBackPressed() {
         backClicked.value = true
-    }
-
-    fun getOpportunity(opportunityId: Int) {
-        showLoading.value = true
-
-        service.getOpportunity(opportunityId).enqueue(object :
-            Callback<OpportunityResponse.Result> {
-
-            override fun onFailure(call: Call<OpportunityResponse.Result>, t: Throwable) {
-                showLoading.value = false
-                responseError.value = t
-            }
-
-            override fun onResponse(call: Call<OpportunityResponse.Result>, response: Response<OpportunityResponse.Result>) {
-                showLoading.value = false
-
-                if (response.isSuccessful && response.body()?.data != null && response.body()!!.meta.success) {
-                    data.value = response.body()?.data!!
-                }
-                else {
-                    errorBody.value = response.errorBody()
-                }
-            }
-        })
     }
 
     fun onAddPressed() {

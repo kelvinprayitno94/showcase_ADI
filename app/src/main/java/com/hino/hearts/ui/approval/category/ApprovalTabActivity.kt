@@ -56,6 +56,11 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
         initAdapter()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
     override fun initObserver() {
 
         var docType = resources.getStringArray(R.array.approval_tab_document).toList()
@@ -87,7 +92,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
                             intent.putExtra("data", docList[pos])
 
-                            startActivity(intent)
+                            startActivityForResult(intent, 100)
                         }
 
                     })
@@ -289,5 +294,14 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
     fun initAdapter() {
 
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == 200){
+            tab_layout_approval.getTabAt(0)?.select()
+            viewModel.getApproval()
+        }
     }
 }

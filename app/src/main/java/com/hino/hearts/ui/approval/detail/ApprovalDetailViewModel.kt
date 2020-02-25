@@ -7,9 +7,7 @@ import com.hino.hearts.network.response.ErrorResponse
 import com.hino.hearts.network.response.approve.ApprovalListResponse
 import com.hino.hearts.network.service.approval.ApprovalService
 import com.hino.hearts.util.InterfaceManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -23,6 +21,8 @@ class ApprovalDetailViewModel : ViewModel() {
     val totalAmountLiveData = MutableLiveData<String>()
 
     val errorLiveData = MutableLiveData<ErrorResponse>()
+
+    val loadingLiveData = MutableLiveData<Boolean>()
 
     var iData: ApprovalListResponse.ApprovalListData? = null
 
@@ -46,12 +46,25 @@ class ApprovalDetailViewModel : ViewModel() {
             .convertStringFromDate(InterfaceManager.getInstance().convertDateFromString(date))
     }
 
+    fun loading(flag: Boolean){
+        GlobalScope.launch {
+            withContext(Dispatchers.Main){
+                loadingLiveData.value = flag
+            }
+        }
+    }
+
     fun approve() {
+
+        loading(flag = true)
+
         CoroutineScope(Dispatchers.IO).launch {
 
             try {
 
-                val index= if (roleID == 1) { 1 } else if (roleID ==    )
+                var index= 0
+
+                if (roleID == 1) { index = 1 } else if (roleID == 0) { index = 0 }
 
                 val call =
                     HinoService.create(ApprovalService::class.java).Approve(iData?.id.toString(), index)
@@ -60,10 +73,12 @@ class ApprovalDetailViewModel : ViewModel() {
 
                 if (response.meta.success) {
                     errorLiveData.postValue(response)
-                }
+                    loading(flag = false)
+                }else loading(flag = false)
 
             } catch (t: Throwable) {
                 t.printStackTrace()
+                loading(flag = false)
                 when (t) {
                     is IOException -> {
 

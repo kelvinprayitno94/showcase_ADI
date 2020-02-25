@@ -8,14 +8,14 @@ import com.hino.hearts.databinding.FragmentOpportunityInformationBinding
 import com.hino.hearts.ui.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class InformationFragment : BaseFragment<FragmentOpportunityInformationBinding>() {
+class InformationFragment(opportunityId: Int) : BaseFragment<FragmentOpportunityInformationBinding>() {
 
-    private val viewModel by viewModel<InformationViewModel>()
+    private val mViewModel by viewModel<InformationViewModel>()
+    private val mOpportunityId = opportunityId
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initData()
         initObserver()
         initViewModel()
         initEvent()
@@ -25,19 +25,19 @@ class InformationFragment : BaseFragment<FragmentOpportunityInformationBinding>(
         return R.layout.fragment_opportunity_information
     }
 
-    private fun initData() {
-        val accountName = activity!!.intent.getStringExtra(OpportunityDetailActivity.PARAM_ACCOUNT_NAME)
-        if (accountName != null)
-            viewModel.accountName = accountName
-
-        viewModel.opportunityValue = activity!!.intent.getLongExtra(OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE, 0)
-    }
-
     override fun initObserver() {
+
     }
 
     override fun initViewModel() {
-        binding.viewModel = viewModel
+        binding.viewModel = mViewModel
+
+        mViewModel.opportunityId = mOpportunityId
+        val accountName = activity!!.intent.getStringExtra(OpportunityDetailActivity.PARAM_ACCOUNT_NAME)
+        if (accountName != null)
+            mViewModel.accountName = accountName
+
+        mViewModel.opportunityValue = activity!!.intent.getLongExtra(OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE, 0)
     }
 
     override fun initEvent() {

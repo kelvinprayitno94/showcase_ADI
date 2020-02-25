@@ -1,22 +1,21 @@
 package com.hino.hearts.adapter
 
-import android.view.*
-import android.widget.FrameLayout
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
-import com.hino.hearts.model.AppointmentActivityModel
-import com.hino.hearts.model.OpportunityModel
-import java.text.DecimalFormat
-import java.text.NumberFormat
+import com.hino.hearts.model.OpportunityVisitModel
+import com.hino.hearts.util.InterfaceManager
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class AppointmentActivityAdapter: RecyclerView.Adapter<AppointmentActivityAdapter.ListViewHolder>() {
-    var list: MutableList<AppointmentActivityModel> = ArrayList()
+class OpportunityVisitAdapter: RecyclerView.Adapter<OpportunityVisitAdapter.ListViewHolder>() {
+    var list: MutableList<OpportunityVisitModel> = ArrayList()
     var clickListener: ClickListener? = null
 
     private val mDateFormat: SimpleDateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
@@ -34,13 +33,13 @@ class AppointmentActivityAdapter: RecyclerView.Adapter<AppointmentActivityAdapte
         val item = list[position]
 
         holder.rootFrameLayout.tag = position
-        holder.titleTextView?.text = item.appointmentDate
+        holder.titleTextView?.text = mDateFormat.format(InterfaceManager.getInstance().convertDateFromString(item.createdAt)!!)
         holder.descriptionTextView?.text = item.description
 
         holder.rootFrameLayout.setOnClickListener { clickListener?.onItemClicked(item) }
     }
 
-    fun setData(items: MutableList<AppointmentActivityModel>) {
+    fun setData(items: MutableList<OpportunityVisitModel>) {
         list = items
         notifyDataSetChanged()
     }
@@ -52,6 +51,6 @@ class AppointmentActivityAdapter: RecyclerView.Adapter<AppointmentActivityAdapte
     }
 
     interface ClickListener {
-        fun onItemClicked(item: AppointmentActivityModel)
+        fun onItemClicked(item: OpportunityVisitModel)
     }
 }
