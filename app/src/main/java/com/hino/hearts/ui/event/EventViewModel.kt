@@ -29,7 +29,7 @@ class EventViewModel : ViewModel() {
                 "HINO Conference  2020",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
-                "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
+                "1"
             )
         )
         eventList.add(
@@ -38,7 +38,7 @@ class EventViewModel : ViewModel() {
                 "BOD Meet Up",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
-                "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
+                "2"
             )
         )
         eventList.add(
@@ -47,25 +47,25 @@ class EventViewModel : ViewModel() {
                 "HINO FJ 120 J Grand Launching",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
-                "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
+                "3"
             )
         )
         eventList.add(
             Event(
                 4,
-                "Event Info",
+                "HINO FJ 105 X Grand Launching",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
-                "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
+                "4"
             )
         )
         eventList.add(
             Event(
                 5,
-                "Event Info",
+                "HINO FJ 023 B Grand Launching",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
                 date,
-                "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg"
+                "5"
             )
         )
 

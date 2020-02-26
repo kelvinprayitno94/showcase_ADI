@@ -32,7 +32,7 @@
             android:scrollbars="none"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -58,24 +58,37 @@
                     android:layout_marginStart="@dimen/dimens_24dp"
                     android:layout_marginTop="@dimen/dimens_16dp"
                     android:layout_marginEnd="@dimen/dimens_24dp"
+                    android:maxLines="3"
                     android:text="@{viewModel.event.content}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_event_detail_title"
                     tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis sem purus. Pellentesque eleifend at lacus ac dignissim. Suspendisse ac risus efficitur, ultricies mi in, suscipit lacus. " />
 
+                <TextView
+                    android:id="@+id/btn_show_more"
+                    style="@style/Desc14spRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="@dimen/dimens_8dp"
+                    android:text="@{viewModel.showButtonText}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_event_detail_desc"
+                    tools:text="Show More" />
+
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/vp_event_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="@dimen/dimens_24dp"
+                    android:layout_marginTop="@dimen/dimens_16dp"
                     android:overScrollMode="never"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_event_detail_desc">
+                    app:layout_constraintTop_toBottomOf="@+id/btn_show_more">
 
-                <com.hino.hearts.util.ui.CustomTabLayout
+                    <com.hino.hearts.util.ui.CustomTabLayout
                         android:id="@+id/tl_event_detail"
                         style="@style/TabLayout"
                         android:layout_width="match_parent"
@@ -92,6 +105,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/layout_custom_loading"
+            layout="@layout/layout_custom_loading"
+            android:visibility="gone"
+            tools:visibility="gone" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

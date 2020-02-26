@@ -8,8 +8,8 @@ import com.hino.hearts.model.HomeMenu
 import com.hino.hearts.model.VisitTarget
 import com.hino.hearts.network.HinoService
 import com.hino.hearts.network.response.home.HomeDataResponse
-import com.hino.hearts.network.response.home.HomeDataResponse.PendingApprovals as PendingApprovals
-import com.hino.hearts.network.response.home.HomeDataResponse.TodayVisit as TodayVisit
+import com.hino.hearts.network.response.home.HomeDataResponse.PendingApprovals
+import com.hino.hearts.network.response.home.HomeDataResponse.TodayVisit
 import com.hino.hearts.network.service.home.HomeService
 import com.hino.hearts.util.InterfaceManager
 import com.hino.hearts.util.UserDefaults
@@ -20,11 +20,13 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
+
 
 /**
  * Created by Dihardja Software on 2020-02-11.
@@ -39,6 +41,9 @@ class HomeFragmentViewModel : ViewModel() {
         private const val NINETEEN = 19
         private const val TWENTY_THREE = 23
         private const val ONE_HUNDRED = 100
+        private const val million = 1000000L
+        private const val billion = 1000000000L
+        private const val trillion = 1000000000000L
     }
 
     var greetings: MutableLiveData<String> = MutableLiveData()
@@ -84,9 +89,9 @@ class HomeFragmentViewModel : ViewModel() {
         homeMenuList.value = initHomeMenu()
     }
 
-    fun onGetHomeData(type: String){
-        when(type){
-            "custom"->{
+    fun onGetHomeData(type: String) {
+        when (type) {
+            "custom" -> {
                 showLoading.value = true
             }
         }
@@ -118,14 +123,16 @@ class HomeFragmentViewModel : ViewModel() {
                             val data = response.body()?.data!!
 
                             leftInfo.value = data.monthlyVisit.toString()
-                            rightInfo.value = formatCurrency(data.totalOpportunity)
+                            rightInfo.value = formatCurrency(data.totalOpportunity.toFloat())
+//                            val test = 1234567890
+//                            rightInfo.value = formatCurrency(test.toFloat())
 
-                            when(roleId.value == 7){
-                                true->{
+                            when (roleId.value == 7) {
+                                true -> {
                                     visitProgressTotal.value = data.todayVisit.size
                                     getTodayVisitData(data.todayVisit)
                                 }
-                                false->{
+                                false -> {
                                     getTodayPendingApprovalsData(data.pendingApprovals)
                                 }
                             }
@@ -142,44 +149,93 @@ class HomeFragmentViewModel : ViewModel() {
         }
     }
 
-    private fun getTodayVisitData(data: ArrayList<TodayVisit>){
+    private fun getTodayVisitData(data: ArrayList<TodayVisit>) {
         val visitTargetList: ArrayList<VisitTarget> = ArrayList()
+        var progress = 0
 
         for (i in 0 until data.size) {
             visitTargetList.add(VisitTarget(data[i].organization, data[i].visit))
 
-            when(data[i].visit){
-                true->{
-                    visitProgress.value =+ 1
+            when (data[i].visit) {
+                true -> {
+                    progress++
                 }
             }
         }
 
         this.visitTargetList.value = visitTargetList
+        visitProgress.value = progress
         visitProgressPercentage.value = calculateProgress()
     }
 
-    private fun getTodayPendingApprovalsData(data: ArrayList<PendingApprovals>){
+    private fun getTodayPendingApprovalsData(data: ArrayList<PendingApprovals>) {
         var requestCount = 0
 
         for (i in 0 until data.size) {
 
-            when(data[i].approved){
-                false->{
+            when (data[i].approved) {
+                false -> {
                     requestCount++
                 }
             }
         }
-        Log.d("lalala", requestCount.toString())
 
         approvalRequestCount.value = requestCount.toString()
     }
 
-    private fun formatCurrency(amount: Int): String {
-        val formatter: NumberFormat = DecimalFormat("#,###")
-        val formattedNumber = formatter.format(amount)
+    private fun formatCurrency(floatNumber: Float): String? {
+        when {
+            floatNumber >= trillion -> {
+                val value = floatNumber / trillion
+                return formatCurrencyDecimal(value, "T")
 
-        return "Rp$formattedNumber"
+            }
+            floatNumber >= billion -> {
+                val value = floatNumber / billion
+                return formatCurrencyDecimal(value, "M")
+
+            }
+            floatNumber >= million -> {
+                val value = floatNumber / million
+                return formatCurrencyDecimal(value, "Jt")
+
+            }
+            else -> {
+                val formatter: NumberFormat = DecimalFormat("#,###")
+                val formattedNumber = formatter.format(floatNumber)
+
+                return if (formattedNumber.contains(",")) {
+                    val dotFormatted = formattedNumber.replace(",", ".")
+                    "Rp$dotFormatted"
+
+                } else {
+                    "Rp$formattedNumber"
+                }
+            }
+        }
+    }
+
+    private fun formatCurrencyDecimal(amount: Float, type: String): String {
+        val df = DecimalFormat("0.0##")
+        df.roundingMode = RoundingMode.DOWN
+        df.maximumFractionDigits = 1
+        df.minimumFractionDigits = 1
+        val formatted = df.format(amount)
+
+        return if (formatted.contains(".0")) {
+            val roundFormatted = formatted.replace(".0", "")
+            "Rp$roundFormatted $type"
+
+        } else {
+            if (formatted.contains(".")) {
+                val dotFormatted = formatted.replace(".", ",")
+                "Rp$dotFormatted $type"
+
+            } else {
+                "Rp$formatted $type"
+
+            }
+        }
     }
 
     private fun calculateProgress(): Int {

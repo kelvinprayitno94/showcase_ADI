@@ -57,8 +57,6 @@ class LoginViewModel : ViewModel() {
             ) {
                 showLoading.value = false
 
-                Log.d("lalala", response.body().toString())
-
                 when (response.body()?.data != null && response.body()!!.meta.success && response.isSuccessful) {
                     true -> {
                         val data = response.body()?.data!!
