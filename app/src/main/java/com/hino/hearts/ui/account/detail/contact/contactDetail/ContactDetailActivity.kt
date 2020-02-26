@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityContactDetailsBinding
 import com.hino.hearts.databinding.ActivityEditAccountDetailBinding
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailViewModel
 import kotlinx.android.synthetic.main.activity_contact_details.*
@@ -31,7 +32,12 @@ class ContactDetailActivity : BaseActivity<ActivityContactDetailsBinding>() {
     }
 
     override fun initViewModel() {
+        var data: AccountListResponse.ContactData? = intent.getParcelableExtra("contact_data")
 
+        data?.run {
+            tv_contact_name.setText(name)
+            tv_phone_no.setText(phoneNumber)
+        }
     }
 
     override fun initEvent() {

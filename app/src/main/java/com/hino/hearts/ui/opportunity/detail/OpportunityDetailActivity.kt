@@ -66,6 +66,8 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
     override fun initViewModel() {
         binding.viewModel = mViewModel
 
+        val fromAccount = intent.getBooleanExtra("is_from_account", false)
+
         mViewModel.opportunityId = intent.getIntExtra(PARAM_OPPORTUNITY_ID, 0)
         mViewModel.opportunityName = intent.getStringExtra(PARAM_OPPORTUNITY_TITLE)
 
@@ -74,10 +76,13 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
             mViewModel.accountName = accountName
 
         mViewModel.opportunityValue = intent.getLongExtra(PARAM_OPPORTUNITY_VALUE, 0)
-        val serializable: Serializable? = intent.getSerializableExtra(PARAM_OPPORTUNITY_OBJECT)
-        mViewModel.opportunity = when (serializable != null) {
-            true -> serializable as OpportunityModel
-            false -> null
+
+        if (!fromAccount){
+            val serializable: Serializable? = intent.getSerializableExtra(PARAM_OPPORTUNITY_OBJECT)
+            mViewModel.opportunity = when (serializable != null) {
+                true -> serializable as OpportunityModel
+                false -> null
+            }
         }
     }
 

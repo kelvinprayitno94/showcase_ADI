@@ -46,19 +46,12 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
         super.onCreate(savedInstanceState)
         setBinding(R.layout.activity_approval_tab)
 
-
-
         binding.viewModel = viewModel
 
         initObserver()
         initViewModel()
         initEvent()
         initAdapter()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 
     override fun initObserver() {

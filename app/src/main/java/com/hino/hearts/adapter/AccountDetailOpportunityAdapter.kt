@@ -6,14 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.hino.hearts.R
 import com.hino.hearts.network.response.account.AccountListResponse
 
 class AccountDetailOpportunityAdapter(
     var context: Context,
-    var data : List<AccountListResponse.OpportunityData>?
-//    val listener: OnAdapterTap
+    var data : List<AccountListResponse.OpportunityData>?,
+    val listener: OnAdapterTap
 ) :
     RecyclerView.Adapter<AccountDetailOpportunityAdapter.Holder>(){
 
@@ -43,11 +44,16 @@ class AccountDetailOpportunityAdapter(
             holder.companyName.text = it.name
             holder.price.text = it.opportunityValue
         }
+
+        holder.root.setOnClickListener {
+            listener.onTap(position)
+        }
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemName = itemView.findViewById<TextView>(R.id.tv_adapter_opportunity_item)
         val companyName = itemView.findViewById<TextView>(R.id.tv_adapter_opportunity_cpy_name)
         val price = itemView.findViewById<TextView>(R.id.tv_adapter_opportunity_price)
+        var root = itemView.findViewById<CardView>(R.id.cl_root)
     }
 }

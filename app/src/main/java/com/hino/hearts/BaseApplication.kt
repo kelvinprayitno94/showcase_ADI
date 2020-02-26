@@ -1,6 +1,7 @@
 package com.hino.hearts
 
 import android.app.Application
+import com.hino.hearts.oneSignal.MyNotificationOpenedHandler
 import com.hino.hearts.util.module.moduleViewModel
 import com.onesignal.OneSignal
 import org.koin.android.ext.koin.androidContext
@@ -24,6 +25,7 @@ class BaseApplication: Application() {
 
         OneSignal.startInit(this)
             .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+            .setNotificationOpenedHandler(MyNotificationOpenedHandler(this))
             .unsubscribeWhenNotificationsAreDisabled(true)
             .init()
 

@@ -14,6 +14,7 @@ import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity
 import kotlinx.android.synthetic.main.fragment_account_detail_vehicles.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -53,7 +54,9 @@ class AccountVehicleFragment(var data: List<AccountListResponse.VehicleData>?) :
 
             adapter = AccountVehicleAdapter(it, data, object : AccountVehicleAdapter.OnAdapterTap {
                 override fun onTap(pos: Int) {
-                    startActivity(Intent(activity, VehicleDetailActivity::class.java))
+                    startActivity<VehicleDetailActivity>(
+                        "vehicle_data" to data?.get(pos)
+                    )
                 }
 
             })

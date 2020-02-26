@@ -15,14 +15,10 @@ import kotlin.coroutines.CoroutineContext
 
 class ApprovalTabViewModel : ViewModel() {
 
-    val documentTypeList : ApprovalDocModel = ApprovalDocModel(ArrayList())
-
     val showCateTextLiveData = MutableLiveData<Boolean>()
     val animateArrorLiveData = MutableLiveData<Pair<Float, Float>>()
     val approvalListLiveData = MutableLiveData<ApprovalListResponse>()
     val loadingLiveData = MutableLiveData<Boolean>()
-
-    val documentLivedata = MutableLiveData<ApprovalDocModel>()
 
     var isOpen = false
 
@@ -59,12 +55,12 @@ class ApprovalTabViewModel : ViewModel() {
 
         loading(flag = true)
 
-        var hashmap = HashMap<String, String>()
+        val hashmap = HashMap<String, String>()
         if (query!!.isNotBlank()){
-            hashmap.put("type", query)
+            hashmap["type"] = query
         }
 
-        var job = CoroutineScope(Dispatchers.IO).launch  {
+        CoroutineScope(Dispatchers.IO).launch  {
 
             try {
 

@@ -45,13 +45,24 @@ class ApprovalDocumentAdapter(
         holder.documentType.text = doc.type
 
         if (roleID != 7) {
-            holder.greenDot.visibility = View.VISIBLE
+            holder.greenDot.visibility = if (canApprove(doc)){ View.VISIBLE} else View.GONE
         } else
             holder.greenDot.visibility = View.INVISIBLE
 
         holder.root.setOnClickListener {
             listener.onTap(position)
         }
+    }
+
+    fun canApprove(data: ApprovalListResponse.ApprovalListData?): Boolean {
+        data?.approvalProgress?.iterator()?.forEach {
+
+            if (!it.approved!!) {
+                return it.signRoleId == roleID
+            }
+        }
+
+        return false
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

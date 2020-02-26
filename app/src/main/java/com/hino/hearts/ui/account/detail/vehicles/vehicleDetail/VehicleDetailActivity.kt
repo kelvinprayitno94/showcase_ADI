@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.hino.hearts.R
 import com.hino.hearts.databinding.ActivityEditAccountDetailBinding
 import com.hino.hearts.databinding.ActivityVehicleDetailBinding
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_vehicle_detail.*
 import kotlinx.android.synthetic.main.main_toolbar.*
@@ -41,7 +42,12 @@ class VehicleDetailActivity : BaseActivity<ActivityVehicleDetailBinding>() {
     }
 
     override fun initViewModel() {
+        var data : AccountListResponse.VehicleData? = intent.getParcelableExtra("vehicle_data")
 
+        data?.run {
+            viewModel.categoryLiveData.value = name
+            tv_serial_no.setText(code)
+        }
     }
 
     override fun initEvent() {

@@ -30,7 +30,11 @@ class ApprovalDetailViewModel : ViewModel() {
 
     fun checkUser(roleId: Int) {
         roleID = roleId
-        showActionLiveData.value = roleID != 7
+//        showActionLiveData.value = roleID != 7
+
+        if (roleID != 7)
+            showActionLiveData.value = canApprove()
+
     }
 
     fun init(iData: ApprovalListResponse.ApprovalListData?) {
@@ -46,9 +50,20 @@ class ApprovalDetailViewModel : ViewModel() {
             .convertStringFromDate(InterfaceManager.getInstance().convertDateFromString(date))
     }
 
-    fun loading(flag: Boolean){
+    fun canApprove(): Boolean {
+        iData?.approvalProgress?.iterator()?.forEach { data ->
+
+            if (!data.approved!!) {
+                return data.signRoleId == roleID
+            }
+        }
+
+        return false
+    }
+
+    fun loading(flag: Boolean) {
         GlobalScope.launch {
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 loadingLiveData.value = flag
             }
         }
@@ -62,19 +77,24 @@ class ApprovalDetailViewModel : ViewModel() {
 
             try {
 
-                var index= 0
+                var index = 0
 
-                if (roleID == 1) { index = 1 } else if (roleID == 0) { index = 0 }
+                if (roleID == 1) {
+                    index = 1
+                } else if (roleID == 0) {
+                    index = 0
+                }
 
                 val call =
-                    HinoService.create(ApprovalService::class.java).Approve(iData?.id.toString(), index)
+                    HinoService.create(ApprovalService::class.java)
+                        .Approve(iData?.id.toString(), index)
 
                 val response = call.await()
 
                 if (response.meta.success) {
                     errorLiveData.postValue(response)
                     loading(flag = false)
-                }else loading(flag = false)
+                } else loading(flag = false)
 
             } catch (t: Throwable) {
                 t.printStackTrace()

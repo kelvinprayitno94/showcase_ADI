@@ -18,6 +18,7 @@ import com.hino.hearts.ui.account.detail.contact.contactDetail.ContactDetailActi
 import com.hino.hearts.ui.account.detail.contact.newContact.NewContactActivity
 import com.hino.hearts.util.DividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_account_detail_contact.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -42,7 +43,9 @@ class AccountContactFragment(var data: List<AccountListResponse.ContactData>?) :
 
     override fun initObserver() {
         viewModel.navEditContactLiveData.observe(viewLifecycleOwner, Observer {
-            startActivity(Intent(activity, ContactDetailActivity::class.java))
+            startActivity<ContactDetailActivity>(
+                "contact_data" to it
+            )
         })
 
         viewModel.navNewContactLiveData.observe(viewLifecycleOwner, Observer {
@@ -65,7 +68,7 @@ class AccountContactFragment(var data: List<AccountListResponse.ContactData>?) :
 
             adapter = AccountContactAdapter(it, data, object : AccountContactAdapter.OnAdapterTap{
                 override fun onTap(pos: Int) {
-                    viewModel.editContactTap()
+                    viewModel.editContactTap(data?.get(pos))
                 }
 
             })

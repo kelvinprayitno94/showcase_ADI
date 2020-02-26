@@ -114,6 +114,8 @@ class ApprovalListResponse : ErrorResponse() {
     class ApprovalProgressData() : Parcelable {
         @SerializedName("name")
         var name: String? = ""
+        @SerializedName("signRoleId")
+        var signRoleId: Int? = 0
         @SerializedName("approved")
         var approved: Boolean? = false
         @SerializedName("date")
@@ -123,6 +125,7 @@ class ApprovalListResponse : ErrorResponse() {
 
         constructor(parcel: Parcel) : this() {
             name = parcel.readString()
+            signRoleId = parcel.readValue(Int::class.java.classLoader) as? Int
             approved = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
             date = parcel.readString()
             approver = parcel.readParcelable(Approver::class.java.classLoader)
@@ -130,6 +133,7 @@ class ApprovalListResponse : ErrorResponse() {
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             parcel.writeString(name)
+            parcel.writeValue(signRoleId)
             parcel.writeValue(approved)
             parcel.writeString(date)
             parcel.writeParcelable(approver, flags)
