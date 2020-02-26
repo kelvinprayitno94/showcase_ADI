@@ -156,6 +156,8 @@ class AccountListResponse() : ErrorResponse(), Parcelable{
     }
 
     class OpportunityData():Parcelable{
+        @SerializedName("id")
+        var id : Int = 0
         @SerializedName("opportunityName")
         var opportunityName : String? = ""
         @SerializedName("name")

@@ -21,6 +21,7 @@ class OpportunityDetailViewModel : ViewModel() {
 
     var opportunityId: Int = 0
     var opportunityName: String? = "Opportunity Name"
+    var accountId: Int = 0
     var accountName: String? = "Account Name Not Found"
     var opportunityValue: Long? = 0
     var opportunity: OpportunityModel? = null

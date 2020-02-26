@@ -23,6 +23,7 @@ class ActivitiesViewModel : ViewModel() {
     var opportunityId: Int = 0
     val activityData: MutableLiveData<MutableList<OpportunityVisitModel>> = MutableLiveData()
     val activityDataWhole: MutableLiveData<MutableList<OpportunityVisitModel>> = MutableLiveData()
+    var visitType = "Appointment"
 
     var isEmpty: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -50,7 +51,7 @@ class ActivitiesViewModel : ViewModel() {
 
                 if (response.isSuccessful && response.body()?.data != null && response.body()!!.meta.success) {
                     activityDataWhole.value = response.body()?.data!!.opportunityVisit
-                    changeVisitType("Appointment")
+                    changeVisitType(visitType)
                 }
                 else {
                     errorBody.value = response.errorBody()
@@ -60,6 +61,7 @@ class ActivitiesViewModel : ViewModel() {
     }
 
     fun changeVisitType(type: String){
+        visitType = type
         val filteredList: ArrayList<OpportunityVisitModel> = ArrayList()
 
         for(visit in activityDataWhole.value!!){
