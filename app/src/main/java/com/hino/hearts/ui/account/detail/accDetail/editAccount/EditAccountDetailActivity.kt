@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Observer
 import com.hino.hearts.R
+import com.hino.hearts.adapter.SpinnerAdapter
 import com.hino.hearts.databinding.ActivityEditAccountDetailBinding
 import com.hino.hearts.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_edit_account_detail.*
@@ -47,15 +48,19 @@ class EditAccountDetailActivity : BaseActivity<ActivityEditAccountDetailBinding>
     }
 
     override fun initEvent() {
-        tl_business_field.setOnClickListener {
+        iv_business_field_dropdown.setOnClickListener {
             viewModel.showBusinessPopupMenu(resources.getStringArray(R.array.business_field_list).toList())
         }
 
-        tl_city.setOnClickListener {
+        iv_city_dropdown.setOnClickListener {
             viewModel.showCityPopupMenu(resources.getStringArray(R.array.city_list).toList())
         }
 
         main_toolbar.setOnClickListener {
+            finish()
+        }
+
+        btn_edit_account_detail.setOnClickListener {
             finish()
         }
 
@@ -78,10 +83,10 @@ class EditAccountDetailActivity : BaseActivity<ActivityEditAccountDetailBinding>
 
             when (flag) {
                 0 -> {
-                    viewModel.setCityText(it.title.toString())
+                    viewModel.setBusinessFieldText(it.title.toString())
                 }
                 else -> {
-                    viewModel.setBusinessFieldText(it.title.toString())
+                    viewModel.setCityText(it.title.toString())
                 }
 
             }

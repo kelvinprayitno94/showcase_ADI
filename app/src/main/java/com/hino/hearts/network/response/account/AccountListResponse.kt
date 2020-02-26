@@ -80,6 +80,12 @@ class AccountListResponse() : ErrorResponse(), Parcelable{
         var accountName : String? = ""
         @SerializedName("address")
         var address : String? = ""
+        @SerializedName("province")
+        var province : String? = ""
+        @SerializedName("country")
+        var country : String? = ""
+        @SerializedName("phone")
+        var phone : String? = ""
         @SerializedName("city")
         var city : String? = ""
 
@@ -87,6 +93,9 @@ class AccountListResponse() : ErrorResponse(), Parcelable{
             id = parcel.readInt()
             accountName = parcel.readString()
             address = parcel.readString()
+            province = parcel.readString()
+            country = parcel.readString()
+            phone = parcel.readString()
             city = parcel.readString()
         }
 
@@ -94,6 +103,9 @@ class AccountListResponse() : ErrorResponse(), Parcelable{
             parcel.writeInt(id)
             parcel.writeString(accountName)
             parcel.writeString(address)
+            parcel.writeString(province)
+            parcel.writeString(country)
+            parcel.writeString(phone)
             parcel.writeString(city)
         }
 

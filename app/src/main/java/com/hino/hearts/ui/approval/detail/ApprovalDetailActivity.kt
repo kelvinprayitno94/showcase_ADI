@@ -1,5 +1,6 @@
 package com.hino.hearts.ui.approval.detail
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -49,7 +50,26 @@ class ApprovalDetailActivity : BaseActivity<ActivityApprovalDetailBinding>() {
         })
 
         viewModel.errorLiveData.observe(this, Observer {
-            Toast.makeText(this@ApprovalDetailActivity, it.meta.message, Toast.LENGTH_SHORT).show()
+            val builder = AlertDialog.Builder(this@ApprovalDetailActivity)
+
+            // Set the alert dialog title
+            builder.setTitle("")
+
+            // Display a message on alert dialog
+            builder.setMessage("Approval berhasil")
+
+            // Set a positive button and its click listener on alert dialog
+            builder.setPositiveButton("OK"){dialog, which ->
+                setResult(200)
+                finish()
+            }
+
+            // Finally, make the alert dialog using builder
+            val dialog: AlertDialog = builder.create()
+
+            dialog.setCancelable(false)
+
+            dialog.show()
         })
     }
 

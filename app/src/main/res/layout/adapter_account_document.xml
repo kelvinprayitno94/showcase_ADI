@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dimens_4dp"
         android:layout_marginTop="5dp"
-        android:text="Account Name"
+        android:text="Document type"
         app:layout_constraintStart_toEndOf="@+id/ic_green_dot"
         app:layout_constraintTop_toBottomOf="@+id/tv_adapter_approval_acc_company" />
 

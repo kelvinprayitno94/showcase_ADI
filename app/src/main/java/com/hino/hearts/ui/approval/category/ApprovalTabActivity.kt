@@ -37,7 +37,6 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
     lateinit var approvalDocumentAdapter: ApprovalDocumentAdapter
     lateinit var approvalCollapsDocAdapter: ApprovalCollapsingDocumentAdapter
-    lateinit var approvalDocTypeFilterAdapter: ApprovalDocTypeFilterAdapter
 
     var open = true
 
@@ -57,16 +56,24 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
         initAdapter()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
     override fun initObserver() {
+
+        var docType = resources.getStringArray(R.array.approval_tab_document).toList()
+
+        for (i in docType) {
+            tab_layout_approval.addTab(tab_layout_approval.newTab().setText(i))
+        }
+
         viewModel.approvalListLiveData.observe(this, Observer {
 
-            var docType = resources.getStringArray(R.array.approval_tab_document).toList()
+            it.selected = tab_layout_approval.selectedTabPosition
 
             var docList = it.listData
-
-            for (i in docType) {
-                tab_layout_approval.addTab(tab_layout_approval.newTab().setText(i))
-            }
 
             val roleid = UserDefaults.getInstance().getInt(UserDefaults.USER_ROLE_ID, 1)
 
@@ -85,7 +92,7 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
                             intent.putExtra("data", docList[pos])
 
-                            startActivity(intent)
+                            startActivityForResult(intent, 100)
                         }
 
                     })
@@ -113,23 +120,6 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
 
                 })
 
-            approvalDocTypeFilterAdapter = ApprovalDocTypeFilterAdapter(this, it,
-                selectedIndex,
-                object : ApprovalDocTypeFilterAdapter.OnAdapterTap {
-                    override fun onTap(pos: Int) {
-//                        if (!it.docList[pos].isSelected) {
-//                            it.docList[it.prevSelected].isSelected = false
-//                            it.docList[pos].isSelected = true
-                        it.selected = pos
-                        approvalDocTypeFilterAdapter.notifyDataSetChanged()
-                        approvalCollapsDocAdapter.notifyDataSetChanged()
-//                            it.prevSelected = pos
-//                            approvalDocumentAdapter.filter.filter(it.docList[pos].documentType)
-//                        }
-                    }
-
-                })
-
             tab_layout_approval.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabReselected(tab: TabLayout.Tab?) {
 
@@ -143,6 +133,8 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                     tab?.let { _it ->
                         it.selected = _it.position
                         approvalCollapsDocAdapter.notifyDataSetChanged()
+
+                        viewModel.getApproval(query = docType[_it.position])
                     }
 //                    approvalDocumentAdapter.filter.filter(tab?.text)
                 }
@@ -168,12 +160,6 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
                     ContextCompat.getDrawable(this@ApprovalTabActivity, R.drawable.divider)
                 )
             )
-
-            rv_tab_layout_approval_doc_type.adapter = approvalDocTypeFilterAdapter
-            rv_tab_layout_approval_doc_type.layoutManager =
-                LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-            val snapHelper: SnapHelper = LinearSnapHelper()
-            snapHelper.attachToRecyclerView(rv_tab_layout_approval_doc_type)
 
         })
 
@@ -308,5 +294,14 @@ class ApprovalTabActivity : BaseActivity<ActivityApprovalTabBinding>() {
     fun initAdapter() {
 
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == 200){
+            tab_layout_approval.getTabAt(0)?.select()
+            viewModel.getApproval()
+        }
     }
 }

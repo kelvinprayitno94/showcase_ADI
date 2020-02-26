@@ -16,7 +16,7 @@
         android:text="Pt dihardja"
         android:textColor="@color/black"
         android:textSize="18sp"
-        style="@style/BoldLabelText"
+        style="@style/TabLayoutTextAppereances"
         app:layout_constraintStart_toEndOf="@+id/view_bot_indicator"
         app:layout_constraintTop_toTopOf="parent" />
 

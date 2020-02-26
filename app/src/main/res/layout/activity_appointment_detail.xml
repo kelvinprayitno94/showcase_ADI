@@ -80,11 +80,13 @@
                         android:layout_height="wrap_content"
                         android:drawableEnd="@{viewModel.opportunityEnabled ? @drawable/dropdown : null}"
                         android:enabled="@{viewModel.opportunityEnabled}"
-                        android:focusable="@{viewModel.opportunityEnabled}"
+                        android:focusable="false"
+                        android:clickable="true"
                         android:hint="@string/appointment_account"
                         android:inputType="text"
-                        android:text="@{viewModel.accountName}"
-                        android:theme="@style/TextInputLayoutHint" />
+                        android:text="@{viewModel.accountLivedata}"
+                        android:theme="@style/TextInputLayoutHint"
+                        tools:ignore="KeyboardInaccessibleWidget" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

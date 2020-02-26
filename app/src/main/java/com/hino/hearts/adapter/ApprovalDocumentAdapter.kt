@@ -40,7 +40,7 @@ class ApprovalDocumentAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val doc = document[position]
 
-        holder.accountName.text = doc.approval?.customerName
+        holder.accountCompany.text = doc.approval?.customerName
 
         holder.documentType.text = doc.type
 
@@ -55,6 +55,7 @@ class ApprovalDocumentAdapter(
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val accountCompany = itemView.findViewById<TextView>(R.id.tv_adapter_approval_acc_company)
         val accountName = itemView.findViewById<TextView>(R.id.tv_adapter_approval_acc_name)
         val documentType = itemView.findViewById<TextView>(R.id.tv_adapter_approval_doc_type)
         val greenDot = itemView.findViewById<ImageView>(R.id.ic_green_dot)

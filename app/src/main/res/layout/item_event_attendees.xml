@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimens_24dp"
         android:padding="@dimen/dimens_8dp"
-        android:text="@string/login_button"
+        android:text="@string/check_in"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/tv_item_attendees_name"
         app:layout_constraintEnd_toEndOf="parent"

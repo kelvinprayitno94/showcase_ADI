@@ -8,11 +8,10 @@ import com.hino.hearts.model.ApprovalDocumentModel
 import com.hino.hearts.network.HinoService
 import com.hino.hearts.network.response.approve.ApprovalListResponse
 import com.hino.hearts.network.service.approval.ApprovalService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.io.IOException
+import kotlin.coroutines.CoroutineContext
 
 class ApprovalTabViewModel : ViewModel() {
 
@@ -21,14 +20,14 @@ class ApprovalTabViewModel : ViewModel() {
     val showCateTextLiveData = MutableLiveData<Boolean>()
     val animateArrorLiveData = MutableLiveData<Pair<Float, Float>>()
     val approvalListLiveData = MutableLiveData<ApprovalListResponse>()
+    val loadingLiveData = MutableLiveData<Boolean>()
 
     val documentLivedata = MutableLiveData<ApprovalDocModel>()
 
     var isOpen = false
 
-    fun getTabTitle(){
-        documentLivedata.postValue(ApprovalDocModel(ArrayList()))
-    }
+    private val parentJob = Job()
+    private val coroutineContext : CoroutineContext get() = parentJob + Dispatchers.Default
 
     fun showDocTypeSlidingView(view: Int
 //                               , height: Float
@@ -46,22 +45,42 @@ class ApprovalTabViewModel : ViewModel() {
         }
     }
 
-    fun getApproval(){
-        CoroutineScope(Dispatchers.IO).launch  {
+    fun loading(flag: Boolean){
+        GlobalScope.launch {
+            withContext(Dispatchers.Main){
+                loadingLiveData.value = flag
+            }
+        }
+    }
+
+    fun getApproval(query: String? = ""){
+
+        coroutineContext.cancel()
+
+        loading(flag = true)
+
+        var hashmap = HashMap<String, String>()
+        if (query!!.isNotBlank()){
+            hashmap.put("type", query)
+        }
+
+        var job = CoroutineScope(Dispatchers.IO).launch  {
 
             try {
 
                 val call =
-                    HinoService.create(ApprovalService::class.java).ApprovalList()
+                    HinoService.create(ApprovalService::class.java).ApprovalList(hashmap)
 
                 val response = call.await()
 
                 if (response.meta.success) {
                     approvalListLiveData.postValue(response)
+                    loading(flag = false)
                 }
 
             } catch (t: Throwable){
                 t.printStackTrace()
+
                 when(t){
                     is IOException -> {
 
@@ -70,7 +89,7 @@ class ApprovalTabViewModel : ViewModel() {
 
                     }
                     else -> {
-
+                        loading(flag = false)
                     }
                 }
             }

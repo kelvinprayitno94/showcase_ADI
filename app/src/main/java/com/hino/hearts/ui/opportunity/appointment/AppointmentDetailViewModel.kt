@@ -16,6 +16,8 @@ import retrofit2.Response
 class AppointmentDetailViewModel : ViewModel() {
     var saveClicked: MutableLiveData<Boolean> = MutableLiveData()
 
+    var accountLivedata: MutableLiveData<String> = MutableLiveData()
+
     /*val showLoading: MutableLiveData<Boolean> = MutableLiveData()
     private val service: OpportunityService = HinoService.create(OpportunityService::class.java)
     var errorBody: MutableLiveData<ResponseBody> = MutableLiveData()

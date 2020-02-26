@@ -16,6 +16,11 @@
 
         <include layout="@layout/main_toolbar" />
 
+        <include
+            android:id="@+id/layout_custom_loading"
+            layout="@layout/layout_custom_loading"
+            android:visibility="@{viewModel.loadingLiveData ? View.VISIBLE : View.GONE}"/>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"

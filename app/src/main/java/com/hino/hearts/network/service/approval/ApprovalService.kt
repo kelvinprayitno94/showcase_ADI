@@ -13,7 +13,7 @@ import retrofit2.http.*
  */
 interface ApprovalService {
     @GET("approval")
-    fun ApprovalList(): Deferred<ApprovalListResponse>
+    fun ApprovalList(@QueryMap query: HashMap<String, String>): Deferred<ApprovalListResponse>
 
     @PUT("approval/{id}")
     @FormUrlEncoded
