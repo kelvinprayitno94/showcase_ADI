@@ -169,22 +169,22 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
                 AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_APPOINTMENT,
                 AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
                 AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
-                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
+//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
 
             R.string.task -> startActivity<AppointmentDetailActivity>(
                 AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_TASK,
                 AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
                 AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
-                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
+//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
 
             R.string.call_log -> startActivity<AppointmentDetailActivity>(
                 AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_CALL_LOG,
                 AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
                 AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
-                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
+//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
         }
     }
 

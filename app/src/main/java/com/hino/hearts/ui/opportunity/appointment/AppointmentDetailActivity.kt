@@ -56,6 +56,8 @@ class AppointmentDetailActivity : BaseActivity<ActivityAppointmentDetailBinding>
             PAGE_TYPE_CALL_LOG -> R.string.call_log_details
             else -> R.string.appointment_details
         }
+
+        mViewModel.opportunityEnabled = intent.getBooleanExtra(PARAM_OPPORTUNITY_ENABLED, false)
     }
 
     override fun initObserver() {

@@ -24,6 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_appointment_details"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/layout_button"
@@ -127,9 +128,9 @@
                         android:id="@+id/tv_activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/appointment_opportunity"
-                        android:inputType="textMultiLine"
                         android:gravity="top|start"
+                        android:hint="@string/appointment_details"
+                        android:inputType="textMultiLine"
                         android:lines="4"
                         android:maxLines="5"
                         android:minLines="1"

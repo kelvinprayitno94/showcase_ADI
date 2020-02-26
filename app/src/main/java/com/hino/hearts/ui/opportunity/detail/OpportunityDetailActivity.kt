@@ -110,22 +110,22 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
                         AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_APPOINTMENT,
                         AppointmentDetailActivity.PARAM_ACCOUNT_NAME to mViewModel.accountName,
                         AppointmentDetailActivity.PARAM_OPPORTUNITY to mViewModel.opportunityName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
-                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to false)
+//                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
 
                     R.string.task -> startActivity<AppointmentDetailActivity>(
                         AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_TASK,
                         AppointmentDetailActivity.PARAM_ACCOUNT_NAME to mViewModel.accountName,
                         AppointmentDetailActivity.PARAM_OPPORTUNITY to mViewModel.opportunityName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
-                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to false)
+//                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
 
                     R.string.call_log -> startActivity<AppointmentDetailActivity>(
                         AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_CALL_LOG,
                         AppointmentDetailActivity.PARAM_ACCOUNT_NAME to mViewModel.accountName,
                         AppointmentDetailActivity.PARAM_OPPORTUNITY to mViewModel.opportunityName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true,
-                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to false)
+//                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
                 }
             }
         })
