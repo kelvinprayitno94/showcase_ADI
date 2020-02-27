@@ -23,7 +23,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class EventDetailActivity : BaseActivity<ActivityEventDetailBinding>() {
 
     companion object {
-        private const val TWO_THOUSANDS: Long = 2000
+        private const val TWO = 2
+        private const val THREE = 3
+        private const val SIXTEEN = 16
+        private const val TWO_HUNDREDS = 200
         private var id = 0
 
     }
@@ -74,13 +77,13 @@ class EventDetailActivity : BaseActivity<ActivityEventDetailBinding>() {
 
     private fun initTabLayout() {
         vp_event_detail.adapter = EventDetailPagerAdapter(supportFragmentManager)
-        vp_event_detail.offscreenPageLimit = 2
-        tl_event_detail.setIndicatorWidth(16)
+        vp_event_detail.offscreenPageLimit = TWO
+        tl_event_detail.setIndicatorWidth(SIXTEEN)
         tl_event_detail.setupWithViewPager(vp_event_detail)
     }
 
     private fun initDescription() {
-        when (tv_event_detail_desc.lineCount > 3) {
+        when (tv_event_detail_desc.lineCount > THREE) {
             true -> {
                 tv_event_detail_desc.ellipsize = TextUtils.TruncateAt.END
 
@@ -95,7 +98,7 @@ class EventDetailActivity : BaseActivity<ActivityEventDetailBinding>() {
                             viewModel.showButtonText.value = getString(R.string.show_less)
                         }
                         getString(R.string.show_less) -> {
-                            tv_event_detail_desc.maxLines = 3
+                            tv_event_detail_desc.maxLines = THREE
                             viewModel.showButtonText.value = getString(R.string.show_more)
                         }
                     }
@@ -110,7 +113,7 @@ class EventDetailActivity : BaseActivity<ActivityEventDetailBinding>() {
 
     private fun initScrollableBehavior() {
         appBarLayout.addOnOffsetChangedListener(OnOffsetChangedListener { _, offset ->
-            if (offset < -200) {
+            if (offset < -TWO_HUNDREDS) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     iv_back.colorFilter =
                         BlendModeColorFilter(getColor(R.color.red), BlendMode.SRC_ATOP)

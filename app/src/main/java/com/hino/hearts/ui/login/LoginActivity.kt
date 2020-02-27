@@ -49,7 +49,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         viewModel.loginSuccess.observe(this, Observer {
             layout_custom_loading.visibility = View.GONE
             finish()
-            oneSignalSendTags()
             startActivity<HomeActivity>()
             overridePendingTransition(0, 0)
         })
@@ -81,15 +80,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 }
             }
         })
-    }
-
-    private fun oneSignalSendTags() {
-        // OneSignal Initialization
-        val tags = JSONObject()
-
-        tags.put("salesarea", true)
-
-        OneSignal.sendTags(tags)
     }
 
     override fun initViewModel() {

@@ -156,9 +156,16 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
     }
 
     override fun onBackPressed() {
-        when(layout_add_visit_button.visibility == View.VISIBLE){
-            true-> layout_add_visit_button.visibility = View.GONE
-            false -> super.onBackPressed()
+        when(layout_add_visit_button != null){
+            true->{
+                when(layout_add_visit_button.visibility == View.VISIBLE){
+                    true-> layout_add_visit_button.visibility = View.GONE
+                    false -> super.onBackPressed()
+                }
+            }
+            false->{
+                super.onBackPressed()
+            }
         }
     }
 

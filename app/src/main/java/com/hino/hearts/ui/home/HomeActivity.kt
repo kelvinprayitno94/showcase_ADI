@@ -78,11 +78,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     }
 
     override fun onBackPressed() {
-        when (layout_add_visit_button.visibility == View.VISIBLE) {
-            true -> {
-                hideAddVisitButton()
+        when(layout_add_visit_button != null){
+            true->{
+                when(layout_add_visit_button.visibility == View.VISIBLE){
+                    true-> layout_add_visit_button.visibility = View.GONE
+                    false -> super.onBackPressed()
+                }
             }
-            false -> {
+            false->{
                 super.onBackPressed()
             }
         }
@@ -197,7 +200,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         setSupportActionBar(tb_home)
         setupNavigationDrawer()
         addFragment(HomeFragment())
-//        initOneSignal()
+        initOneSignal()
 
         when (viewModel.roleId.value == 7) {
             true -> {
@@ -229,7 +232,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
             }
 
         }
-        tags.put("role_id", UserDefaults.getInstance().getString(UserDefaults.USER_ROLE_ID))
 
         OneSignal.sendTags(tags)
     }
