@@ -1,6 +1,6 @@
 package com.hino.hearts.ui.opportunity.detail
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -15,12 +15,11 @@ import com.hino.hearts.databinding.ActivityOpportunityDetailBinding
 import com.hino.hearts.model.OpportunityModel
 import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.opportunity.appointment.AppointmentDetailActivity
-import com.hino.hearts.util.NetworkManager
 import kotlinx.android.synthetic.main.activity_opportunity_detail.*
 import kotlinx.android.synthetic.main.layout_add_visit_buttons.*
 import kotlinx.android.synthetic.main.layout_toolbar_back.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 import java.io.Serializable
 
 
@@ -32,12 +31,15 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
 
     companion object {
         const val PARAM_OPPORTUNITY_ID: String = "opportunity_id"
-        const val PARAM_OPPORTUNITY_TITLE: String = "opportunity_name"
+        const val PARAM_OPPORTUNITY_NAME: String = "opportunity_name"
+        const val PARAM_ACCOUNT_ID: String = "account_id"
         const val PARAM_ACCOUNT_NAME: String = "account_name"
         const val PARAM_OPPORTUNITY_VALUE: String = "opportunity_value"
         const val PARAM_OPPORTUNITY_OBJECT: String = "opportunity_object"
+
         private const val TWO = 2
         private const val SIX = 6
+        private const val ACTION_CREATE_VISIT = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,8 +68,9 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
         val fromAccount = intent.getBooleanExtra("is_from_account", false)
 
         mViewModel.opportunityId = intent.getIntExtra(PARAM_OPPORTUNITY_ID, 0)
-        mViewModel.opportunityName = intent.getStringExtra(PARAM_OPPORTUNITY_TITLE)
+        mViewModel.opportunityName = intent.getStringExtra(PARAM_OPPORTUNITY_NAME)
 
+        mViewModel.accountId = intent.getIntExtra(PARAM_ACCOUNT_ID, 0)
         val accountName = intent.getStringExtra(PARAM_ACCOUNT_NAME)
         if (accountName != null)
             mViewModel.accountName = accountName
@@ -109,28 +112,33 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
             override fun onItemViewClicked(name: Int) {
                 layout_add_visit_button.visibility = View.GONE
 
-                //TODO: Data
                 when (name) {
-                    R.string.appointment -> startActivity<AppointmentDetailActivity>(
+                    R.string.appointment -> startActivityForResult<AppointmentDetailActivity>(requestCode = ACTION_CREATE_VISIT,
+                        params = *arrayOf(
                         AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_APPOINTMENT,
-                        AppointmentDetailActivity.PARAM_ACCOUNT_NAME to mViewModel.accountName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY to mViewModel.opportunityName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to false)
-//                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                        AppointmentDetailActivity.PARAM_SELECTED_OPPORTUNITY_ID to mViewModel.opportunityId,
+                        AppointmentDetailActivity.PARAM_SELECTED_OPPORTUNITY_NAME to mViewModel.opportunityName,
+                        AppointmentDetailActivity.PARAM_SELECTED_ACCOUNT_ID to mViewModel.accountId,
+                        AppointmentDetailActivity.PARAM_SELECTED_ACCOUNT_NAME to mViewModel.accountName,
+                        AppointmentDetailActivity.PARAM_LOCK_ACCOUNT_AND_OPPORTUNITY to true))
 
-                    R.string.task -> startActivity<AppointmentDetailActivity>(
+                    R.string.task -> startActivityForResult<AppointmentDetailActivity>(requestCode = ACTION_CREATE_VISIT,
+                        params = *arrayOf(
                         AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_TASK,
-                        AppointmentDetailActivity.PARAM_ACCOUNT_NAME to mViewModel.accountName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY to mViewModel.opportunityName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to false)
-//                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                        AppointmentDetailActivity.PARAM_SELECTED_OPPORTUNITY_ID to mViewModel.opportunityId,
+                        AppointmentDetailActivity.PARAM_SELECTED_OPPORTUNITY_NAME to mViewModel.opportunityName,
+                        AppointmentDetailActivity.PARAM_SELECTED_ACCOUNT_ID to mViewModel.accountId,
+                        AppointmentDetailActivity.PARAM_SELECTED_ACCOUNT_NAME to mViewModel.accountName,
+                        AppointmentDetailActivity.PARAM_LOCK_ACCOUNT_AND_OPPORTUNITY to true))
 
-                    R.string.call_log -> startActivity<AppointmentDetailActivity>(
+                    R.string.call_log -> startActivityForResult<AppointmentDetailActivity>(requestCode = ACTION_CREATE_VISIT,
+                        params = *arrayOf(
                         AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_CALL_LOG,
-                        AppointmentDetailActivity.PARAM_ACCOUNT_NAME to mViewModel.accountName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY to mViewModel.opportunityName,
-                        AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to false)
-//                        AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                        AppointmentDetailActivity.PARAM_SELECTED_OPPORTUNITY_ID to mViewModel.opportunityId,
+                        AppointmentDetailActivity.PARAM_SELECTED_OPPORTUNITY_NAME to mViewModel.opportunityName,
+                        AppointmentDetailActivity.PARAM_SELECTED_ACCOUNT_ID to mViewModel.accountId,
+                        AppointmentDetailActivity.PARAM_SELECTED_ACCOUNT_NAME to mViewModel.accountName,
+                        AppointmentDetailActivity.PARAM_LOCK_ACCOUNT_AND_OPPORTUNITY to true))
                 }
             }
         })
@@ -154,5 +162,11 @@ class OpportunityDetailActivity : BaseActivity<ActivityOpportunityDetailBinding>
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        when (requestCode) {
+            ACTION_CREATE_VISIT -> mAdapter?.refreshActivity()
+        }
+    }
 }

@@ -167,25 +167,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
 
         when (name) {
             R.string.appointment -> startActivity<AppointmentDetailActivity>(
-                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_APPOINTMENT,
-                AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
-//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
+                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_APPOINTMENT)
 
             R.string.task -> startActivity<AppointmentDetailActivity>(
-                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_TASK,
-                AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
-//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
+                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_TASK)
 
             R.string.call_log -> startActivity<AppointmentDetailActivity>(
-                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_CALL_LOG,
-                AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
-//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
+                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_CALL_LOG)
         }
     }
 
