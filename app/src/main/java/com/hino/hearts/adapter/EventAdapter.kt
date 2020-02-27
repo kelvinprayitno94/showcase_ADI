@@ -59,38 +59,38 @@ class EventAdapter : RecyclerView.Adapter<EventAdapter.EventHolder>() {
                     "1"->{
                         Glide.with(context)
 //                    .load(BuildConfig.IMAGE_URL+event.imgUrl)
-                            .load(R.drawable.eventbanner1)
-                            .placeholder(R.drawable.header).into(iv_item_event)
+                            .load(R.drawable.event_placeholder)
+                            .placeholder(R.drawable.event_placeholder).into(iv_item_event)
                     }
                     "2"->{
                         Glide.with(context)
 //                    .load(BuildConfig.IMAGE_URL+event.imgUrl)
-                            .load(R.drawable.eventbanner2)
-                            .placeholder(R.drawable.header).into(iv_item_event)
+                            .load(R.drawable.event_banner1)
+                            .placeholder(R.drawable.event_placeholder).into(iv_item_event)
                     }
                     "3"->{
                         Glide.with(context)
 //                    .load(BuildConfig.IMAGE_URL+event.imgUrl)
-                            .load(R.drawable.eventbanner3)
-                            .placeholder(R.drawable.header).into(iv_item_event)
+                            .load(R.drawable.event_banner2)
+                            .placeholder(R.drawable.event_placeholder).into(iv_item_event)
                     }
                     "4"->{
                         Glide.with(context)
 //                    .load(BuildConfig.IMAGE_URL+event.imgUrl)
-                            .load(R.drawable.eventbanner4)
-                            .placeholder(R.drawable.header).into(iv_item_event)
+                            .load(R.drawable.event_banner3)
+                            .placeholder(R.drawable.event_placeholder).into(iv_item_event)
                     }
                     "5"->{
                         Glide.with(context)
 //                    .load(BuildConfig.IMAGE_URL+event.imgUrl)
-                            .load(R.drawable.eventbanner5)
-                            .placeholder(R.drawable.header).into(iv_item_event)
+                            .load(R.drawable.event_banner4)
+                            .placeholder(R.drawable.event_placeholder).into(iv_item_event)
                     }
                     else->{
                         Glide.with(context)
 //                    .load(BuildConfig.IMAGE_URL+event.imgUrl)
                             .load(R.drawable.event_placeholder)
-                            .placeholder(R.drawable.header).into(iv_item_event)
+                            .placeholder(R.drawable.event_placeholder).into(iv_item_event)
                     }
                 }
             }

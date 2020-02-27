@@ -200,7 +200,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         setSupportActionBar(tb_home)
         setupNavigationDrawer()
         addFragment(HomeFragment())
-        initOneSignal()
 
         when (viewModel.roleId.value == 7) {
             true -> {
@@ -218,22 +217,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
                 rv_add_visit_buttons.adapter = addVisitButtonAdapter
             }
         }
-    }
-
-    private fun initOneSignal() {
-        val tags = JSONObject()
-
-        when(viewModel.roleId.value){
-            1 -> {
-                tags.put("salesarea", true)
-            }
-            5 -> {
-                tags.put("dealermanager", true)
-            }
-
-        }
-
-        OneSignal.sendTags(tags)
     }
 
     private fun setupNavigationDrawer() {

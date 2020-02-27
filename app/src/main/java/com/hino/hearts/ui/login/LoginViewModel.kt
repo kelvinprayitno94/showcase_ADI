@@ -20,6 +20,7 @@ import retrofit2.Response
  */
 class LoginViewModel : ViewModel() {
     var token: MutableLiveData<String> = MutableLiveData()
+    var roleId: MutableLiveData<Int> = MutableLiveData()
 
     var showLoading: MutableLiveData<Boolean> = MutableLiveData()
     var loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
@@ -76,6 +77,8 @@ class LoginViewModel : ViewModel() {
                                 it
                             )
                         }
+
+                        roleId.value = data.userData.role.id
 
                         //dummy
 //                        UserDefaults.getInstance()
