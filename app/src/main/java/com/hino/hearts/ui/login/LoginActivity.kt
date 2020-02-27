@@ -48,6 +48,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun initObserver() {
         viewModel.loginSuccess.observe(this, Observer {
             layout_custom_loading.visibility = View.GONE
+//            initOneSignal()
             finish()
             startActivity<HomeActivity>()
             overridePendingTransition(0, 0)
@@ -106,6 +107,23 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             }
         }
     }
+
+    private fun initOneSignal() {
+        val tags = JSONObject()
+
+        when(viewModel.roleId.value){
+            1 -> {
+                tags.put("salesarea", true)
+            }
+            5 -> {
+                tags.put("dealermanager", true)
+            }
+
+        }
+
+        OneSignal.sendTags(tags)
+    }
+
 
     private fun isFirstTime(): Boolean {
         val preferences = getPreferences(Context.MODE_PRIVATE)

@@ -21,14 +21,14 @@ class EventViewModel : ViewModel() {
         val eventList: ArrayList<Event> = ArrayList()
 
         val current = Calendar.getInstance().time
-        val date = InterfaceManager.getInstance().convertStringFromDate(current)
+//        val date = InterfaceManager.getInstance().convertStringFromDate(current)
 
         eventList.add(
             Event(
                 1,
                 "HINO Conference  2020",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date,
+                "22 Feb 2020",
                 "1"
             )
         )
@@ -37,7 +37,7 @@ class EventViewModel : ViewModel() {
                 2,
                 "BOD Meet Up",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date,
+                "22 Feb 2020",
                 "2"
             )
         )
@@ -46,7 +46,7 @@ class EventViewModel : ViewModel() {
                 3,
                 "HINO FJ 120 J Grand Launching",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date,
+                "22 Feb 2020",
                 "3"
             )
         )
@@ -55,7 +55,7 @@ class EventViewModel : ViewModel() {
                 4,
                 "HINO FJ 105 X Grand Launching",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date,
+                "22 Feb 2020",
                 "4"
             )
         )
@@ -64,7 +64,7 @@ class EventViewModel : ViewModel() {
                 5,
                 "HINO FJ 023 B Grand Launching",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pretium ex ut maximus. Nulla sapien tellus, vestibulum at ultricies eu, hendrerit eu diam.",
-                date,
+                "22 Feb 2020",
                 "5"
             )
         )

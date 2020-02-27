@@ -78,11 +78,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
     }
 
     override fun onBackPressed() {
-        when (layout_add_visit_button.visibility == View.VISIBLE) {
-            true -> {
-                hideAddVisitButton()
+        when(layout_add_visit_button != null){
+            true->{
+                when(layout_add_visit_button.visibility == View.VISIBLE){
+                    true-> layout_add_visit_button.visibility = View.GONE
+                    false -> super.onBackPressed()
+                }
             }
-            false -> {
+            false->{
                 super.onBackPressed()
             }
         }
@@ -167,25 +170,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
 
         when (name) {
             R.string.appointment -> startActivity<AppointmentDetailActivity>(
-                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_APPOINTMENT,
-                AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
-//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
+                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_APPOINTMENT)
 
             R.string.task -> startActivity<AppointmentDetailActivity>(
-                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_TASK,
-                AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
-//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
+                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_TASK)
 
             R.string.call_log -> startActivity<AppointmentDetailActivity>(
-                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_CALL_LOG,
-                AppointmentDetailActivity.PARAM_ACCOUNT_NAME to "PT Dihardja Software",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY to "20 Logistic Truck",
-                AppointmentDetailActivity.PARAM_OPPORTUNITY_ENABLED to true)
-//                AppointmentDetailActivity.PARAM_ACTIVITY_DETAIL to "")
+                AppointmentDetailActivity.PARAM_PAGE_TYPE to AppointmentDetailActivity.PAGE_TYPE_CALL_LOG)
         }
     }
 

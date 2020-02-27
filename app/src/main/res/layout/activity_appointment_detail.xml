@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
     <data>
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
@@ -78,13 +78,13 @@
                         android:id="@+id/tv_acc_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@{viewModel.opportunityEnabled ? @drawable/dropdown : null}"
-                        android:enabled="@{viewModel.opportunityEnabled}"
+                        android:drawableEnd="@{(!viewModel.isReadOnlyMode &amp;&amp; !viewModel.lockAccountOpportunity) ? @drawable/dropdown : null}"
+                        android:enabled="@{!viewModel.isReadOnlyMode &amp;&amp; !viewModel.lockAccountOpportunity}"
                         android:focusable="false"
                         android:clickable="true"
                         android:hint="@string/appointment_account"
                         android:inputType="text"
-                        android:text="@{viewModel.accountLivedata}"
+                        android:text="@{viewModel.selectedAccountName}"
                         android:theme="@style/TextInputLayoutHint"
                         tools:ignore="KeyboardInaccessibleWidget" />
 
@@ -105,12 +105,12 @@
                         android:id="@+id/tv_opportunity_field"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@{viewModel.opportunityEnabled ? @drawable/dropdown : null}"
-                        android:enabled="@{viewModel.opportunityEnabled}"
-                        android:focusable="@{viewModel.opportunityEnabled}"
+                        android:drawableEnd="@{(!viewModel.isReadOnlyMode &amp;&amp; !viewModel.lockAccountOpportunity) ? @drawable/dropdown : null}"
+                        android:enabled="@{!viewModel.isReadOnlyMode &amp;&amp; !viewModel.lockAccountOpportunity &amp;&amp; viewModel.selectedAccountId != -1}"
+                        android:focusable="false"
                         android:hint="@string/appointment_opportunity"
                         android:inputType="text"
-                        android:text="@{viewModel.opportunity}"
+                        android:text="@{viewModel.selectedOpportunityName}"
                         android:theme="@style/TextInputLayoutHint" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -130,9 +130,11 @@
                         android:id="@+id/tv_activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="@{!viewModel.isReadOnlyMode}"
+                        android:focusable="@{!viewModel.isReadOnlyMode}"
                         android:gravity="top|start"
-                        android:hint="@string/appointment_details"
-                        android:inputType="textMultiLine"
+                        android:hint="@string/appointment_activity_detail"
+                        android:inputType="textMultiLine|textCapSentences"
                         android:lines="4"
                         android:maxLines="5"
                         android:minLines="1"
@@ -152,6 +154,7 @@
             android:layout_height="85dp"
             android:layout_alignParentBottom="true"
             android:gravity="center_horizontal"
+            android:visibility="@{!viewModel.isReadOnlyMode ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -179,6 +182,12 @@
 
             </RelativeLayout>
         </RelativeLayout>
+
+        <include
+            android:id="@+id/layout_custom_loading"
+            layout="@layout/layout_custom_loading"
+            android:visibility="gone"
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

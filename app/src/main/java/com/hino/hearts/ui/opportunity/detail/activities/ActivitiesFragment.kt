@@ -121,4 +121,9 @@ class ActivitiesFragment(opportunityId: Int) : BaseFragment<FragmentOpportunityA
 
         mViewModel.changeVisitType(type)
     }
+
+    fun refresh() {
+        if (mViewModel.opportunityId > 0)
+            mViewModel.getOpportunity(mViewModel.opportunityId)
+    }
 }

@@ -36,4 +36,8 @@ class OpportunityDetailPagerAdapter(fm : FragmentManager, opportunityId: Int) : 
     override fun getCount(): Int {
         return 2
     }
+
+    fun refreshActivity() {
+        activitiesFragment.refresh()
+    }
 }
