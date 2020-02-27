@@ -52,14 +52,14 @@
         <activity android:name=".ui.opportunity.appointment.AppointmentDetailActivity" />
 
         <!--        services-->
-        <service
-            android:name=".oneSignal.MyNotificationExtenderService"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE">
-            <intent-filter>
-                <action android:name="com.onesignal.NotificationExtender" />
-            </intent-filter>
-        </service>
+<!--        <service-->
+<!--            android:name=".oneSignal.MyNotificationExtenderService"-->
+<!--            android:exported="false"-->
+<!--            android:permission="android.permission.BIND_JOB_SERVICE">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.onesignal.NotificationExtender" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
 
         <!--        meta data-->
         <meta-data
