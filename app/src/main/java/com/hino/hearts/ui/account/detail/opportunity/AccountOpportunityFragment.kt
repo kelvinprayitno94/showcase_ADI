@@ -54,7 +54,7 @@ class AccountOpportunityFragment(var accountName: String?, var data: List<Accoun
                     startActivity<OpportunityDetailActivity>(
                         OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE to data?.get(pos)?.budget?.toLong(),
                         OpportunityDetailActivity.PARAM_ACCOUNT_NAME to accountName,
-                        OpportunityDetailActivity.PARAM_OPPORTUNITY_TITLE to data?.get(pos)?.opportunityName,
+                        OpportunityDetailActivity.PARAM_OPPORTUNITY_NAME to data?.get(pos)?.opportunityName,
                         "is_from_account" to true
                     )
                 }
