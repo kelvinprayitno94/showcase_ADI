@@ -35,17 +35,35 @@
         <activity android:name=".ui.approval.detail.ApprovalDetailActivity" />
         <activity android:name=".ui.account.AccountListActivity" />
         <activity android:name=".ui.account.detail.AccountDetailActivity" />
-        <activity android:name="com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ui.account.detail.contact.contactDetail.ContactDetailActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ui.account.detail.contact.newContact.NewContactActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ui.account.detail.accDetail.editAccount.EditAccountDetailActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ui.opportunity.OpportunityActivity"/>
+        <activity
+            android:name="com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.account.detail.contact.contactDetail.ContactDetailActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.account.detail.contact.newContact.NewContactActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.account.detail.accDetail.editAccount.EditAccountDetailActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ui.opportunity.OpportunityActivity" />
         <activity android:name=".ui.opportunity.detail.OpportunityDetailActivity" />
         <activity android:name=".ui.opportunity.appointment.AppointmentDetailActivity" />
+
+        <!--        services-->
+        <service
+            android:name=".oneSignal.MyNotificationExtenderService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.onesignal.NotificationExtender" />
+            </intent-filter>
+        </service>
+
+        <!--        meta data-->
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="DISABLE" />
     </application>
 
 </manifest>

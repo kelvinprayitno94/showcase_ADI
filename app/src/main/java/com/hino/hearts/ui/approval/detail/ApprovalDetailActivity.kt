@@ -74,9 +74,9 @@ class ApprovalDetailActivity : BaseActivity<ActivityApprovalDetailBinding>() {
     }
 
     override fun initViewModel() {
-        viewModel.checkUser(UserDefaults.getInstance().getInt(UserDefaults.USER_ROLE_ID, 0))
-
         viewModel.init(intent.getParcelableExtra("data"))
+
+        viewModel.checkUser(UserDefaults.getInstance().getInt(UserDefaults.USER_ROLE_ID, 0))
     }
 
     override fun initEvent() {

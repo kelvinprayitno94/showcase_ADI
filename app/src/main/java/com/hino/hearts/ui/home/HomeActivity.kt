@@ -22,6 +22,7 @@ import com.hino.hearts.ui.opportunity.appointment.AppointmentDetailActivity
 import com.hino.hearts.ui.login.LoginActivity
 import com.hino.hearts.ui.notification.NotificationActivity
 import com.hino.hearts.ui.pendingtransactions.PendingTransactionsActivity
+import com.hino.hearts.util.UserDefaults
 import com.onesignal.OneSignal
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
@@ -208,7 +209,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         setSupportActionBar(tb_home)
         setupNavigationDrawer()
         addFragment(HomeFragment())
-        initOneSignal()
+//        initOneSignal()
 
         when (viewModel.roleId.value == 7) {
             true -> {
@@ -240,6 +241,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
             }
 
         }
+        tags.put("role_id", UserDefaults.getInstance().getString(UserDefaults.USER_ROLE_ID))
 
         OneSignal.sendTags(tags)
     }

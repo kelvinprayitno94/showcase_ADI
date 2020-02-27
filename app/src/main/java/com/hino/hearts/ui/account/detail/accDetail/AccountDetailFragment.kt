@@ -9,12 +9,13 @@ import com.hino.hearts.databinding.FragmentAccountDetailsBinding
 import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseFragment
 import com.hino.hearts.ui.account.detail.accDetail.editAccount.EditAccountDetailActivity
-import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailActivity
 import kotlinx.android.synthetic.main.fragment_account_details.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AccountDetailFragment(var data: AccountListResponse.AccountData?) : BaseFragment<FragmentAccountDetailsBinding>() {
+class AccountDetailFragment(var data: AccountListResponse.AccountData?) :
+    BaseFragment<FragmentAccountDetailsBinding>() {
 
     private val viewModel by viewModel<AccountDetailViewModel>()
 
@@ -35,7 +36,9 @@ class AccountDetailFragment(var data: AccountListResponse.AccountData?) : BaseFr
 
     override fun initObserver() {
         viewModel.navEditContactLiveData.observe(viewLifecycleOwner, Observer {
-            startActivity(Intent(activity, EditAccountDetailActivity::class.java))
+            startActivity<EditAccountDetailActivity>(
+                "account_data" to data
+            )
         })
     }
 

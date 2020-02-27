@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.hino.hearts.R
 import com.hino.hearts.adapter.SpinnerAdapter
 import com.hino.hearts.databinding.ActivityEditAccountDetailBinding
+import com.hino.hearts.network.response.account.AccountListResponse
 import com.hino.hearts.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_edit_account_detail.*
 import kotlinx.android.synthetic.main.main_toolbar.*
@@ -44,7 +45,14 @@ class EditAccountDetailActivity : BaseActivity<ActivityEditAccountDetailBinding>
     }
 
     override fun initViewModel() {
+        var data: AccountListResponse.AccountData? = intent.getParcelableExtra("account_data")
 
+        data?.run {
+            tv_acc_name.setText(accountName)
+            tv_company_address.setText(accountName)
+            tv_city.setText(accountName)
+            tv_company_phone_no.setText(accountName)
+        }
     }
 
     override fun initEvent() {

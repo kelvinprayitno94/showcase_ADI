@@ -16,10 +16,14 @@ import com.hino.hearts.ui.BaseActivity
 import com.hino.hearts.ui.home.HomeActivity
 import com.hino.hearts.ui.onboarding.OnboardingActivity
 import com.hino.hearts.util.NetworkManager
+import com.hino.hearts.util.UserDefaults
+import com.onesignal.OneSignal
+import com.onesignal.OneSignalNotificationManager
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
@@ -45,6 +49,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         viewModel.loginSuccess.observe(this, Observer {
             layout_custom_loading.visibility = View.GONE
             finish()
+            oneSignalSendTags()
             startActivity<HomeActivity>()
             overridePendingTransition(0, 0)
         })
@@ -76,6 +81,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 }
             }
         })
+    }
+
+    private fun oneSignalSendTags() {
+        // OneSignal Initialization
+        val tags = JSONObject()
+
+        tags.put("salesarea", true)
+
+        OneSignal.sendTags(tags)
     }
 
     override fun initViewModel() {
