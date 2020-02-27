@@ -25,43 +25,43 @@
             style="@style/PageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account"
+            android:layout_marginLeft="@dimen/dimens_10dp"
+            android:text="@{viewModel.accountNameLivedata, default= Account}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tab_layout_acc_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:paddingLeft="@dimen/dimens_15dp"
             android:paddingRight="@dimen/dimens_15dp"
-            android:id="@+id/rv_tab_layout_acc_detail"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/account_name"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toBottomOf="@+id/account_name" />
 
         <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_account_detail_tab"
+            style="@style/paddingExcpTop"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            style="@style/paddingExcpTop"
-            android:id="@+id/vp_account_detail_tab"
             android:layout_marginTop="@dimen/dimens_10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_tab_layout_acc_detail"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/rv_tab_layout_acc_detail">
 
             <com.hino.hearts.util.ui.CustomTabLayout
                 android:id="@+id/tab_layout_account_detail"
+                style="@style/TabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TabLayout"
                 android:layout_marginBottom="@dimen/dimens_15dp"
                 app:tabGravity="center"
                 app:tabIndicatorColor="@color/red"
                 app:tabMode="scrollable"
                 app:tabSelectedTextColor="@color/red"
-                app:tabTextColor="@color/black"
-                />
+                app:tabTextColor="@color/black" />
 
         </androidx.viewpager.widget.ViewPager>
 

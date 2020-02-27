@@ -209,7 +209,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
         setSupportActionBar(tb_home)
         setupNavigationDrawer()
         addFragment(HomeFragment())
-//        initOneSignal()
+        initOneSignal()
 
         when (viewModel.roleId.value == 7) {
             true -> {
@@ -236,12 +236,15 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), AddVisitButtonAdapter.
             1 -> {
                 tags.put("salesarea", true)
             }
-            5 -> {
-                tags.put("dealermanager", true)
+            else -> {
+                tags.put("salesarea", false)
             }
+//            5 -> {
+//                tags.put("dealermanager", true)
+//                tags.put("salesarea", true)
+//            }
 
         }
-        tags.put("role_id", UserDefaults.getInstance().getString(UserDefaults.USER_ROLE_ID))
 
         OneSignal.sendTags(tags)
     }

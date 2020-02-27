@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +13,7 @@ import com.hino.hearts.network.response.account.AccountListResponse
 class AccountDetailOpportunityAdapter(
     var context: Context,
     var data : List<AccountListResponse.OpportunityData>?,
+    var accountName: String?,
     val listener: OnAdapterTap
 ) :
     RecyclerView.Adapter<AccountDetailOpportunityAdapter.Holder>(){
@@ -41,8 +41,8 @@ class AccountDetailOpportunityAdapter(
 
         item?.let {
             holder.itemName.text = it.opportunityName
-            holder.companyName.text = it.name
-            holder.price.text = it.opportunityValue
+            holder.companyName.text = accountName
+            holder.price.text = it.budget
         }
 
         holder.root.setOnClickListener {

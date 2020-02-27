@@ -156,23 +156,27 @@ class AccountListResponse() : ErrorResponse(), Parcelable{
     }
 
     class OpportunityData():Parcelable{
+        @SerializedName("id")
+        var id : Int? = 0
+        @SerializedName("accountId")
+        var accountId : Int? = 0
         @SerializedName("opportunityName")
         var opportunityName : String? = ""
-        @SerializedName("name")
-        var name : String? = ""
-        @SerializedName("opportunityValue")
-        var opportunityValue : String? = ""
+        @SerializedName("budget")
+        var budget : String? = ""
 
         constructor(parcel: Parcel) : this() {
+            id = parcel.readValue(Int::class.java.classLoader) as? Int
+            accountId = parcel.readValue(Int::class.java.classLoader) as? Int
             opportunityName = parcel.readString()
-            name = parcel.readString()
-            opportunityValue = parcel.readString()
+            budget = parcel.readString()
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeValue(id)
+            parcel.writeValue(accountId)
             parcel.writeString(opportunityName)
-            parcel.writeString(name)
-            parcel.writeString(opportunityValue)
+            parcel.writeString(budget)
         }
 
         override fun describeContents(): Int {

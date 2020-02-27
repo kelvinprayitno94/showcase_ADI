@@ -44,6 +44,8 @@ class ApprovalDocumentAdapter(
 
         holder.documentType.text = doc.type
 
+//        holder.accountName.text = doc
+
         if (roleID != 7) {
             holder.greenDot.visibility = if (canApprove(doc)){ View.VISIBLE} else View.GONE
         } else

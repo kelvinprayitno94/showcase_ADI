@@ -54,7 +54,8 @@
         <!--        services-->
         <service
             android:name=".oneSignal.MyNotificationExtenderService"
-            android:exported="false">
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE">
             <intent-filter>
                 <action android:name="com.onesignal.NotificationExtender" />
             </intent-filter>

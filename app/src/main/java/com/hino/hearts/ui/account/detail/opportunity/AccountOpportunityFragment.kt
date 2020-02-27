@@ -15,7 +15,7 @@ import org.jetbrains.anko.support.v4.startActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AccountOpportunityFragment(var data: List<AccountListResponse.OpportunityData>?) : BaseFragment<ActivityAccountDetailBinding>() {
+class AccountOpportunityFragment(var accountName: String?, var data: List<AccountListResponse.OpportunityData>?) : BaseFragment<ActivityAccountDetailBinding>() {
 
     private val viewModel by viewModel<AccountOpportunityViewModel>()
 
@@ -48,11 +48,13 @@ class AccountOpportunityFragment(var data: List<AccountListResponse.OpportunityD
 
     private fun initAdapter() {
         context?.let {
-            adapter = AccountDetailOpportunityAdapter(it, data, object : AccountDetailOpportunityAdapter.OnAdapterTap{
+            adapter = AccountDetailOpportunityAdapter(it, data, accountName, object : AccountDetailOpportunityAdapter.OnAdapterTap{
                 override fun onTap(pos: Int) {
+
                     startActivity<OpportunityDetailActivity>(
-                        OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE to data?.get(pos)?.opportunityValue?.toLong(),
-                        OpportunityDetailActivity.PARAM_ACCOUNT_NAME to data?.get(pos)?.name,
+                        OpportunityDetailActivity.PARAM_OPPORTUNITY_VALUE to data?.get(pos)?.budget?.toLong(),
+                        OpportunityDetailActivity.PARAM_ACCOUNT_NAME to accountName,
+                        OpportunityDetailActivity.PARAM_OPPORTUNITY_TITLE to data?.get(pos)?.opportunityName,
                         "is_from_account" to true
                     )
                 }

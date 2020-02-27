@@ -81,7 +81,7 @@ class ApprovalDetailViewModel : ViewModel() {
 
                 if (roleID == 1) {
                     index = 1
-                } else if (roleID == 0) {
+                } else if (roleID == 5) {
                     index = 0
                 }
 

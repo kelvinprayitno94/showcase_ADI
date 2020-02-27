@@ -31,7 +31,7 @@ class AccountDetailTabAdapter(fragmentManager: FragmentManager, var titles: List
             }
 
             2 -> {
-                return AccountOpportunityFragment(data?.opportunity)
+                return AccountOpportunityFragment(data?.account?.accountName, data?.opportunity)
             }
 
             else -> {

@@ -25,7 +25,7 @@ class MyNotificationOpenedHandler(var application: Context) : OneSignal.Notifica
     }
 
     fun openApproval(){
-        var intent = Intent(application, ApprovalTabActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+        var intent = Intent(application, ApprovalTabActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         application.startActivity(intent)
     }
 }
