@@ -1,0 +1,65 @@
+package com.hino.movie.util.module
+
+import com.hino.movie.ui.event.EventDetailViewModel
+import com.hino.movie.ui.event.EventViewModel
+import com.hino.movie.ui.event.attendees.AttendeesViewModel
+import com.hino.movie.ui.event.eventinformation.EventInformationViewModel
+import com.hino.hearts.ui.account.AccountListActivityViewModel
+import com.hino.hearts.ui.account.detail.accDetail.AccountDetailViewModel
+import com.hino.hearts.ui.account.detail.accDetail.editAccount.EditAccountDetailViewModel
+import com.hino.hearts.ui.account.detail.contact.AccountContactViewModel
+import com.hino.hearts.ui.account.detail.opportunity.AccountOpportunityViewModel
+import com.hino.hearts.ui.account.detail.vehicles.AccountVehiclesViewModel
+import com.hino.hearts.ui.account.detail.vehicles.vehicleDetail.VehicleDetailViewModel
+import com.hino.hearts.ui.approval.category.ApprovalTabViewModel
+import com.hino.hearts.ui.approval.detail.ApprovalDetailViewModel
+import com.hino.hearts.ui.approval.filter.ApprovalFilterViewModel
+import com.hino.movie.ui.home.HomeFragmentViewModel
+import com.hino.movie.ui.home.HomeViewModel
+import com.hino.hearts.ui.login.LoginViewModel
+import com.hino.hearts.ui.notification.NotificationDetailViewModel
+import com.hino.hearts.ui.notification.NotificationViewModel
+import com.hino.hearts.ui.onboarding.OnboardingViewModel
+import com.hino.hearts.ui.onboarding.first.OnboardingFirstViewModel
+import com.hino.hearts.ui.onboarding.second.OnboardingSecondViewModel
+import com.hino.hearts.ui.onboarding.third.OnboardingThirdViewModel
+import com.hino.hearts.ui.opportunity.detail.activities.ActivitiesViewModel
+import com.hino.hearts.ui.opportunity.detail.information.InformationViewModel
+import com.hino.hearts.ui.pendingtransactions.PendingTransactionsViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
+
+/**
+ * Created by Dihardja Software on 2020-02-10.
+ */
+val moduleViewModel = module {
+    viewModel { OnboardingViewModel() }
+    viewModel { OnboardingFirstViewModel() }
+    viewModel { OnboardingSecondViewModel() }
+    viewModel { OnboardingThirdViewModel() }
+    viewModel { LoginViewModel() }
+    viewModel { ApprovalTabViewModel() }
+    viewModel { AccountContactViewModel() }
+    viewModel { AccountDetailViewModel() }
+    viewModel { AccountListActivityViewModel() }
+    viewModel { AccountVehiclesViewModel() }
+    viewModel { VehicleDetailViewModel() }
+    viewModel { AccountOpportunityViewModel() }
+    viewModel { EditAccountDetailViewModel() }
+    viewModel { _root_ide_package_.com.hino.movie.ui.home.HomeViewModel() }
+    viewModel { _root_ide_package_.com.hino.movie.ui.home.HomeFragmentViewModel() }
+    viewModel { NotificationViewModel() }
+    viewModel { NotificationDetailViewModel() }
+    viewModel { PendingTransactionsViewModel() }
+    viewModel { _root_ide_package_.com.hino.movie.ui.event.EventViewModel() }
+    viewModel { ApprovalFilterViewModel() }
+    viewModel { ApprovalDetailViewModel() }
+    viewModel { _root_ide_package_.com.hino.movie.ui.event.EventDetailViewModel() }
+    viewModel { _root_ide_package_.com.hino.movie.ui.event.eventinformation.EventInformationViewModel() }
+    viewModel { _root_ide_package_.com.hino.movie.ui.event.attendees.AttendeesViewModel() }
+
+    //Opportunity
+    viewModel { InformationViewModel() }
+    viewModel { ActivitiesViewModel() }
+    viewModel { com.hino.hearts.ui.account.detail.AccountDetailViewModel() }
+}
