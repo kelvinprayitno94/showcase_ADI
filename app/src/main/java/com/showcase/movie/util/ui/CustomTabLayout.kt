@@ -1,4 +1,4 @@
-package com.hino.movie.util.ui
+package com.showcase.movie.util.ui
 
 import android.content.Context
 import android.content.res.Resources

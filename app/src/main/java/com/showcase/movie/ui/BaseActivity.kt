@@ -1,4 +1,4 @@
-package com.hino.movie.ui
+package com.showcase.movie.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.showcase.movie.network.responses.MoviesResponse.MoviesModel" />
+        <variable
+            name="action"
+            type="com.showcase.movie.adapter.MoviesAdapter.OnAdapterTap"/>
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dimens_10dp"
+        android:padding="5dp"
+        android:onClick="@{() -> action.onTap(data)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_200dp"
+                android:id="@+id/image"
+                android:layout_marginBottom="@dimen/dimens_10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.title}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_20sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.overview}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_16sp"
+                tools:text="overview"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.release_date}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_16sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Double.toString(data.vote_average)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_16sp"
+                />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

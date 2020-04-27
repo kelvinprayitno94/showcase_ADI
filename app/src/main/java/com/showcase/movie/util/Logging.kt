@@ -1,4 +1,4 @@
-package com.hino.movie.util
+package com.showcase.movie.util
 
 import android.util.Log
 import com.hino.hearts.BuildConfig

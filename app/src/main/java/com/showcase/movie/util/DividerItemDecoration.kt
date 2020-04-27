@@ -1,4 +1,4 @@
-package com.hino.movie.util
+package com.showcase.movie.util
 
 import android.graphics.Canvas
 import android.graphics.Rect

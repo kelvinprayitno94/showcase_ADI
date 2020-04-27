@@ -1,5 +1,8 @@
 package com.hino.hearts
 
+import com.showcase.movie.network.responses.GenresResponse
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -11,12 +14,9 @@ import org.junit.jupiter.api.BeforeEach
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class PosNegUnitTest {
 
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
+    val genre: GenresResponse.GenresModel = mockk()
 
     @BeforeEach
     fun setup() {
@@ -29,7 +29,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun test() {
-        println("This test method should be run")
+    fun CheckID() {
+        every { genre.id > 0 }
     }
 }

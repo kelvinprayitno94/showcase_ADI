@@ -1,4 +1,4 @@
-package com.hino.movie.network
+package com.showcase.movie.network
 
 import com.hino.hearts.BuildConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -18,8 +18,8 @@ class HinoService{
 
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             val client = httpBuilder
-                .addInterceptor(_root_ide_package_.com.hino.movie.network.HinoHeaderInterceptor())
-                .addInterceptor(_root_ide_package_.com.hino.movie.network.ResponseInterceptor())
+                .addInterceptor(HinoHeaderInterceptor())
+                .addInterceptor(ResponseInterceptor())
                 .addInterceptor(httpLoggingInterceptor.apply {
                     httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
                 })
@@ -37,7 +37,7 @@ class HinoService{
         }
 
         fun <T> create(klass: Class<T>): T {
-            return _root_ide_package_.com.hino.movie.network.HinoService.Companion.getRetrofit()
+            return getRetrofit()
                 .create(klass)
         }
     }

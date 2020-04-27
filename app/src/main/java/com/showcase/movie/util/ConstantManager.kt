@@ -1,4 +1,4 @@
-package com.hino.movie.util
+package com.showcase.movie.util
 
 /**
  * Created by Dihardja Software on 2020-02-10.

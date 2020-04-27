@@ -1,6 +1,6 @@
-package com.hino.movie.network
+package com.showcase.movie.network
 
-import com.hino.movie.util.UserDefaults
+import com.showcase.movie.util.UserDefaults
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -15,8 +15,8 @@ class HinoHeaderInterceptor : Interceptor {
 
         val builder =
             original.newBuilder().method(original.method, original.body)
-        token = _root_ide_package_.com.hino.movie.util.UserDefaults.getInstance().getString(
-            _root_ide_package_.com.hino.movie.util.UserDefaults.TOKEN_KEY)
+        token = UserDefaults.getInstance().getString(
+            UserDefaults.TOKEN_KEY)
 
         if (token != null) {
             builder.addHeader("authorization", token!!)

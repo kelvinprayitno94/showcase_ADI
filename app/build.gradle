@@ -23,12 +23,14 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'de.mannodermaus.android-junit5'
+
 android {
     compileSdkVersion 29
     flavorDimensions 'version'
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.hino.hearts"
+        applicationId "com.showcase.movie"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -39,6 +41,11 @@ android {
                 onesignal_app_id: 'c9b4103e-fa9a-4b49-9eb5-d07b7de49bf3',
                 onesignal_google_project_number: 'REMOTE'
         ]
+        buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/"'
+        buildConfigField "String", "IMG_URL", '"https://image.tmdb.org/t/p/w500/"'
+        buildConfigField "String", "API_KEY", '"18dbd5db742815562e81a1d3c234a312"'
+        buildConfigField "String", "YOUTUBE_URL", '"https://www.youtube.com/watch?v="'
+        buildConfigField "String", "API_ACCESS_TOKEN", '"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGRiZDVkYjc0MjgxNTU2MmU4MWExZDNjMjM0YTMxMiIsInN1YiI6IjVlYTMwOWE2NjZmMmQyMDAxYTNkM2VlNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6Z8FgN88XxNGyFCMIPs9h9zFYQNrzglHhrxQRSAAWSM"'
     }
     buildTypes {
         debug {
@@ -51,17 +58,7 @@ android {
         }
     }
     productFlavors {
-        production {
-            dimension = 'version'
-            buildConfigField "String", "SERVER_URL", '"http://54.254.139.1:8081/api/v1/"'
-//            buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
-        }
-        staging {
-            dimension = 'version'
-            buildConfigField "String", "SERVER_URL", '"http://54.254.139.1:8081/api/v1/"'
-//            buildConfigField "String", "SERVER_URL", '"https://1f306962.ngrok.io/api/v1/"'
-//            buildConfigField "String", "IMAGE_URL", '"https://image.tmdb.org/t/p/original/"'
-        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -151,4 +148,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.3.2"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.3.2"
+    testImplementation "io.mockk:mockk:1.9.3"
 }

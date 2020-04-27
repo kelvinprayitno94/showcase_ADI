@@ -1,48 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginBottom="10dp"
-    android:background="@color/white"
-    tools:context=".ui.approval.category.ApprovalTabActivity">
+<layout >
 
-    <TextView
-        android:id="@+id/tv_adapter_contact_acc_name"
-        style="@style/BoldLabelText"
-        android:layout_width="wrap_content"
+    <data>
+        <variable
+            name="data"
+            type="com.showcase.movie.network.responses.GenresResponse.GenresModel" />
+        <variable
+            name="action"
+            type="com.showcase.movie.adapter.GenresAdapter.OnAdapterTap"/>
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pt dihardja"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/tv_adapter_contact_phone_no"
-        style="@style/BoldLabelText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Document type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_adapter_contact_acc_name" />
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimens_10dp"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            style="@style/OutlinedWhiteButton"
+            android:onClick="@{() -> action.onTap(data)}"
+            android:text="@{data.name}"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_detail_contact_edit"
-        style="@style/OutlinedWhiteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimens_30dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="@dimen/dimens_20dp"
-        android:layout_marginBottom="5dp"
-        android:padding="@dimen/dimens_8dp"
-        android:text="Edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

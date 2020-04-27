@@ -1,15 +1,15 @@
-package com.hino.movie.util
+package com.showcase.movie.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.hino.movie.BaseApplication
+import com.showcase.movie.BaseApplication
 
 /**
  * Created by Dihardja Software on 2020-02-10.
  */
 class UserDefaults {
     companion object {
-        private var instance: _root_ide_package_.com.hino.movie.util.UserDefaults? = null
+        private var instance: UserDefaults? = null
 
         //key
         const val TOKEN_KEY = "service_token"
@@ -19,19 +19,19 @@ class UserDefaults {
         const val USER_ROLE = "user_role"
         const val USER_IMAGE_PATH = "user_image_path"
 
-        fun getInstance(): _root_ide_package_.com.hino.movie.util.UserDefaults {
-            if (_root_ide_package_.com.hino.movie.util.UserDefaults.Companion.instance == null)
-                _root_ide_package_.com.hino.movie.util.UserDefaults.Companion.instance =
-                    _root_ide_package_.com.hino.movie.util.UserDefaults()
+        fun getInstance(): UserDefaults {
+            if (instance == null)
+                instance =
+                    UserDefaults()
 
-            return _root_ide_package_.com.hino.movie.util.UserDefaults.Companion.instance!!
+            return instance!!
         }
     }
 
     private var preferences: SharedPreferences? = null
 
     init {
-        preferences = _root_ide_package_.com.hino.movie.BaseApplication.instance.getSharedPreferences("", Context.MODE_PRIVATE)
+        preferences = BaseApplication.instance.getSharedPreferences("", Context.MODE_PRIVATE)
     }
 
     fun setInt(key: String?, value: Int) {

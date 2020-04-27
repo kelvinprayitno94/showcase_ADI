@@ -3,49 +3,83 @@ package com.showcase.movie.ui.movies
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hino.hearts.BuildConfig
-import com.hino.hearts.R
-import com.showcase.movie.util.UserDefaults
+import com.showcase.movie.network.HinoService
+import com.showcase.movie.network.RetrofitService
+import com.showcase.movie.network.responses.GenresResponse
+import com.showcase.movie.network.responses.MoviesResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 /**
  * Created by Dihardja Software on 2020-02-11.
  */
-class HomeViewModel : ViewModel() {
-    var name: MutableLiveData<String> = MutableLiveData()
-    var role: MutableLiveData<String> = MutableLiveData()
-    var roleId: MutableLiveData<Int> = MutableLiveData()
-    var imagePath: MutableLiveData<String> = MutableLiveData()
-    var versionName: MutableLiveData<String> = MutableLiveData()
+class MovieListViewModel : ViewModel() {
+    var genreListLiveData: MutableLiveData<List<MoviesResponse.MoviesModel>> = MutableLiveData()
 
-    var addVisitButtonList: MutableLiveData<ArrayList<HomeMenu>> = MutableLiveData()
+    var movieList : MutableList<MoviesResponse.MoviesModel> = ArrayList()
+
+    var page = 0
+    var total_page = 1
+    var genre_id = 0
+
+    var isLoading = false
 
     init {
-        versionName.value = BuildConfig.VERSION_NAME
-        name.value = _root_ide_package_.com.showcase.movie.util.UserDefaults.getInstance().getString(
-            _root_ide_package_.com.showcase.movie.util.UserDefaults.USER_NAME)
-        role.value = _root_ide_package_.com.showcase.movie.util.UserDefaults.getInstance().getString(
-            _root_ide_package_.com.showcase.movie.util.UserDefaults.USER_ROLE)
-        roleId.value = _root_ide_package_.com.showcase.movie.util.UserDefaults.getInstance().getInt(
-            _root_ide_package_.com.showcase.movie.util.UserDefaults.USER_ROLE_ID, 0)
-//        imagePath.value = BuildConfig.IMAGE_URL + UserDefaults.getInstance().getString(UserDefaults.USER_IMAGE_PATH)
 
-        when(roleId.value == 7){
-            true->{
-                addVisitButtonList.value = initAddButtonList()
+    }
+
+    fun init(id: Int){
+        genre_id = id
+    }
+
+    fun getMovies(){
+        if (!isLoading && page <= total_page) {
+            isLoading = true
+            page += 1
+            CoroutineScope(Dispatchers.Main).launch {
+
+                try {
+
+                    val call =
+                        HinoService.create(RetrofitService::class.java)
+                            .fetchMovies(BuildConfig.API_KEY, page, genre_id.toString())
+
+                    val response = call.await()
+
+                    if (response.Movie.isNotEmpty()) {
+
+                        total_page = response.total_pages!!
+                        page = response.page!!
+
+                        movieList.addAll(response.Movie)
+
+                        genreListLiveData.value = movieList
+                    }
+
+                } catch (t: Throwable) {
+                    t.printStackTrace()
+                    when (t) {
+                        is IOException -> {
+
+                        }
+                        is HttpException -> {
+
+                        }
+                        else -> {
+
+                        }
+                    }
+                }
             }
         }
     }
 
-    fun logout(){
-        _root_ide_package_.com.showcase.movie.util.UserDefaults.getInstance().clear()
+    fun finishLoading(){
+        isLoading = false
     }
 
-    private fun initAddButtonList(): ArrayList<HomeMenu> {
-        val addButtonList: ArrayList<HomeMenu> = ArrayList()
 
-        addButtonList.add(HomeMenu(R.drawable.ic_appointment, R.string.appointment))
-        addButtonList.add(HomeMenu(R.drawable.ic_task, R.string.task))
-        addButtonList.add(HomeMenu(R.drawable.ic_call_log, R.string.call_log))
-
-        return addButtonList
-    }
 }

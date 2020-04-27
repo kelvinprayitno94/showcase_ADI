@@ -1,4 +1,4 @@
-package com.hino.movie.util
+package com.showcase.movie.util
 
 import android.app.Activity
 import android.content.Context
@@ -17,14 +17,14 @@ import java.util.*
 class InterfaceManager {
 
     companion object {
-        private var instance: _root_ide_package_.com.hino.movie.util.InterfaceManager? = null
+        private var instance: InterfaceManager? = null
 
-        fun getInstance(): _root_ide_package_.com.hino.movie.util.InterfaceManager {
-            if (_root_ide_package_.com.hino.movie.util.InterfaceManager.Companion.instance == null) {
-                _root_ide_package_.com.hino.movie.util.InterfaceManager.Companion.instance =
-                    _root_ide_package_.com.hino.movie.util.InterfaceManager()
+        fun getInstance(): InterfaceManager {
+            if (instance == null) {
+                instance =
+                    InterfaceManager()
             }
-            return _root_ide_package_.com.hino.movie.util.InterfaceManager.Companion.instance!!
+            return instance!!
         }
     }
 
